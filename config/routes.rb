@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :comments
   resources :volunteer_groups
   resources :groups
   resources :users
