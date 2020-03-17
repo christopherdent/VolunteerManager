@@ -1,0 +1,15 @@
+<h1>Login to Volunteer Manager</h1>
+
+<%= flash[:error] %> <%= link_to 'sign up', signup_path if flash[:error] %>
+  <%= form_for :user do |f| %>
+
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+    <br>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+    <br>
+  <%= f.submit 'Login '%>
+  <br>
+
+  <% end %>

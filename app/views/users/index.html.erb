@@ -1,0 +1,10 @@
+<%= link_to "Logout", logout_path, method: :delete %>   |   Logged In as <%= link_to @user.username, user_path(@user) %>
+<br>
+<h1> Welcome to Association Volunteer Manager </h1>
+<p>
+Welcome, <%= @user.first_name %>.  What would you like to do?
+
+<ul>
+  <li>Add a Volunteer</li>
+  <li>Create a Group</li>
+</ul>
