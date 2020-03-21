@@ -1,0 +1,28 @@
+<h1>Edit the Volunteer</h1>
+
+
+<%= form_for @volunteer do |f| %>
+
+<%= f.label :first_name %>
+<%= f.text_field :first_name %>
+<br>
+<%= f.label :last_name %>
+<%= f.text_field :last_name %>
+<br>
+<%= f.label :email %>
+<%= f.email_field :email %>
+<br>
+<%= f.label :organization %>
+<%= f.text_field :organization %>
+<br>
+<%= f.label :sector %>
+<%= f.select :sector, [[], ['Government'], ['Industry'], ['Academia']] %>
+<br>
+<%= f.label :active? %>
+<%= f.check_box :active_status  %>
+
+
+<br>
+<%= f.submit %>
+<br>
+<% end %>

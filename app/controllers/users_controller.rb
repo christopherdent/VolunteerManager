@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+
+  before_filter :authenticate_user!
   before_action :require_login, except: [:new, :create]
 
   def new
@@ -23,6 +25,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by_id(params[:id])
   end
+
+
 
   private
 

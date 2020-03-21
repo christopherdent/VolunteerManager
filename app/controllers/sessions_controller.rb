@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_filter :authenticate_user!
 
   def welcome
   end
@@ -24,6 +25,8 @@ class SessionsController < ApplicationController
       redirect_to '/'
     end
   end
+
+
 
   private
 

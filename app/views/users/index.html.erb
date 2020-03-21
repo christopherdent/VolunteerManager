@@ -5,6 +5,6 @@
 Welcome, <%= @user.first_name %>.  What would you like to do?
 
 <ul>
-  <li>Add a Volunteer</li>
+  <li><%= link_to 'Add a Volunteer', new_volunteer_path %></li>
   <li>Create a Group</li>
 </ul>

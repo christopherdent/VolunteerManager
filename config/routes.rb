@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
   delete '/logout' => 'sessions#destroy'
-  get '/users/index' => 'users#index'
+  get '/users/index' => 'users#index', as: :user_home
 
 
   get 'volunteers/:id/groups', to: 'volunteers#groups_index'

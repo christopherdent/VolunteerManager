@@ -27,7 +27,13 @@ class VolunteersController < ApplicationController
 
   end
 
+  def edit
+    @volunteer = Volunteer.find(params[:id])
+  end
 
+  def update
+
+  end 
 
   private
 
