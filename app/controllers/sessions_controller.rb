@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
+  helper_method :current_user, :require_login, :logged_in?
 
   def welcome
   end

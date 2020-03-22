@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
   before_action :require_login, except: [:new, :create]
 
   def new

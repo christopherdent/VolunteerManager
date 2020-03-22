@@ -1,9 +1,16 @@
 <h1> Welcome to Volunteer Manager </h1>
   <p>
+
+<% if !logged_in? %>
     <%= link_to "Login", login_path %>
     OR
     <%= link_to "Signup", signup_path %>
   </p>
+  <%else%>
+  <p><%= link_to 'Add a Volunteer', new_volunteer_path %></p>
+  <p>Volunteer Index</p>
+  <p>Add a Group</p>
+  <p>Show All Groups</p>
+  <%= link_to "Logout", logout_path, method: :delete %> 
 
-
-  <% if logged_in? %>"ho ho ho"<%end%>
+<%end%>
