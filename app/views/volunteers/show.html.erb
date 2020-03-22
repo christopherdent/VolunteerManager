@@ -6,4 +6,8 @@ Organization:  <%= @volunteer.organization %><br>
 Sector:  <%= @volunteer.sector %><br>
 Status:  <%= "Active" if @volunteer.active_status == true %><br>
 <br>
-<%= link_to 'Edit Volunteer', edit_volunteer_path %>
+<%= button_to 'Edit Volunteer', edit_volunteer_path %>
+
+<br>
+
+<%=button_to("Delete This Volunteer", volunteer_path, method: :delete) %>

@@ -47,6 +47,12 @@ class VolunteersController < ApplicationController
       end
     end
 
+    def destroy
+      @volunteer = Volunteer.find(volunteer_params[:id])
+      @volunteer.destroy
+      redirect_to volunteers_path
+    end
+
 
   private
 
