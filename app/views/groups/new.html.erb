@@ -1,0 +1,23 @@
+<h1>Add Group</h1>
+
+******
+<%= form_for @group do |f| %>
+
+<%= f.label :name %>
+<%= f.text_field :name %>
+<br>
+<%= f.label :associated_program %>
+<%= f.text_field :program_name %>
+<br>
+<%= f.label :chairperson %>
+<%= f.email_field :chair %>
+<br>
+<%= f.label :active? %>
+<%= f.check_box :status  %>
+<br>
+
+
+<br>
+<%= f.submit %>
+<br>
+<% end %>

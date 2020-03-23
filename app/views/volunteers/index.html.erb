@@ -1,5 +1,8 @@
 <h1>All Volunteers</h1>
-<% Volunteer.all.each do |volunteer| %>
- <%= volunteer.last_name %> <%= volunteer.first_name %> <%= link_to '[View]', volunteer %> <%= link_to '[Edit]', edit_volunteer_path(volunteer) %> <%= link_to '[Delete]', volunteer, method: :delete, data: { confirm: 'Really?' } %> <br>
+<br>
+<%= link_to 'Add a Volunteer', new_volunteer_path %>
+<br> <br>  <br>
+<% Volunteer.all.sort_by(&:last_name).each do |volunteer| %>
+ <%= volunteer.last_name %>, <%= volunteer.first_name %> <%= link_to '[View]', volunteer %> <%= link_to '[Edit]', edit_volunteer_path(volunteer) %> <%= link_to '[Delete]', volunteer, method: :delete, data: { confirm: 'Really?' } %> <br>
   <br>
 <% end %>

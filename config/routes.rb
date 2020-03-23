@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'volunteers/:id/groups', to: 'volunteers#groups_index'
 
   get '/volunteers/:id/edit', to: 'volunteers#new'
-  post '/volunteers/:id/edit', to: 'volunteers#create'
+  post '/volunteers/:id/edit', to: 'volunteers#update'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

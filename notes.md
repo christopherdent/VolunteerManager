@@ -23,3 +23,13 @@ Comments
 -Belongs to User
 -Belongs to Volunteer
 -Belongs to Group
+
+
+
+--------------------
+Volunteer Index Page
+-Should be able to sort vols by last name
+NEXT SPRINT:
+-Test all volunteer functionality
+-Implement all volunteer functionality to GROUP model
+-Tet all group functionality 
