@@ -9,8 +9,8 @@
   <%else%>
   <p><%= link_to 'Add a Volunteer', new_volunteer_path %></p>
   <p><%= link_to 'Volunteer Index', volunteers_path %></p>
-  <p>Add a Group</p>
-  <p>Show All Groups</p>
+  <p><%= link_to 'Add a Group', new_group_path %></p>
+  <p><%= link_to 'Show All Groups', groups_path %></p>
   <%= link_to "Logout", logout_path, method: :delete %>
 
 <%end%>

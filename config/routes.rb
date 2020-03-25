@@ -13,11 +13,12 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
   get '/users/index' => 'users#index', as: :user_home
 
+  resources :groups, only: [:show] do
+     # nested resource for posts
+     resources :volunteers, only: [:show, :index]
+   end
 
-  get 'volunteers/:id/groups', to: 'volunteers#groups_index'
 
-  get '/volunteers/:id/edit', to: 'volunteers#new'
-  post '/volunteers/:id/edit', to: 'volunteers#update'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

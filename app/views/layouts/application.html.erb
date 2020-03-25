@@ -17,6 +17,7 @@
     <%= link_to " |Home| ", '/' %>
     <% if logged_in? %>
       <%= link_to " |View All Volunteers| ", volunteers_path %>
+      <%= link_to " |View All Groups| ", groups_path %>
       <%= link_to " |Log out| ", logout_path %>
       <% end %>
     <%= yield %>

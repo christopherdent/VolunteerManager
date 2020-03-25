@@ -32,4 +32,5 @@ Volunteer Index Page
 NEXT SPRINT:
 -Test all volunteer functionality
 -Implement all volunteer functionality to GROUP model
--Tet all group functionality 
+-Tet all group functionality
+-Note here i fixed my strong params problem.  I just had to passs group_id to the link_to method in the create action.  I will do the same for volunteers to DRY this off.  
