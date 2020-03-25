@@ -4,3 +4,7 @@ im a show page <br>
 <p><%= @group.program_name %></p>
 <p><%= @group.chair %> </p>
 <p><%= @group.status %></p>
+
+<%= link_to 'Edit Group Details', edit_group_path(@group) %>
+<br><br>
+<%=link_to("Delete This Group", group_path, method: :delete) %>

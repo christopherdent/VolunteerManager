@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/users/index' => 'users#index', as: :user_home
 
   resources :groups, only: [:show] do
-     # nested resource for posts
+     # nested resource for vols
      resources :volunteers, only: [:show, :index]
    end
 

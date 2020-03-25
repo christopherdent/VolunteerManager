@@ -33,4 +33,11 @@ NEXT SPRINT:
 -Test all volunteer functionality
 -Implement all volunteer functionality to GROUP model
 -Tet all group functionality
--Note here i fixed my strong params problem.  I just had to passs group_id to the link_to method in the create action.  I will do the same for volunteers to DRY this off.  
+-Note here i fixed my strong params problem.  I just had to define user id and allow it, it had to be a hidden field.  
+
+NEXT SPRINT:-
+
+-Make it so you can add a volunteer (Chair) when creating a group OR select from the list
+-Make it so you can add a group when creating a volunteer.  
+-get a group/:id/volunteers route up and running
+-get a volunteer/;id/groups route up and running

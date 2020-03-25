@@ -1,0 +1,8 @@
+<h1>All Groups</h1>
+<br>
+<%= link_to 'Add a Group', new_group_path %>
+<br> <br>  <br>
+<% Group.all.sort_by(&:name).each do |group| %>
+ <%= group.program_name %> <%= group.name %> <%= link_to '[View]', group %> <%= link_to '[Edit]', edit_group_path(group) %> <%= link_to '[Delete]', group, method: :delete, data: { confirm: 'Really?' } %> <br>
+  <br>
+<% end %>

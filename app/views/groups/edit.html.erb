@@ -1,0 +1,22 @@
+<br><br>
+
+<%= form_for @group do |f| %>
+
+<%= f.label :name %>
+<%= f.text_field :name %>
+<br>
+<%= f.label :associated_program %>
+<%= f.text_field :program_name %>
+<br>
+<%= f.label :chairperson %>
+<%= f.text_field :chair %>
+<br>
+<%= f.label :active? %>
+<%= f.check_box :status  %>
+<br>
+
+ <%= f.hidden_field :user_id, :value => current_user.id %>
+<br>
+<%= f.submit %>
+<br>
+<% end %>
