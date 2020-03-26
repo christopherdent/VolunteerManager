@@ -10,8 +10,8 @@
 <%= f.text_field :program_name %>
 <br>
 <%= f.label :chair_name %>
-<%= f.text_field :chair_first, placeholder: "First" %> <%= f.text_field :chair_last, placeholder: "Last" %>
 
+<%= f.collection_select :volunteer_ids, Volunteer.all, :id, :full_name %>
 <br>
 <%= f.label :active? %>
 <%= f.check_box :status  %>

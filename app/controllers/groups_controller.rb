@@ -40,7 +40,7 @@ class GroupsController < ApplicationController
 private
 
   def group_params
-    params.require(:group).permit(:name, :program_name, :chair_first, :chair_last, :status, :user_id)
+    params.require(:group).permit(:name, :program_name, :chair_first, :chair_last, :status, :user_id, volunteer_ids:[], volunteers_attributes: [:last_name])
   end
 
 end

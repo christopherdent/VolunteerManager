@@ -38,7 +38,9 @@ NEXT SPRINT:
 NEXT SPRINT:-
 
 -Make it so you can add a volunteer (Chair) when creating a group OR select from the list
--Make it so you can add a group when creating a volunteer. (from existing groups) 
+*****today i made it so you can select a volunteer from a list when creating, although you still need to associate it with the group.  
+-Make it so you can add a group when creating a volunteer. (from existing groups)
+*****do same as above 
 -get a group/:id/volunteers route up and running
 -get a volunteer/;id/groups route up and running
 
