@@ -9,8 +9,9 @@
 <%= f.label :associated_program %>
 <%= f.text_field :program_name %>
 <br>
-<%= f.label :chairperson %>
-<%= f.text_field :chair %>
+<%= f.label :chair_name %>
+<%= f.text_field :chair_first, placeholder: "First" %> <%= f.text_field :chair_last, placeholder: "Last" %>
+
 <br>
 <%= f.label :active? %>
 <%= f.check_box :status  %>

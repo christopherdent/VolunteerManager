@@ -22,7 +22,7 @@
 <%= f.check_box :active_status  %>
 <br>
 Add to a group?
-
+ <%= f.hidden_field :user_id, :value => current_user.id %>
 <br>
 <%= f.submit %>
 <br>

@@ -15,10 +15,12 @@ ActiveRecord::Schema.define(version: 2020_03_25_020837) do
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.string "program_name"
-    t.string "chair"
+    t.string "chair_first"
+    t.string "chair_last"
     t.boolean "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
     t.integer "volunteer_id"
   end
 

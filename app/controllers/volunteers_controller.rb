@@ -13,16 +13,8 @@ class VolunteersController < ApplicationController
   end
 
   def create
-    @volunteer = Volunteer.new
-    @volunteer.first_name = params[:volunteer][:first_name]
-    @volunteer.last_name = params[:volunteer][:last_name]
-    @volunteer.email = params[:volunteer][:email]
-    @volunteer.organization = params[:volunteer][:organization]
-    @volunteer.sector = params[:volunteer][:sector]
-    @volunteer.active_status = params[:volunteer][:active_status]
-    @volunteer.user_id = current_user.id
+      @volunteer = Volunteer.create(volunteer_params)
 
-    @volunteer.save
     redirect_to volunteer_path(@volunteer)
   end
 
@@ -35,22 +27,9 @@ class VolunteersController < ApplicationController
   end
 
   def update
-    @volunteer = Volunteer.find(params[:id])
-    #@volunteer.update(volunteer_params) why does this line not work?  Here or in Create method?  ActiveModel::UnknownAttributeError (unknown attribute '_method' for Volunteer.): OR forbiddenattributeserror
-
-      @volunteer.first_name = params[:volunteer][:first_name]
-      @volunteer.last_name = params[:volunteer][:last_name]
-      @volunteer.email = params[:volunteer][:email]
-      @volunteer.organization = params[:volunteer][:organization]
-      @volunteer.sector = params[:volunteer][:sector]
-      @volunteer.active_status = params[:volunteer][:active_status]
-      @volunteer.user_id = current_user.id
-      if @volunteer.save
-        redirect_to volunteer_path(@volunteer)
-      else
-        render :edit
-      end
-    end
+     @volunteer = Volunteer.update(volunteer_params)
+     redirect_to volunteer_path(@volunteer)
+  end
 
     def destroy
       @volunteer = Volunteer.find(volunteer_params[:id])
@@ -62,8 +41,7 @@ class VolunteersController < ApplicationController
   private
 
   def volunteer_params
-    #params.require(:volunteer).permit(:first_name, :last_name, :email, :organization, :sector, :active_status, :user_id)
-    #params.permit(:first_name, :last_name, :email, :organization, :sector, :active_status, :id)
-    params.permit!
+    params.require(:volunteer).permit(:first_name, :last_name, :email, :organization, :sector, :active_status, :user_id)
+
   end
 end

@@ -2,16 +2,24 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
+
   end
 
   def create
     @group = Group.create(group_params)
+    @chair = Volunteer.where(last_name: @group.chair_last)
+    #find last_name: (group_params[:chair_last])
+
+    #@chair = Volunteer.find name: (group_params[:chair])
+    @group.volunteers << @chair
+
     redirect_to group_path(@group)
   end
 
   def show
-  
+
     @group = Group.find(params[:id])
+
   end
 
   def edit
@@ -32,7 +40,7 @@ class GroupsController < ApplicationController
 private
 
   def group_params
-    params.require(:group).permit(:name, :program_name, :chair, :status, :user_id)
+    params.require(:group).permit(:name, :program_name, :chair_first, :chair_last, :status, :user_id)
   end
 
 end
