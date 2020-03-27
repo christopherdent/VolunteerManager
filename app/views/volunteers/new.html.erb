@@ -21,7 +21,16 @@
 <%= f.label :active? %>
 <%= f.check_box :active_status  %>
 <br>
-Add to a group?
+
+
+<%= f.label "Add to Group?" %><br>
+
+  <%= f.collection_select :group_ids, Group.all, :id, :name, include_blank: true %>
+ <%= f.fields_for :groups, @volunteer.groups.build do |groups_fields| %>
+   <%= groups_fields.text_field :name, include_blank: true %>
+ <% end %>
+
+
  <%= f.hidden_field :user_id, :value => current_user.id %>
 <br>
 <%= f.submit %>

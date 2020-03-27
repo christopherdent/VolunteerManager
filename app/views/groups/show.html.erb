@@ -4,7 +4,12 @@ im a show page <br>
 <p><%= @group.program_name %></p>
 <p><%= @group.chair_first %> <%= @group.chair_last %> </p>
 <p><%= @group.status %></p>
-
+<br>
+Group Members:
+<br>
+<% @group.group_volunteers.each do |member| %>
+<%= member %><br>
+<% end  %>
 
 <%= link_to 'Add Volunteer to Group', new_volunteer_path %>
 <br><br>

@@ -10,10 +10,12 @@ class VolunteersController < ApplicationController
 
   def new
     @volunteer = Volunteer.new :active_status => true
+    @groups = Group.all
   end
 
   def create
       @volunteer = Volunteer.create(volunteer_params)
+      #@group = volunteer_params[:group_volunteers]
 
     redirect_to volunteer_path(@volunteer)
   end
@@ -41,7 +43,7 @@ class VolunteersController < ApplicationController
   private
 
   def volunteer_params
-    params.require(:volunteer).permit(:first_name, :last_name, :email, :organization, :sector, :active_status, :user_id)
+    params.require(:volunteer).permit(:first_name, :last_name, :email, :organization, :sector, :active_status, :user_id, group_ids:[], groups_attributes: [:name])
 
   end
 end

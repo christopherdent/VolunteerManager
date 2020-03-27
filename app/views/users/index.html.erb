@@ -7,5 +7,6 @@ Welcome, <%= @user.first_name %>.  What would you like to do?
 <ul>
   <li><%= link_to 'Add a Volunteer', new_volunteer_path %></li>
   <li><%= link_to 'View All Volunteers', volunteers_path %></li>
-  <li>Create a Group</li>
+  <li><%= link_to 'Create a Group', new_group_path %></li>
+  <li><%= link_to 'View All Groups', groups_path %></li>
 </ul>

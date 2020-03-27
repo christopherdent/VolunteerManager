@@ -40,8 +40,9 @@ NEXT SPRINT:-
 -Make it so you can add a volunteer (Chair) when creating a group OR select from the list
 *****today i made it so you can select a volunteer from a list when creating, although you still need to associate it with the group.  
 -Make it so you can add a group when creating a volunteer. (from existing groups)
-*****do same as above 
+*****do same as above
 -get a group/:id/volunteers route up and running
 -get a volunteer/;id/groups route up and running
 
--Add volunteer to group should select from a list of existing volunteers
+-Add volunteer to group should select from a list of existing volunteers??
+STILL TRYING TO ADD GROUP WITH VOLuNTEER.  STUCK ON ATTRIBUTE METHOD IN THE VOLUNTEER MODEL - THE GROUP ISNT COMING THROUGH WITH PARAMS!!!

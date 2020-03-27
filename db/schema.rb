@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_26_013208) do
+ActiveRecord::Schema.define(version: 2020_03_26_233004) do
 
   create_table "group_volunteers", force: :cascade do |t|
     t.integer "group_id"
     t.integer "volunteer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "statement"
     t.index ["group_id"], name: "index_group_volunteers_on_group_id"
     t.index ["volunteer_id"], name: "index_group_volunteers_on_volunteer_id"
   end
@@ -30,7 +31,6 @@ ActiveRecord::Schema.define(version: 2020_03_26_013208) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
-    t.integer "volunteer_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(version: 2020_03_26_013208) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
-    t.integer "group_id"
   end
 
   add_foreign_key "group_volunteers", "groups"
