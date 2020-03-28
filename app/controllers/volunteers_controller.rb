@@ -11,17 +11,20 @@ class VolunteersController < ApplicationController
   def new
     @volunteer = Volunteer.new :active_status => true
     @groups = Group.all
+
   end
 
   def create
-      @volunteer = Volunteer.create(volunteer_params)
-      #@group = volunteer_params[:group_volunteers]
-
+    @volunteer = Volunteer.create(volunteer_params)
+    @group = Group.find(volunteer_params[:group_ids])
+    @volunteer.groups << @group
+    @volunteer.save
     redirect_to volunteer_path(@volunteer)
   end
 
   def show
     @volunteer = Volunteer.find(params[:id])
+
   end
 
   def edit
@@ -34,16 +37,16 @@ class VolunteersController < ApplicationController
   end
 
     def destroy
-      @volunteer = Volunteer.find(volunteer_params[:id])
+
+      @volunteer = Volunteer.find(params[:id])
       @volunteer.destroy
       redirect_to volunteers_path
     end
 
-
   private
 
   def volunteer_params
-    params.require(:volunteer).permit(:first_name, :last_name, :email, :organization, :sector, :active_status, :user_id, group_ids:[], groups_attributes: [:name])
+    params.require(:volunteer).permit!
 
   end
 end

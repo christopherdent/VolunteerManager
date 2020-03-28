@@ -2,7 +2,7 @@ class Volunteer < ApplicationRecord
   belongs_to :user
   has_many :group_volunteers
   has_many :groups, through: :group_volunteers
-  accepts_nested_attributes_for :groups, reject_if: :all_blank
+  accepts_nested_attributes_for :groups
 
   def last_name=(s)
     write_attribute(:last_name, s.to_s.titleize) # The to_s is in case you get nil/non-string

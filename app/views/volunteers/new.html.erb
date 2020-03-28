@@ -24,12 +24,7 @@
 
 
 <%= f.label "Add to Group?" %><br>
-
-  <%= f.collection_select :group_ids, Group.all, :id, :name, include_blank: true %>
- <%= f.fields_for :groups, @volunteer.groups.build do |groups_fields| %>
-   <%= groups_fields.text_field :name, include_blank: true %>
- <% end %>
-
+<%= f.collection_select :group_ids, Group.all, :id, :name %>
 
  <%= f.hidden_field :user_id, :value => current_user.id %>
 <br>

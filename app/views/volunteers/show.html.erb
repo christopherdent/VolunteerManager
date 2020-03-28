@@ -6,6 +6,12 @@ Organization:  <%= @volunteer.organization %><br>
 Sector:  <%= @volunteer.sector %><br>
 Status:  <%= "Active" if @volunteer.active_status == true %><br>
 <br>
+Groups:<br>
+<% @volunteer.groups.each do |group| %>
+<%= group.name %>
+<% end %>
+
+<br>
 <%= link_to 'Edit Volunteer', edit_volunteer_path(@volunteer) %>
 
 <br>
