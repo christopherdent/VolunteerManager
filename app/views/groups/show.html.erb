@@ -1,18 +1,22 @@
-<br>
-im a show page <br>
 <h1><%= @group.name %></h1>
-<p><%= @group.program_name %></p>
-<p><%= @group.chair_first %> <%= @group.chair_last %> </p>
-<p><%= @group.status %></p>
+<p>Program:  <%= @group.program_name %></p>
+<p>Chairperson:  <%= @group.chair_first %> <%= @group.chair_last %> </p>
+<p>Status:  <%= "Active" if @group.status == true %></p>
 <br>
 Group Members:
 <br>
-<% @group.group_volunteers.each do |member| %>
-<%= member %><br>
+<% @group.volunteers.each do |member| %>
+<%= member.full_name %><br>
 <% end  %>
+<br>
+<% form_tag new_volunteer_path do %>
+  <% hidden_field_tag :group %>
+<%= submit_tag link_to 'Add Volunteer to Group', new_volunteer_path %>
 
-<%= link_to 'Add Volunteer to Group', new_volunteer_path %>
+  <% end %>
+
+<%= button_to 'Add Volunteer to Group', new_volunteer_path %>
 <br><br>
-<%= link_to 'Edit Group Details', edit_group_path(@group) %>
+<%= button_to 'Edit Group Details', edit_group_path(@group) %>
 <br><br>
-<%=link_to("Delete This Group", group_path, method: :delete) %>
+<%=button_to("Delete This Group", group_path, method: :delete) %>

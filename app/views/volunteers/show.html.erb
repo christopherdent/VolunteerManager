@@ -7,17 +7,19 @@ Sector:  <%= @volunteer.sector %><br>
 Status:  <%= "Active" if @volunteer.active_status == true %><br>
 <br>
 Groups:<br>
+<ul>
 <% @volunteer.groups.each do |group| %>
-<%= group.name %>
+<li><%= group.name %></li>
 <% end %>
-
+</ul>
 <br>
-<%= link_to 'Edit Volunteer', edit_volunteer_path(@volunteer) %>
-
 <br>
-
-<%= link_to 'Add a New Volunteer', new_volunteer_path %>
+<%= button_to 'Edit Volunteer', edit_volunteer_path(@volunteer) %>
 
 <br>
 
-<%=link_to("Delete This Volunteer", volunteer_path, method: :delete) %>
+<%= button_to 'Add a New Volunteer', new_volunteer_path %>
+
+<br>
+
+<%= button_to("Delete This Volunteer", volunteer_path, method: :delete) %>

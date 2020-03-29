@@ -9,14 +9,14 @@ class VolunteersController < ApplicationController
 
 
   def new
+
     @volunteer = Volunteer.new :active_status => true
     @groups = Group.all
-
   end
 
   def create
     @volunteer = Volunteer.create(volunteer_params)
-    if volunteer_params[:group_ids] != nil
+    if volunteer_params[:group_ids] != ""
       @group = Group.find(volunteer_params[:group_ids])
       @volunteer.groups << @group
     end
@@ -25,8 +25,8 @@ class VolunteersController < ApplicationController
   end
 
   def show
-    @volunteer = Volunteer.find(params[:id])
 
+    @volunteer = Volunteer.find(params[:id])
   end
 
   def edit

@@ -2,11 +2,7 @@ class Group < ApplicationRecord
   belongs_to :user
   has_many :group_volunteers
   has_many :volunteers, through: :group_volunteers
-
-
   accepts_nested_attributes_for :volunteers
-
-
 
   def volunteers_attributes=(volunteer_attributes)
       volunteer_attributes.values.each do |volunteer_attribute|
@@ -16,7 +12,12 @@ class Group < ApplicationRecord
   end
 
   def active?
-    self.status == true 
+    self.status == true
   end
+
+  def chair
+    "#{self.chair_first}, #{self.chair_last}"
+  end
+
 
 end
