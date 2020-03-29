@@ -22,10 +22,10 @@
 <%= f.check_box :active_status  %>
 <br>
 
-
+<% if Group.all != [] %>
 <%= f.label "Add to Group?" %><br>
 <%= f.collection_select :group_ids, Group.all, :id, :name %>
-
+<% end %>
  <%= f.hidden_field :user_id, :value => current_user.id %>
 <br>
 <%= f.submit %>

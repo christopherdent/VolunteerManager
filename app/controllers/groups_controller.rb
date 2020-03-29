@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
-
+    @volunteers = Volunteer.all
   end
 
   def create
@@ -27,12 +27,14 @@ class GroupsController < ApplicationController
   end
 
   def update
-    @group = Group.update(group_params)
-  redirect_to group_path(@group)
+    @group = Group.find(params[:id])
+    @group.update(group_params)
+    redirect_to group_path(@group)
   end
 
   def destroy
     @group = Group.find(params[:id])
+    @group.volunteers = []
     @group.destroy
     redirect_to groups_path
   end

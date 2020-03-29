@@ -9,9 +9,10 @@
 <%= f.label :associated_program %>
 <%= f.text_field :program_name %>
 <br>
+<% if Volunteer.all != [] %>
 <%= f.label :chair_name %>
-
 <%= f.collection_select :volunteer_id, Volunteer.all, :id %>
+<% end %>
 <br>
 <%= f.label :active? %>
 <%= f.check_box :status  %>

@@ -16,8 +16,10 @@ class VolunteersController < ApplicationController
 
   def create
     @volunteer = Volunteer.create(volunteer_params)
-    @group = Group.find(volunteer_params[:group_ids])
-    @volunteer.groups << @group
+    if volunteer_params[:group_ids] != nil
+      @group = Group.find(volunteer_params[:group_ids])
+      @volunteer.groups << @group
+    end
     @volunteer.save
     redirect_to volunteer_path(@volunteer)
   end
@@ -39,6 +41,7 @@ class VolunteersController < ApplicationController
     def destroy
 
       @volunteer = Volunteer.find(params[:id])
+      @volunteer.groups = []
       @volunteer.destroy
       redirect_to volunteers_path
     end

@@ -46,3 +46,6 @@ NEXT SPRINT:-
 
 -Add volunteer to group should select from a list of existing volunteers??
 STILL TRYING TO ADD GROUP WITH VOLuNTEER.  STUCK ON ATTRIBUTE METHOD IN THE VOLUNTEER MODEL - THE GROUP ISNT COMING THROUGH WITH PARAMS!!!
+Notes from Saturday:-
+
+Need to implement ability to add chair with group, just like you did with volunteer.  
