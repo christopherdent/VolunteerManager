@@ -6,7 +6,7 @@ class Group < ApplicationRecord
 
   def volunteers_attributes=(volunteer_attributes)
       volunteer_attributes.values.each do |volunteer_attribute|
-      volunteer = Volunteer.find_or_create_by(category_attribute)
+      volunteer = Volunteer.find_or_create_by(volunteer_attribute)
       self.volunteers << volunteer
     end
   end

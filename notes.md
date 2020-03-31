@@ -44,8 +44,12 @@ NEXT SPRINT:-
 -get a group/:id/volunteers route up and running
 -get a volunteer/;id/groups route up and running
 
--Add volunteer to group should select from a list of existing volunteers??
+
 STILL TRYING TO ADD GROUP WITH VOLuNTEER.  STUCK ON ATTRIBUTE METHOD IN THE VOLUNTEER MODEL - THE GROUP ISNT COMING THROUGH WITH PARAMS!!!
 Notes from Saturday:-
 
-Need to implement ability to add chair with group, just like you did with volunteer.  
+Need to implement ability to add chair with group, just like you did with volunteer.
+
+
+-Add volunteer to group should select from a list of existing volunteers??
+create ACTION for a VOLuNTEER in a GROUP - what is the URL / HTTP Method for that?

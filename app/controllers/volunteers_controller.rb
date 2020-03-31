@@ -18,15 +18,15 @@ class VolunteersController < ApplicationController
     @volunteer = Volunteer.create(volunteer_params)
     if volunteer_params[:group_ids] != ""
       @group = Group.find(volunteer_params[:group_ids])
-      @volunteer.groups << @group
+      #@volunteer.groups << @group
     end
     @volunteer.save
     redirect_to volunteer_path(@volunteer)
   end
 
   def show
-
     @volunteer = Volunteer.find(params[:id])
+
   end
 
   def edit
@@ -34,12 +34,12 @@ class VolunteersController < ApplicationController
   end
 
   def update
-     @volunteer = Volunteer.update(volunteer_params)
+    @volunteer =Volunteer.find(params[:id])
+     @volunteer.update(volunteer_params)
      redirect_to volunteer_path(@volunteer)
   end
 
-    def destroy
-
+  def destroy
       @volunteer = Volunteer.find(params[:id])
       @volunteer.groups = []
       @volunteer.destroy

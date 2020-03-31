@@ -19,11 +19,13 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    #@volunteer = @group.volunteers.build
+  #  @volunteer.save
   end
 
   def edit
     @group = Group.find(params[:id])
-    @chair = @group.chair 
+    @chair = @group.chair
 
 
   end
@@ -40,6 +42,17 @@ class GroupsController < ApplicationController
     @group.destroy
     redirect_to groups_path
   end
+
+  #def volunteers_index
+  #  @group == Group.find(params[:id])
+  #  @volunteers = @group.volunteers
+  #  render template: 'volunteers/index'
+  # end
+
+  #def volunteer
+  #  @group = group.find(params[:id])
+  #  render template: 'volunteers/show'
+  #end
 
 private
 

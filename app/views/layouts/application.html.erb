@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>VolunteerManager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Volunteer Manager" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Volunteer Manager" %>">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,14 +17,19 @@
     </div>
 
   <body>
-    <%= link_to " |Home| ", '/' %>
-    <% if logged_in? %>
-      <%= link_to " |View All Volunteers| ", volunteers_path %>
-      <%= link_to " |View All Groups| ", groups_path %>
-      <%= link_to " |Log out| ", logout_path %>
-      <% end %>
-    <%= yield %>
+
+    <header>
+    <%= render 'layouts/navigation' %>
+    </header>
 
 
+    <!--- yield %>--->
+
+    <main role="main">
+      <%= content_for?(:content) ? yield(:content) : yield %>
+    </main>
+<% if logged_in? %>
+Logged In as <%= link_to current_user.username, user_path(current_user.id) %>
+<% end %>
   </body>
 </html>

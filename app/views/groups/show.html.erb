@@ -1,22 +1,24 @@
-<h1><%= @group.name %></h1>
+<div class="jumbotron text-center">
+  <h1><%= @group.name %></h1>
+</div>
 <p>Program:  <%= @group.program_name %></p>
 <p>Chairperson:  <%= @group.chair_first %> <%= @group.chair_last %> </p>
 <p>Status:  <%= "Active" if @group.status == true %></p>
 <br>
 Group Members:
-<br>
-<% @group.volunteers.each do |member| %>
-<%= member.full_name %><br>
+<br><br>
+<ul>
+<% @group.volunteers.uniq.each do |member| %>
+<li><%= link_to member.full_name, volunteer_path(member) %></li>
 <% end  %>
+</ul>
 <br>
-<% form_tag new_volunteer_path do %>
-  <% hidden_field_tag :group %>
-<%= submit_tag link_to 'Add Volunteer to Group', new_volunteer_path %>
 
-  <% end %>
 
-<%= button_to 'Add Volunteer to Group', new_volunteer_path %>
+
+
+<%= link_to 'Add Volunteer to Group', new_volunteer_path(@group) %>
 <br><br>
-<%= button_to 'Edit Group Details', edit_group_path(@group) %>
+<%= link_to 'Edit Group Details', edit_group_path(@group) %>
 <br><br>
-<%=button_to("Delete This Group", group_path, method: :delete) %>
+<%= link_to("Delete This Group", group_path, method: :delete) %>

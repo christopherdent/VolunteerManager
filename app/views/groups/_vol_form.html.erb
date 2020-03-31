@@ -1,7 +1,5 @@
-<h1>Edit the Volunteer</h1>
 
-****************
-<%= form_for @volunteer do |f| %>
+<%= form_for([@group, @volunteer]) do |f| %>
 
 <%= f.label :first_name %>
 <%= f.text_field :first_name %>

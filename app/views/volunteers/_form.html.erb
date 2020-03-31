@@ -1,8 +1,5 @@
-<h1>Edit the Volunteer</h1>
 
-****************
 <%= form_for @volunteer do |f| %>
-
 <%= f.label :first_name %>
 <%= f.text_field :first_name %>
 <br>
@@ -23,7 +20,11 @@
 <br>
 <%= f.hidden_field :user_id, :value => current_user.id %>
 <br>
+<% if Group.all != [] %>
 
+<%= f.label "Add to Group?" %><br>
+<%= f.collection_select :group_ids, Group.all, :id, :name, include_blank: "None" %>
+<% end %>
 <br>
 <%= f.submit %>
 <br>

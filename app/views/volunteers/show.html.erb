@@ -14,12 +14,12 @@ Groups:<br>
 </ul>
 <br>
 <br>
-<%= button_to 'Edit Volunteer', edit_volunteer_path(@volunteer) %>
+<%= link_to 'Edit Volunteer', edit_volunteer_path(@volunteer) %>
 
 <br>
 
-<%= button_to 'Add a New Volunteer', new_volunteer_path %>
+<%= link_to 'Add a New Volunteer', new_volunteer_path %>
 
 <br>
 
-<%= button_to("Delete This Volunteer", volunteer_path, method: :delete) %>
+<%= link_to("Delete This Volunteer", volunteer_path, method: :delete) %>

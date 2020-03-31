@@ -1,34 +1,5 @@
 <h1>Add Volunteer</h1>
 
 ******
-<%= form_for @volunteer do |f| %>
 
-<%= f.label :first_name %>
-<%= f.text_field :first_name %>
-<br>
-<%= f.label :last_name %>
-<%= f.text_field :last_name %>
-<br>
-<%= f.label :email %>
-<%= f.email_field :email %>
-<br>
-<%= f.label :organization %>
-<%= f.text_field :organization %>
-<br>
-<%= f.label :sector %>
-<%= f.select :sector, [[], ['Government'], ['Industry'], ['Academia']] %>
-<br>
-<%= f.label :active? %>
-<%= f.check_box :active_status  %>
-<br>
-
-<% if Group.all != [] %>
-
-<%= f.label "Add to Group?" %><br>
-<%= f.collection_select :group_ids, Group.all, :id, :name, include_blank: "None" %>
-<% end %>
- <%= f.hidden_field :user_id, :value => current_user.id %>
-<br>
-<%= f.submit %>
-<br>
-<% end %>
+<%= render "form" %>

@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   helper_method :current_user, :require_login, :logged_in?
 
   def welcome
+    @user = User.find(session[:user_id]) if @user
   end
 
 

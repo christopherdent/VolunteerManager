@@ -10,13 +10,19 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
+    get '/logout' => 'sessions#destroy'
   delete '/logout' => 'sessions#destroy'
   get '/users/index' => 'users#index', as: :user_home
 
-  resources :groups, only: [:show] do
+  resources :groups do
      # nested resource for vols
-     resources :volunteers, only: [:show, :index]
+     resources :group_volunteers
    end
+
+   resources :volunteers do
+      # nested resource for vols
+      resources :groups
+    end
 
 
 
