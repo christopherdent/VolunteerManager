@@ -13,15 +13,23 @@ Group Members:
 <% end  %>
 </ul>
 <br>
-
-<p> Add Existing Volunteer to Group </p>
+<div class="jumbotron text-center">
+<center>
+  <table style="width:75%">
+  <tr>
+    <th>Add Existing Volunteer to Group</th>
+    <th>Add New Volunteer to Group</th>
+  </tr>
+  <tr><td>
 <%= form_for @group do |f| %>
-<%= f.collection_select(:volunteers, Volunteer.all, :id, :full_name) %><br>
-<%= f.submit %>
-<%end%>
-<br><br>
 
-<p> Add New Volunteer to Group </p>
+<%= f.collection_select(:volunteer_ids, Volunteer.all, :id, :full_name, {:include_blank => true} ) %><br><br><br><br>
+<%= f.submit "Add" %>
+<%end%>
+  </td>
+
+   <td>
+
 <%= form_for @group do |f| %>
 <%= f.fields_for :volunteers, @group.volunteers.build do |volunteers_fields| %>
 <%= f.label "First Name" %>
@@ -41,7 +49,7 @@ Group Members:
   <%= f.submit "Add"%>
 <% end %>
 <% end %>
-
+</td></tr></table></center></div>
 <br><br>
 <%= link_to 'Edit Group Details', edit_group_path(@group) %>
 <br><br>
