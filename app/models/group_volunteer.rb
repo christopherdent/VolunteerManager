@@ -1,5 +1,5 @@
 class GroupVolunteer < ApplicationRecord
   belongs_to :volunteer
-  belongs_to :group 
-
+  belongs_to :group
+ 
 end

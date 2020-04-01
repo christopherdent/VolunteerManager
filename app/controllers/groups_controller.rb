@@ -3,6 +3,7 @@ class GroupsController < ApplicationController
   def new
     @group = Group.new :status => true
     @volunteers = Volunteer.all
+
   end
 
   def create
@@ -19,7 +20,8 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    #@volunteer = @group.volunteers.build
+    @group_volunteer = GroupVolunteer.new
+  #  @volunteer = @group.volunteers.build
   #  @volunteer.save
   end
 
@@ -57,7 +59,7 @@ class GroupsController < ApplicationController
 private
 
   def group_params
-    params.require(:group).permit(:name, :program_name, :chair_first, :chair_last, :status, :user_id, :volunteer_ids, volunteer_ids:[], volunteers_attributes: [:last_name])
+    params.require(:group).permit(:name, :program_name, :chair_first, :chair_last, :status, :user_id, :volunteer_ids, volunteer_ids:[], volunteers_attributes: [:last_name, :first_name, :email, :organization, :sector, :active_status])
   end
 
 end

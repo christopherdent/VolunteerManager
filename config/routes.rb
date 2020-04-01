@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :groups
   resources :volunteers
   resources :users
+  resources :group_volunteers
+
+
 
   get '/' => 'sessions#welcome'
 
@@ -16,7 +19,7 @@ Rails.application.routes.draw do
 
   resources :groups do
      # nested resource for vols
-     resources :group_volunteers
+     resources :volunteers
    end
 
    resources :volunteers do

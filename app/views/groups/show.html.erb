@@ -14,10 +14,34 @@ Group Members:
 </ul>
 <br>
 
+<p> Add Existing Volunteer to Group </p>
+<%= form_for @group do |f| %>
+<%= f.collection_select(:volunteers, Volunteer.all, :id, :full_name) %><br>
+<%= f.submit %>
+<%end%>
+<br><br>
 
+<p> Add New Volunteer to Group </p>
+<%= form_for @group do |f| %>
+<%= f.fields_for :volunteers, @group.volunteers.build do |volunteers_fields| %>
+<%= f.label "First Name" %>
+   <%= volunteers_fields.text_field :first_name %><br>
+<%= f.label "Last Name" %>
+   <%= volunteers_fields.text_field :last_name %><br>
+<%= f.label "Email" %>
+   <%= volunteers_fields.email_field :email %><br>
+ <%= f.label :organization %>
+   <%= volunteers_fields.text_field :organization %><br>
+ <%= f.label :sector %>
+   <%= volunteers_fields.select :sector, [[], ['Government'], ['Industry'], ['Academia']] %><br>
+ <%= f.label :active? %>
+   <%= volunteers_fields.check_box :active_status %><br>
+ <%= f.hidden_field :user_id, :value => current_user.id %>
+   <br>
+  <%= f.submit "Add"%>
+<% end %>
+<% end %>
 
-
-<%= link_to 'Add Volunteer to Group', new_volunteer_path(@group) %>
 <br><br>
 <%= link_to 'Edit Group Details', edit_group_path(@group) %>
 <br><br>

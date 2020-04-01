@@ -45,11 +45,12 @@ NEXT SPRINT:-
 -get a volunteer/;id/groups route up and running
 
 
-STILL TRYING TO ADD GROUP WITH VOLuNTEER.  STUCK ON ATTRIBUTE METHOD IN THE VOLUNTEER MODEL - THE GROUP ISNT COMING THROUGH WITH PARAMS!!!
-Notes from Saturday:-
+-Add a group with volunteer (done)
 
-Need to implement ability to add chair with group, just like you did with volunteer.
+Need to implement ability to add chair with group, just like you did with volunteer. (done)
 
 
--Add volunteer to group should select from a list of existing volunteers??
-create ACTION for a VOLuNTEER in a GROUP - what is the URL / HTTP Method for that?
+-Add group with volunteers currently chooses from list of vols but should have ability to create a new vol.  
+create ACTION for a VOLuNTEER in a GROUP - what is the URL / HTTP Method for that?  or select from existing vols.
+Volunteer index - filter by group (see nested resources lab )
+-SCOPE method requirement - make an admin feature (namespaced routes lab).  Admin feature can show who has created what groups and volunteers (user's volunteers, user's groups)

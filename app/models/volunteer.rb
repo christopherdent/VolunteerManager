@@ -1,7 +1,7 @@
 class Volunteer < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :group_volunteers
-  has_many :groups, through: :group_volunteers
+  has_many :groups, through: :group_volunteers, dependent: :destroy
   accepts_nested_attributes_for :groups
 
   def last_name=(s)

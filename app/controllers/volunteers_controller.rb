@@ -6,25 +6,23 @@ class VolunteersController < ApplicationController
     @volunteers = Volunteer.all
   end
 
-
-
   def new
-
     @volunteer = Volunteer.new :active_status => true
     @groups = Group.all
   end
 
   def create
-    @volunteer = Volunteer.create(volunteer_params)
+    @volunteer = Volunteer.create(volunteer_params) 
     if volunteer_params[:group_ids] != ""
       @group = Group.find(volunteer_params[:group_ids])
-      #@volunteer.groups << @group
+
     end
     @volunteer.save
     redirect_to volunteer_path(@volunteer)
   end
 
   def show
+
     @volunteer = Volunteer.find(params[:id])
 
   end
@@ -34,7 +32,8 @@ class VolunteersController < ApplicationController
   end
 
   def update
-    @volunteer =Volunteer.find(params[:id])
+
+    @volunteer =Volunteer.find(volunteer_params[:id])
      @volunteer.update(volunteer_params)
      redirect_to volunteer_path(@volunteer)
   end
@@ -49,6 +48,7 @@ class VolunteersController < ApplicationController
   private
 
   def volunteer_params
+
     params.require(:volunteer).permit!
 
   end

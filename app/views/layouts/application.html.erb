@@ -12,23 +12,18 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-    <div>
-
-    </div>
-
   <body>
 
     <header>
     <%= render 'layouts/navigation' %>
     </header>
 
-
-    <!--- yield %>--->
-
     <main role="main">
       <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
+
 <% if logged_in? %>
+<br>
 Logged In as <%= link_to current_user.username, user_path(current_user.id) %>
 <% end %>
   </body>
