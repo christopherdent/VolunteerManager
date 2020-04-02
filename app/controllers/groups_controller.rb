@@ -30,17 +30,32 @@ class GroupsController < ApplicationController
   end
 
   def update
-    @group = Group.find(params[:id])
-    #byebug
-    #@group.update(group_params)
-    @volunteer = Volunteer.find(group_params[:volunteer_ids])
-    if @volunteer != nil
-      @group.volunteers <<  @volunteer
-    elsif group_params.include?
+    if group_params.key?(:volunteers_attributes)
+      @group = Group.find(params[:id])
+      @volunteer = Volunteer.find_or_create_by(group_params[:volunteer_ids])
       @group.update(group_params)
+      @group.volunteers <<  @volunteer
+    else
+      @group = Group.find(params[:id])
+      @volunteer = Volunteer.find(group_params[:volunteer_ids])
+        @group.name = group_params[:name]
+        @group.program_name = group_params[:program_name]
+        @group.status = group_params[:status]
+        @group.chair_first = @volunteer.first_name
+        @group.chair_last = @volunteer.last_name
+        @group.volunteers <<  @volunteer if !@group.volunteers.include?(@volunteer)
+        @group.save
     end
     redirect_to group_path(@group)
   end
+
+  def update_two
+    @group = Group.find(params[:id])
+    @volunteer = Volunteer.find(group_params[:volunteer_ids])
+    @group.volunteers <<  @volunteer
+    redirect_to group_path(@group)
+  end
+
 
   def destroy
     @group = Group.find(params[:id])

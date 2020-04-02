@@ -21,7 +21,8 @@ Group Members:
     <th>Add New Volunteer to Group</th>
   </tr>
   <tr><td>
-<%= form_for @group do |f| %>
+
+<%= form_for(@group, url: {action: "update_two"}, method: :patch) do |f| %>
 
 <%= f.collection_select(:volunteer_ids, Volunteer.all, :id, :full_name, {:include_blank => true} ) %><br><br><br><br>
 <%= f.submit "Add" %>

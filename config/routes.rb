@@ -6,21 +6,22 @@ Rails.application.routes.draw do
   resources :group_volunteers
 
 
-
   get '/' => 'sessions#welcome'
-
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
-    get '/logout' => 'sessions#destroy'
+  get '/logout' => 'sessions#destroy'
   delete '/logout' => 'sessions#destroy'
   get '/users/index' => 'users#index', as: :user_home
 
   resources :groups do
+    member do
      # nested resource for vols
-     resources :volunteers
+     patch :update_two
+     put :update_two
    end
+ end 
 
    resources :volunteers do
       # nested resource for vols
