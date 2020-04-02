@@ -10,7 +10,6 @@ class GroupsController < ApplicationController
     @group = Group.create(group_params)
     if group_params[:volunteer_ids] != ""
       @volunteer = Volunteer.find(group_params[:volunteer_ids])
-      #@group.volunteers << @volunteer
       @group.chair_first = @volunteer.first_name
       @group.chair_last = @volunteer.last_name
     end
@@ -21,8 +20,6 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @group_volunteer = GroupVolunteer.new
-  #  @volunteer = @group.volunteers.build
-  #  @volunteer.save
   end
 
   def edit
@@ -34,7 +31,14 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-    @group.update(group_params)
+    #byebug
+    #@group.update(group_params)
+    @volunteer = Volunteer.find(group_params[:volunteer_ids])
+    if @volunteer != nil
+      @group.volunteers <<  @volunteer
+    elsif group_params.include?
+      @group.update(group_params)
+    end
     redirect_to group_path(@group)
   end
 
@@ -45,16 +49,6 @@ class GroupsController < ApplicationController
     redirect_to groups_path
   end
 
-  #def volunteers_index
-  #  @group == Group.find(params[:id])
-  #  @volunteers = @group.volunteers
-  #  render template: 'volunteers/index'
-  # end
-
-  #def volunteer
-  #  @group = group.find(params[:id])
-  #  render template: 'volunteers/show'
-  #end
 
 private
 

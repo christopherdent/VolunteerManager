@@ -21,5 +21,4 @@ class Volunteer < ApplicationRecord
   end
 
 
-
 end
