@@ -4,11 +4,13 @@
 <p>Program:  <%= @group.program_name %></p>
 <p>Chairperson:  <%= @group.chair_first %> <%= @group.chair_last %> </p>
 <p>Status:  <%= "Active" if @group.status == true %></p>
-<br>
+
+<%= link_to 'Edit Group Details', edit_group_path(@group) %>
+<br><br>
 Group Members:
 <br><br>
 <ul>
-<% @group.volunteers.uniq.each do |member| %>
+<% @group.volunteers.uniq.sort_by(&:last_name).each do |member| %>
 <li><%= link_to member.full_name, volunteer_path(member) %></li>
 <% end  %>
 </ul>
@@ -51,7 +53,7 @@ Group Members:
 <% end %>
 <% end %>
 </td></tr></table></center></div>
+
 <br><br>
-<%= link_to 'Edit Group Details', edit_group_path(@group) %>
-<br><br>
-<%= link_to("Delete This Group", group_path, method: :delete) %>
+
+<%= button_to "Delete Group", group_path(@group), method: :delete, data: { confirm: "Really?" } %>
