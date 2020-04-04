@@ -12,7 +12,7 @@ class VolunteersController < ApplicationController
   end
 
   def create
-    @volunteer = Volunteer.create(volunteer_params) 
+    @volunteer = Volunteer.create(volunteer_params)
     if volunteer_params[:group_ids] != ""
       @group = Group.find(volunteer_params[:group_ids])
 
@@ -44,6 +44,13 @@ class VolunteersController < ApplicationController
       @volunteer.destroy
       redirect_to volunteers_path
     end
+
+    def remove_from_group
+      @group = Group.find(params[:group_id]) #can do that in before_filter
+      volunteer = Volunteer.find(params[:id])
+      @group.volunteers.delete volunteer
+    redirect_to @group
+end
 
   private
 

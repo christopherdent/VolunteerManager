@@ -21,7 +21,15 @@ Rails.application.routes.draw do
      patch :update_two
      put :update_two
    end
- end 
+end
+
+resources :groups do
+  resources :volunteers do
+  member do
+  delete :remove_from_group
+end
+end
+end
 
    resources :volunteers do
       # nested resource for vols

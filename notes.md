@@ -54,13 +54,16 @@ Need to implement ability to add chair with group, just like you did with volunt
 create ACTION for a VOLuNTEER in a GROUP - what is the URL / HTTP Method for that?  or select from existing vols.
 Volunteer index - filter by group (see nested resources lab )
 -SCOPE method requirement - make an admin feature (namespaced routes lab).  Admin feature can show who has created what groups and volunteers (user's volunteers, user's groups)
+
+
 4/2 Next Sprint:
--Filter Vol Index Page by group
+-Remove from Group (Done)
+-Filter Vol Index Page by group AND add a search box for volunteers and groups
 -Incorporate statements of expertise via join table.  
--Add attrubute to Group - TYPE
+-Add attrubute to Group - TYPE DONE
 Following:
 -Tighten up validations and authentication
--Build ADMIN Scope Method Feature
+-Build ADMIN Scope Method Feature (See namespaced routes lab - make CRUD all admin only)
 Following:
 -Explore possibility of having a CV attribute for Voluteers.  If possible, incorporate it with a gem.   
 Following:
