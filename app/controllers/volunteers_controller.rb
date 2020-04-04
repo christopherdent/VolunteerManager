@@ -1,9 +1,14 @@
 class VolunteersController < ApplicationController
 
 
-
   def index
+
+    if !volunteer_params[:group].blank?
+      @group = Group.find(volunteer_params[:group])
+      @volunteers = @group.volunteers
+    else
     @volunteers = Volunteer.all
+    end
   end
 
   def new
@@ -56,7 +61,7 @@ end
 
   def volunteer_params
 
-    params.require(:volunteer).permit!
-
+    #params.require(:volunteer).permit!
+    params.permit!
   end
 end

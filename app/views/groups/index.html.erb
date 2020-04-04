@@ -1,4 +1,6 @@
-<h1>Active Groups</h1>
+<div class="jumbotron text-center">
+  <h1>Active Groups</h1>
+  </div>
 <br>
 <%= link_to 'Add a Group', new_group_path %>
 <br> <br>  <br>
@@ -9,7 +11,9 @@
 <% end %>
 
   <br>
-  <h3>Inactive Groups</h3><br>
+  <div class="jumbotron text-center">
+  <h4>Inactive Groups</h4><br>
+  </div>
   <% Group.all.sort_by(&:name).each do |group| %>
   <% if !group.active? %>
    <%= group.program_name %> <%= group.name %> <%= link_to '[View]', group %> <%= link_to '[Edit]', edit_group_path(group) %><br>

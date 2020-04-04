@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   helper_method :current_user, :require_login, :logged_in?
 
   def welcome
-    @user = User.find(session[:user_id])   
+    @user = User.find(session[:user_id]) if logged_in?
   end
 
 
@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to(controller: 'users', action: 'index')
     else
-      flash[:error] = "Something went wrong  Try again or"
+      flash[:error] = "Something went wrong. Try again or"
       redirect_to(controller: 'sessions', action: 'new')
     end
   end
