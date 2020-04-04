@@ -1,6 +1,7 @@
 <div class="jumbotron text-center">
   <h1><%= @group.name %></h1>
 </div>
+<p>Group Type: <%= @group.kind %></p>
 <p>Program:  <%= @group.program_name %></p>
 <p>Chairperson:  <%= @group.chair_first %> <%= @group.chair_last %> </p>
 <p>Status:  <%= "Active" if @group.status == true %></p>

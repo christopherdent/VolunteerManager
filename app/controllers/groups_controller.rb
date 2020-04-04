@@ -43,6 +43,7 @@ class GroupsController < ApplicationController
         @group.status = group_params[:status]
         @group.chair_first = @volunteer.first_name
         @group.chair_last = @volunteer.last_name
+        @group.kind = group_params[:kind]
         @group.volunteers <<  @volunteer if !@group.volunteers.include?(@volunteer)
         @group.save
     end
@@ -68,7 +69,7 @@ class GroupsController < ApplicationController
 private
 
   def group_params
-    params.require(:group).permit(:name, :program_name, :chair_first, :chair_last, :status, :user_id, :volunteer_ids, volunteer_ids:[], volunteers_attributes: [:last_name, :first_name, :email, :organization, :sector, :active_status])
+    params.require(:group).permit(:name, :program_name, :chair_first, :chair_last, :status, :kind, :user_id, :volunteer_ids, volunteer_ids:[], volunteers_attributes: [:last_name, :first_name, :email, :organization, :sector, :active_status])
   end
 
 end
