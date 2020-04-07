@@ -58,8 +58,8 @@ Volunteer index - filter by group (see nested resources lab )
 
 4/2 Next Sprint:
 -Remove from Group (Done)
--Filter Vol Index Page by group (done) AND add a search box for volunteers and groups
--Incorporate statements of expertise via join table.  - See Displaying has Many Through Lab
+-Filter Vol Index Page by group (done) AND add a search box for volunteers and groups (MAYBE)
+-Incorporate statements of expertise via join table.  - See Displaying has Many Through Lab.  IF YOU CANT GET THIS TO WORK JUST DO COMMENTS FOR GROUP AND VOLS BY USER.  
 -Add attrubute to Group - TYPE DONE
 Following:
 -Tighten up validations and authentication

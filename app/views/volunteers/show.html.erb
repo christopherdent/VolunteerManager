@@ -13,12 +13,16 @@ Status:  <%= "Active" if @volunteer.active_status == true %><br>
 <li><%= link_to group.name, group_path(group) %></li>
 <% end %>
 </ul>
-<br>
-<br>
 
-<br>
+Statements of Expertise:<br>
 
-<%= link_to 'Add a New Volunteer', new_volunteer_path %>
+<% GroupVolunteer.all.each do |gv| %>
+
+<% @group = Group.find(gv.group_id) %>
+<%= @group.name %><br>
+<%= gv.statement %>
+<% end %>
+
 
 <br>
 

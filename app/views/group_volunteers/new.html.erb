@@ -1,0 +1,12 @@
+<%= form_for @group_volunteer do |f| %>
+
+
+  <%= f.text_area :statement %>
+  <%= f.collection_select :volunteer_id, Volunteer.all, :id, :full_name %>
+  <%= f.collection_select :group_id, Group.all, :id, :name %>
+
+
+<br>
+<%= f.submit "Add Statement" %>
+<br>
+<% end %>
