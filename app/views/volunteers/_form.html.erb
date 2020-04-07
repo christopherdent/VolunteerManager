@@ -1,5 +1,6 @@
 
-<%= form_for @volunteer do |f| %>
+<%= form_for @volunteer, method: :post do |f| %>
+
 <%= f.label :first_name %>
 <%= f.text_field :first_name %>
 <br>

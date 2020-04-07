@@ -2,8 +2,7 @@ class VolunteersController < ApplicationController
 
 
   def index
-
-    if !volunteer_params[:group].blank?
+    if !params[:group].blank?  #why is volunteer_params not working?  Error is can't find volunteer without id?
       @group = Group.find(volunteer_params[:group])
       @volunteers = @group.volunteers
     else
@@ -18,9 +17,8 @@ class VolunteersController < ApplicationController
 
   def create
     @volunteer = Volunteer.create(volunteer_params)
-    if volunteer_params[:group_ids] != ""
-      @group = Group.find(volunteer_params[:group_ids])
-
+    if volunteer_params[:group_ids] != "" || volunteer_params[:group_ids] != nil
+      @group = Group.find(volunteer_params[:group_ids]) if @group
     end
     @volunteer.save
     redirect_to volunteer_path(@volunteer)
@@ -51,17 +49,23 @@ class VolunteersController < ApplicationController
     end
 
     def remove_from_group
-      @group = Group.find(params[:group_id]) #can do that in before_filter
+      @group = Group.find(params[:group_id])
       volunteer = Volunteer.find(params[:id])
       @group.volunteers.delete volunteer
+
+      if volunteer.last_name == @group.chair_last  #this conditional clears the group's chair attribute if the volunteer you are removing is the chair.
+        @group.chair_first = nil
+        @group.chair_last = nil
+      end
+      @group.save
     redirect_to @group
 end
 
   private
 
   def volunteer_params
-
+    params.require(:volunteer).permit(:id, :first_name, :last_name, :email, :organization, :sector, :active_status, :user_id, :volunteer_ids, group_ids:[], groups_attributes: [:name, :program_name, :chair_first, :chair_last, :status, :kind, :user_id, :id])
     #params.require(:volunteer).permit!
-    params.permit!
+    #params.permit!
   end
 end

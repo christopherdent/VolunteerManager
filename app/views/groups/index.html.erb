@@ -1,10 +1,20 @@
 <div class="jumbotron text-center">
   <h1>Active Groups</h1>
   </div>
+Filter<br>
+<div>
+  <h3>Filter by group type: </h3>
+  <%= form_tag("/groups", method: "get") do %>
+    <%= select_tag 'kind', options_for_select(Group.all.map{ |k| [k.kind, k.id] }), include_blank: true %>
+      <%= hidden_field_tag :user_id, :value => current_user.id %>
+    <%= submit_tag "Filter" %>
+  <% end %>
+</div>
+
 <br>
 <%= link_to 'Add a Group', new_group_path %>
 <br> <br>  <br>
-<% Group.all.sort_by(&:name).each do |group| %>
+<% @groups.sort_by(&:name).each do |group| %>
  <% if group.active? %>
   <%= group.program_name %> <%= group.name %> <%= link_to '[View]', group %> <%= link_to '[Edit]', edit_group_path(group) %><br>
  <% end %>

@@ -21,6 +21,7 @@ class Group < ApplicationRecord
     "#{self.chair_first}, #{self.chair_last}"
   end
 
+ 
 
 private
 
