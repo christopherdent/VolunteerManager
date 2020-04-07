@@ -17,7 +17,8 @@ class VolunteersController < ApplicationController
 
   def create
     @volunteer = Volunteer.create(volunteer_params)
-    if volunteer_params[:group_ids] != "" || volunteer_params[:group_ids] != nil
+     
+    if volunteer_params[:group_ids] != ""
       @group = Group.find(volunteer_params[:group_ids]) if @group
     end
     @volunteer.save
@@ -64,7 +65,7 @@ end
   private
 
   def volunteer_params
-    params.require(:volunteer).permit(:id, :first_name, :last_name, :email, :organization, :sector, :active_status, :user_id, :volunteer_ids, group_ids:[], groups_attributes: [:name, :program_name, :chair_first, :chair_last, :status, :kind, :user_id, :id])
+    params.require(:volunteer).permit(:id, :first_name, :last_name, :email, :organization, :sector, :active_status, :user_id, :group_ids, group_ids:[], groups_attributes: [:name, :program_name, :chair_first, :chair_last, :status, :kind, :user_id, :id])
     #params.require(:volunteer).permit!
     #params.permit!
   end

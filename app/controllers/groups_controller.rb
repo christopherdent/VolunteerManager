@@ -21,7 +21,7 @@ end
 
   def create
     @group = Group.create(group_params)
-    byebug
+
     if group_params[:volunteer_ids] != ""
       @volunteer = Volunteer.find(group_params[:volunteer_ids])
       @group.chair_first = @volunteer.first_name
@@ -64,7 +64,7 @@ end
   end
 
   def update_two  # this action handles the Add Existing Volunteer to Group form.
-    
+
     @group = Group.find(params[:id])
     @volunteer = Volunteer.find(group_params[:volunteer_ids])
     @group.volunteers <<  @volunteer
