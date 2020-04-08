@@ -69,3 +69,15 @@ Following:
 Following:
 Look at pages for HTML consistency.  Add DIVs where needed and go to town with CSS.  
 Last steps:  OMNIAUTH.  
+
+4/6 Next Sprint:
+-Reincorporate "Add to Group" feature from Volunteer Page.  
+-TRY to stop adding a statement of expertise from associating with a group if they are already on that group (right now patched with .uniq)
+-Build ADMIN Scope Methd feature (see namespaced routes lab - CRUD should be admin only)
+-CSS
+-Omniauth
+
+Aspirational:
+-CV attribute for volunteers
+-Search Box
+-JS function to show only the groups the volunteer is on on the new statement of expertise page (this would change a lot of things)

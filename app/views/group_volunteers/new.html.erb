@@ -1,10 +1,13 @@
+<h1> Add a Statament of Expertise </h1>
+
+
 <%= form_for @group_volunteer do |f| %>
+  <%= f.label :statement_of_expertise %><br>
+  <%= f.text_area :statement %><br>
 
+  <%= f.collection_select :volunteer_id, Volunteer.all, :id, :full_name, {:selected => @volunteer.id} %><br>
 
-  <%= f.text_area :statement %>
-  <%= f.collection_select :volunteer_id, Volunteer.all, :id, :full_name %>
-  <%= f.collection_select :group_id, Group.all, :id, :name %>
-
+  <%= f.collection_select :group_id, Group.all, :id, :name %><br>
 
 <br>
 <%= f.submit "Add Statement" %>

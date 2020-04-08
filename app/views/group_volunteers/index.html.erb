@@ -1,0 +1,8 @@
+
+
+<% @group_volunteers.each do |gv| %>
+<p>Volunteer:  <%= gv.volunteer_id %> </p>
+<p>Group:  <%= gv.group_id %> </p>
+<p><%= gv.statement %></p>
+<br>
+  <%end%>

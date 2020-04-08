@@ -17,7 +17,7 @@ class VolunteersController < ApplicationController
 
   def create
     @volunteer = Volunteer.create(volunteer_params)
-     
+
     if volunteer_params[:group_ids] != ""
       @group = Group.find(volunteer_params[:group_ids]) if @group
     end
@@ -26,9 +26,8 @@ class VolunteersController < ApplicationController
   end
 
   def show
-
     @volunteer = Volunteer.find(params[:id])
-
+    @group_volunteer = GroupVolunteer.new
   end
 
   def edit

@@ -1,29 +1,40 @@
 <h1> Volunteer Profile: </h1>
 
+<p><small><%= link_to 'Edit Volunteer Details', edit_volunteer_path(@volunteer) %></small></p>
+
 Name:  <%= @volunteer.first_name %> <%= @volunteer.last_name %><br>
 Email:  <%= mail_to(@volunteer.email) %><br>
 Organization:  <%= @volunteer.organization %><br>
 Sector:  <%= @volunteer.sector %><br>
 Status:  <%= "Active" if @volunteer.active_status == true %><br>
-<%= link_to 'Edit Volunteer Details', edit_volunteer_path(@volunteer) %>
+
 <br><br>
 <p>Groups:</p>
 <ul>
-<% @volunteer.groups.each do |group| %>
+<% @volunteer.groups.uniq.each do |group| %>
 <li><%= link_to group.name, group_path(group) %></li>
 <% end %>
 </ul>
 
+<br>
 Statements of Expertise:<br>
-
+<small><%= link_to "Add a Statement of Expertise", new_group_volunteer_path(volunteer_id: @volunteer.id) %></small><br><br>
 <% GroupVolunteer.all.each do |gv| %>
-
+<% if gv.volunteer_id == @volunteer.id %>
 <% @group = Group.find(gv.group_id) %>
-<%= @group.name %><br>
-<%= gv.statement %>
+<% if gv.statement %>
+Group:  <%= @group.name %><br>
+Statement:  <%= gv.statement %><br>
+<br>
+<% end %>
+<% end %>
 <% end %>
 
 
-<br>
+<br><br><br>
 
+
+
+<center>
 <%= button_to "Delete Volunteer", volunteer_path(@volunteer), method: :delete, data: { confirm: "Really?" } %>
+</center>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :volunteers
   resources :users
   resources :group_volunteers
+    post '/group_volunteers/new' => 'group_volunteers#new'
 
 
   get '/' => 'sessions#welcome'
