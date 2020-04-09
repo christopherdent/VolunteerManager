@@ -3,11 +3,14 @@ class VolunteersController < ApplicationController
 
   def index
     if !params[:group].blank?  #why is volunteer_params not working?  Error is can't find volunteer without id?
-      @group = Group.find(volunteer_params[:group])
+
+      @group = Group.find(request.params[:group])
       @volunteers = @group.volunteers
+      @volunteer = Volunteer.new
     else
     @volunteers = Volunteer.all
     end
+
   end
 
   def new
@@ -61,6 +64,10 @@ class VolunteersController < ApplicationController
     redirect_to @group
 end
 
+  def params
+    @_dangerous_params || super
+  end
+
   private
 
   def volunteer_params
@@ -68,4 +75,9 @@ end
     #params.require(:volunteer).permit!
     #params.permit!
   end
+
+  def use_unsafe_params
+  @_dangerous_params = request.parameters
+  end
+
 end

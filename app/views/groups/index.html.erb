@@ -5,7 +5,7 @@ Filter<br>
 <div>
   <h3>Filter by group type: </h3>
   <%= form_tag("/groups", method: "get") do %>
-    <%= select_tag 'kind', options_for_select(Group.all.map{ |k| [k.kind, k.id] }), include_blank: true %>
+    <%= select_tag 'kind', options_for_select(Group.all.map{ |k| [k.kind] }), include_blank: true %>
       <%= hidden_field_tag :user_id, :value => current_user.id %>
     <%= submit_tag "Filter" %>
   <% end %>

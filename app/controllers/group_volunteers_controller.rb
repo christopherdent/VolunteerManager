@@ -4,28 +4,29 @@ class GroupVolunteersController < ApplicationController
 
     @group_volunteer = GroupVolunteer.new
     @volunteer = Volunteer.find(params[:volunteer_id])
+    @groups = @volunteer.groups if @volunteer 
 
   end
 
   def create
     @group_volunteer = GroupVolunteer.new(group_volunteer_params)
-    
     @group_volunteer.save
     redirect_to volunteers_path
   end
 
 
   def index
-    @group_volunteers = GroupVolunteer.all
+      @group_volunteers = GroupVolunteer.all
+      @group_volunteers_statements = []
+      @group_volunteers.each do |gv|
+        if gv.statement != nil
 
-    @group_volunteers.each do |gv|
-      if gv.statement
-        @volunteer = Volunteer.find(gv.volunteer_id)
-        @group = Group.find(gv.group_id)
-        @statement = gv.statement
+          @group_volunteers_statements << gv
+        end
+
       end
+
     end
-  end
 
   def destroy
      @group = Group.find(params[:group][:id])

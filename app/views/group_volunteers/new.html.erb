@@ -2,12 +2,11 @@
 
 
 <%= form_for @group_volunteer do |f| %>
+
+<h4> Statement for: <%= @volunteer.full_name %> </h4>
+<p> For the:  <%= f.collection_select :group_id, @groups, :id, :name %><br><br>
   <%= f.label :statement_of_expertise %><br>
-  <%= f.text_area :statement %><br>
-
-  <%= f.collection_select :volunteer_id, Volunteer.all, :id, :full_name, {:selected => @volunteer.id} %><br>
-
-  <%= f.collection_select :group_id, Group.all, :id, :name %><br>
+  <%= f.text_area :statement, :cols => 50, :rows => 10 %><br>
 
 <br>
 <%= f.submit "Add Statement" %>

@@ -1,8 +1,11 @@
-
-
-<% @group_volunteers.each do |gv| %>
-<p>Volunteer:  <%= gv.volunteer_id %> </p>
-<p>Group:  <%= gv.group_id %> </p>
-<p><%= gv.statement %></p>
+<% @group_volunteers_statements.each do |gv| %>
+<%   @volunteer = Volunteer.find(gv.volunteer_id) %>
+<%    @group = Group.find(gv.group_id) %>
+<%    @statement = gv.statement %>
 <br>
-  <%end%>
+<h4><%= @volunteer.full_name %></h4>
+<%= @group.name %> <br>
+<%= @statement %> <br>
+
+
+<% end %>
