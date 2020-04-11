@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-
-  #before_filter :authenticate_user!
   before_action :require_login, except: [:new, :create]
 
   def new
@@ -19,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @user = User.find(session[:user_id])
+    redirect_to(controller: 'sessions', action: 'welcome')
   end
 
 

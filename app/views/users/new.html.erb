@@ -17,6 +17,13 @@
 <%= f.label :password %>
 <%= f.password_field :password %>
 <br>
+<% if current_user %>
+<% if current_user.admin %>
+<%= f.label :admin?  %>
+<%= f.check_box :admin %>
+<% end %>
+<% end %>
+<br>
 <%= f.submit %>
 <br>
 <% end %>

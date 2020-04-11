@@ -72,7 +72,7 @@ Last steps:  OMNIAUTH.
 
 4/6 Next Sprint:
 -Reincorporate "Add to Group" feature from Volunteer Page.
--Filter by Group Type (Study Group for this?) 
+-Filter by Group Type (Study Group for this?) (Completed)
 -TRY to stop adding a statement of expertise from associating with a group if they are already on that group (right now patched with .uniq)
 -Build ADMIN Scope Methd feature (see namespaced routes lab - CRUD should be admin only)
 -CSS

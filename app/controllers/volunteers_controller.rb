@@ -1,5 +1,6 @@
 class VolunteersController < ApplicationController
-
+before_action :require_login
+before_action :admin_only, except: [:index, :show]
 
   def index
     if !params[:group].blank?  #why is volunteer_params not working?  Error is can't find volunteer without id?

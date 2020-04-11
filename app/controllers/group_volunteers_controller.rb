@@ -1,17 +1,20 @@
 class GroupVolunteersController < ApplicationController
+before_action :require_login
+before_action :admin_only, except: [:index, :show]
 
   def new
-
     @group_volunteer = GroupVolunteer.new
-    @volunteer = Volunteer.find(params[:volunteer_id])
-    @groups = @volunteer.groups if @volunteer 
-
+    @volunteer = Volunteer.find(group_volunteer_params[:volunteer_id])
+    @groups = @volunteer.groups if @volunteer
   end
 
   def create
-    @group_volunteer = GroupVolunteer.new(group_volunteer_params)
-    @group_volunteer.save
-    redirect_to volunteers_path
+
+    @group_volunteer = GroupVolunteer.create(group_volunteer_params)
+    #volunteer = Volunteer.find(params[:volunteer_id])
+    #@group_volunteer.save
+
+    redirect_to volunteer_path(group_volunteer_params[:volunteer_id])
   end
 
 

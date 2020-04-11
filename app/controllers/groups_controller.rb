@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
-
+before_action :require_login
+before_action :admin_only, except: [:index, :show]
 
   def index
 

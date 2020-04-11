@@ -7,6 +7,11 @@
 <div class="jumbotron text-center">
 <h1> Welcome to Volunteer Manager </h1>
 </div>
+
+<% if flash[:alert] %>
+<div class="alert alert-info"><%= flash[:alert] %></div>
+<% end %>
+
   <p>
   <% if logged_in? %>
     Hi, <%= current_user.first_name %>.  What would you like to do?
