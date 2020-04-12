@@ -23,8 +23,11 @@ end
       @group.chair_first = @volunteer.first_name
       @group.chair_last = @volunteer.last_name #assigns the volunteer the chair role
     end
-    @group.save
-    redirect_to group_path(@group)
+    if @group.save
+      redirect_to group_path(@group)
+    else
+      render action: :new
+    end 
   end
 
   def show

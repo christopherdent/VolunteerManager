@@ -1,3 +1,13 @@
+
+  <% if @group.errors.any? %>
+    <div class="form-errors">
+      <h4 class = "error"><%= pluralize(@group.errors.count, "error") %> stopped you from creating or updating this group:</h4>
+        <% @group.errors.full_messages.each do |msg| %>
+          <ul class = "error"><li><%= msg %></li></ul>
+        <% end %>
+      </div>
+  <%end%>
+
 <%= form_for @group do |f| %>
 
 <%= f.label :name %>

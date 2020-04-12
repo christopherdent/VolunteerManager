@@ -3,8 +3,8 @@ class Group < ApplicationRecord
   has_many :group_volunteers
   has_many :volunteers, through: :group_volunteers
   accepts_nested_attributes_for :volunteers
-  validate :is_title_case
-  before_validation :make_title_case
+  validates :name, presence: true
+  validates :kind, presence: true
 
   def volunteers_attributes=(volunteer_attributes)
       volunteer_attributes.values.each do |volunteer_attribute|
