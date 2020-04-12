@@ -1,6 +1,15 @@
 
 <%= form_for @volunteer, method: :post do |f| %>
 
+<% if @volunteer.errors.any? %>
+  <div class="form-errors">
+  <h4 class = "error"><%= pluralize(@volunteer.errors.count, "error") %> stopped you from creating this volunteer:</h4>
+      <% @volunteer.errors.full_messages.each do |msg| %>
+      <ul class = "error"><li><%= msg %></li></ul>
+      <% end %>
+      </div>
+      <%end%>
+
 <%= f.label :first_name %>
 <%= f.text_field :first_name %>
 <br>

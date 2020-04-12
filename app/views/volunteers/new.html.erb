@@ -1,5 +1,13 @@
 <h1>Add Volunteer</h1>
 
-******
+
+<% if @volunteer.errors.any? %>
+  <div class="form-errors">
+  <h4 class = "error"><%= pluralize(@volunteer.errors.count, "error") %> stopped you from creating this user:</h4>
+      <% @volunteer.errors.full_messages.each do |msg| %>
+      <ul class = "error"><li><%= msg %></li></ul>
+      <% end %>
+      </div>
+      <%end%>
 
 <%= render "form" %>

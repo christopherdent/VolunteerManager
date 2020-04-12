@@ -19,11 +19,14 @@ before_action :admin_only, except: [:index, :show]
 
   def create
     @volunteer = Volunteer.create(volunteer_params)
-    if volunteer_params[:group_ids] != ""
-      @group = Group.find(volunteer_params[:group_ids]) if @group
-    end
-    @volunteer.save
-    redirect_to volunteer_path(@volunteer)
+      if volunteer_params[:group_ids] != ""
+        @group = Group.find(volunteer_params[:group_ids]) if @group
+      end
+      if @volunteer.save
+        redirect_to volunteer_path(@volunteer)
+      else
+        render action: :new
+      end
   end
 
   def show
@@ -36,10 +39,13 @@ before_action :admin_only, except: [:index, :show]
   end
 
   def update
-
-    @volunteer =Volunteer.find(volunteer_params[:id])
+    @volunteer =Volunteer.find(request.params[:id])  #been using request.params when strong params don't work.  
      @volunteer.update(volunteer_params)
-     redirect_to volunteer_path(@volunteer)
+     if @volunteer.save
+       redirect_to volunteer_path(@volunteer)
+     else
+       render action: :edit
+   end
   end
 
   def destroy
@@ -62,9 +68,6 @@ before_action :admin_only, except: [:index, :show]
     redirect_to @group
 end
 
-  def params
-    @_dangerous_params || super
-  end
 
   private
 
