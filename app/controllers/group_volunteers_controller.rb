@@ -23,28 +23,46 @@ before_action :admin_only, except: [:index, :show]
       @group_volunteers_statements = []
       @group_volunteers.each do |gv|
         if gv.statement != nil
-
-          @group_volunteers_statements << gv
+          @group_volunteers_statements << gv  #populates the array I use in the view file
         end
-
       end
-
     end
 
-  def destroy
+    def edit
+      @group_volunteer = GroupVolunteer.find(group_volunteer_params[:id])
+      @volunteer = Volunteer.find(@group_volunteer.volunteer_id)
+      @groups = Group.all
+    end
+
+    def update
+      @group_volunteer = GroupVolunteer.find(group_volunteer_params[:id])
+      @group_volunteer.update(group_volunteer_params)
+       redirect_to group_volunteers_path
+    end
+
+  def show
+    #redirect_to group_volunteers_path
+  end
+
+  def destroy  #the first part of this code is to remove a volunteer from a group, not to delete an instance of group_volunteer
      @group = Group.find(params[:group][:id])
      @volunteer = group.volunteers.find(params[:volunteer][:id])
 
      if @volunteer
         @group.volunteers.delete(@volunteer)
      end
+  end
 
+  def delete_statement
+ byebug
+    @group_volunteer = GroupVolunteer.find(group_volunteer_params[:id])
+    @group_volunteer.statement = ""
   end
 
 private
   def group_volunteer_params
     if params.has_key?("group_volunteer")
-      params.require(:group_volunteer).permit(:group_volunteer, :statement, :group_id, :volunteer_id)
+      params.require(:group_volunteer).permit(:group_volunteer, :id, :statement, :group_id, :volunteer_id)
     else
     params.permit!
     end

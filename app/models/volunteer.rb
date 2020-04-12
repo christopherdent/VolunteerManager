@@ -2,6 +2,11 @@ class Volunteer < ApplicationRecord
   belongs_to :user, optional: true
   has_many :group_volunteers
   has_many :groups, through: :group_volunteers, dependent: :destroy
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true
+  validates :sector, presence: true
+  validates :organization, presence: true
   accepts_nested_attributes_for :groups
   accepts_nested_attributes_for :group_volunteers
 

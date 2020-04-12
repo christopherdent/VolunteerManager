@@ -3,9 +3,11 @@
 <%    @group = Group.find(gv.group_id) %>
 <%    @statement = gv.statement %>
 <br>
+<% if @statement != "" %>
 <h4><%= @volunteer.full_name %></h4>
 <%= @group.name %> <br>
+<small><%= link_to "Edit or Remove SOE", edit_group_volunteer_path(gv), volunteer_id: @volunteer.id %> </small><br>
+
 <%= @statement %> <br>
-
-
+<% end %>
 <% end %>

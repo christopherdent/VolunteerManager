@@ -4,14 +4,12 @@ before_action :admin_only, except: [:index, :show]
 
   def index
     if !params[:group].blank?  #why is volunteer_params not working?  Error is can't find volunteer without id?
-
       @group = Group.find(request.params[:group])
       @volunteers = @group.volunteers
       @volunteer = Volunteer.new
     else
-    @volunteers = Volunteer.all
+      @volunteers = Volunteer.all
     end
-
   end
 
   def new
@@ -21,7 +19,6 @@ before_action :admin_only, except: [:index, :show]
 
   def create
     @volunteer = Volunteer.create(volunteer_params)
-
     if volunteer_params[:group_ids] != ""
       @group = Group.find(volunteer_params[:group_ids]) if @group
     end
@@ -73,12 +70,6 @@ end
 
   def volunteer_params
     params.require(:volunteer).permit(:id, :first_name, :last_name, :email, :organization, :sector, :active_status, :user_id, :group_ids, group_ids:[], groups_attributes: [:name, :program_name, :chair_first, :chair_last, :status, :kind, :user_id, :id])
-    #params.require(:volunteer).permit!
-    #params.permit!
-  end
-
-  def use_unsafe_params
-  @_dangerous_params = request.parameters
   end
 
 end
