@@ -1,11 +1,24 @@
+
 class User < ApplicationRecord
   has_many :volunteers
   has_many :groups, through: :volunteers
   validates :username, presence: true
-  validates :password, length: { in: 6..20 } 
+  validates :password, length: { in: 6..100 }
   validates :email, presence: true
-  validates :first_name, presence: true, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
+  validates :first_name, presence: true
   validates :last_name, presence: true
   has_secure_password
+
+
+  def self.from_omniauth(auth)
+      where(email: auth.info.email).first_or_initialize do |user|
+        user.username = auth.info.name
+        user.email = auth.info.email
+        user.password = SecureRandom.hex
+        user.first_name = auth.info.first_name
+        user.last_name = auth.info.last_name
+        user.admin = false
+      end
+    end
 
 end
