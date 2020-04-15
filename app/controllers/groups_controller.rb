@@ -3,12 +3,8 @@ before_action :require_login
 before_action :admin_only, except: [:index, :show]
 
   def index
-   if params.has_key?('kind')
-     @groups = Group.where(kind: request.params[:kind])
-       else
      @groups = Group.all.uniq
-    end
-end
+  end
 
   def new
     @group = Group.new :status => true
