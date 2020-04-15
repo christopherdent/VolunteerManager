@@ -7,6 +7,8 @@ class Volunteer < ApplicationRecord
   validates :email, presence: true
   validates :sector, presence: true
   validates :organization, presence: true
+  scope :active, -> { where(active_status: true) }
+  scope :inactive, -> { where(active_status: false) }
   accepts_nested_attributes_for :groups
   accepts_nested_attributes_for :group_volunteers
 

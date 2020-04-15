@@ -13,19 +13,16 @@
 <br>
 <%= link_to 'Add a Group', new_group_path %>
 <br> <br>  <br>
-<% @groups.sort_by(&:name).each do |group| %>
- <% if group.active? %>
+<% Group.active.sort_by(&:name).each do |group| %>
   <%= group.program_name %> <%= group.name %> <%if current_user.admin? %><%= link_to '[View]', group %> <%= link_to '[Edit]', edit_group_path(group) %><%end%><br>
 <% end %>
-<% end %>
+
 
 <br>
 <div class="jumbotron text-center">
 <h4>Inactive Groups</h4><br>
 </div>
 
-<% @groups.sort_by(&:name).each do |group| %>
- <% if !group.active? %>
+<% Group.inactive.sort_by(&:name).each do |group| %>
   <%= group.program_name %> <%= group.name %> <%if current_user.admin? %><%= link_to '[View]', group %> <%= link_to '[Edit]', edit_group_path(group) %><%end%><br>
-<% end %>
 <% end %>
