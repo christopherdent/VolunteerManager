@@ -78,6 +78,10 @@ Last steps:  OMNIAUTH.
 -CSS
 -Omniauth
 
+
+4/14 Final Sprint:
+-create an admin only user edit page for admin/unadmin, password changes, etc. 
+
 Aspirational:
 -CV attribute for volunteers
 -Search Box

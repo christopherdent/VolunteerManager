@@ -5,7 +5,7 @@
 <% end %>
 <br><br>
 <div class="jumbotron text-center">
-<h1> Welcome to Volunteer Manager </h1>
+<h1> Welcome to Association Volunteer Manager </h1>
 </div>
 
 <% if flash[:alert] %>
@@ -34,6 +34,7 @@
     <li><%= link_to 'Create a Group', new_group_path %></li>
     <li><%= link_to 'View All Groups', groups_path %></li>
     <li><%= link_to 'View All Statements of Expertise', group_volunteers_path %></li>
+    <li><%= link_to 'View / Edit System Users', users_path %></li>
   </ul>
 
 <%end%>

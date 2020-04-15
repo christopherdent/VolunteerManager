@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   resources :group_volunteers
     post '/group_volunteers/new' => 'group_volunteers#new'
 
-
   get '/' => 'sessions#welcome'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
@@ -14,7 +13,7 @@ Rails.application.routes.draw do
   post '/signup' => 'users#create'
   get '/logout' => 'sessions#destroy'
   delete '/logout' => 'sessions#destroy'
-  get '/users/index' => 'users#index', as: :user_home
+
 
   resources :groups do
     member do

@@ -60,5 +60,5 @@ Group Members:
 
 <br><br>
 <% if current_user.admin? %>
-<center>  <%= button_to "Delete Group", group_path(@group), method: :delete, data: { confirm: "Really?" } %> </center>
+<center>  <%= button_to "Delete Group", group_path(@group), class: "btn btn-danger", method: :delete, data: { confirm: "Really?" } %> </center>
 <% end %>

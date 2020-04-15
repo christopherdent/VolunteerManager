@@ -1,5 +1,13 @@
-<%= link_to "Logout", logout_path, method: :delete %>   |    <%= link_to "Home", users_path %>
-<br>
-User Profile <br>
+<div class="jumbotron text-center">
+  <h1>User Profile: <%= @user.first_name %> </h1>
+  <% if current_user.admin? %>
+  <%= link_to "EDIT", edit_user_path %>
+  <% end %>
+  </div>
 
-<%= current_user.first_name %> <%= current_user.last_name %><br>
+<ul>
+<li>Name: <%= @user.full_name %></li>
+<li>Email: <%= @user.email %></li>
+<li>Username: <%= @user.username %></li>
+<li>System Admin? <%= @user.admin? %></li>
+</ul>

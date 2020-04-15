@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_login, except: [:new, :create]
+  before_action :admin_only, except: [:show, :new, :create, :index]
 
   def new
     @user = User.new
@@ -11,14 +12,27 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to(controller: 'users', action: 'index')
     else
-      render action: :new 
+      render action: :new
     end
   end
 
   def index
-    redirect_to(controller: 'sessions', action: 'welcome')
+
   end
 
+  def edit
+    @user = User.find_by_id(params[:id])
+  end
+
+  def update
+    @user = User.find_by_id(params[:id])
+     @user.update(user_params)
+     if @user.save
+       redirect_to user_path(@user)
+     else
+       render action: :edit
+     end
+  end
 
   def show
     @user = User.find_by_id(params[:id])
@@ -29,7 +43,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :first_name, :last_name, :email)
+    params.require(:user).permit(:username, :password, :first_name, :last_name, :email, :admin)
   end
 
 

@@ -1,1 +1,13 @@
+<div class="jumbotron text-center">
+  <h1>System Users</h1>
+  </div>
 
+Admins: <br>
+<% User.admin.each do |u| %>
+<%= link_to u.full_name, user_path(u) %><br>
+<% end %>
+<br><br>
+Other Users:<br>
+<% User.general.each do |u| %>
+<%= link_to u.full_name, user_path(u) %><br>
+<% end %>

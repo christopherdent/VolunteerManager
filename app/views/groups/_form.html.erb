@@ -18,7 +18,7 @@
 <br>
 <% if Volunteer.all != [] %>
 <%= f.label :chair_name %>
-<%= f.collection_select :volunteer_ids, Volunteer.all, :id, :full_name, include_blank: "None" %>
+<%= f.collection_select :volunteer_ids, Volunteer.all.uniq.sort_by(&:last_name), :id, :full_name, include_blank: "None" %>
 <% end %>
 <br>
 <%= f.label :group_type %>

@@ -1,6 +1,11 @@
-<h1> Volunteer Profile: </h1>
+<div class="jumbotron text-center">
+  <h1>User Profile: <%= @volunteer.first_name %> </h1>
+  <% if current_user.admin? %>
+  <%= link_to "EDIT", edit_volunteer_path %>
+  <% end %>
+  </div>
 
-<p><small><%= link_to 'Edit Volunteer Details', edit_volunteer_path(@volunteer) %></small></p>
+
 
 Name:  <%= @volunteer.first_name %> <%= @volunteer.last_name %><br>
 Email:  <%= mail_to(@volunteer.email) %><br>
@@ -25,8 +30,6 @@ Statements of Expertise:<br>
 <% if gv.statement %>
 Group:  <%= @group.name %><br>
 Statement:  <%= gv.statement %><br>
- 
-<br>
 <% end %>
 <% end %>
 <% end %>
@@ -35,7 +38,8 @@ Statement:  <%= gv.statement %><br>
 <br><br><br>
 
 
-
+<% if current_user.admin? %>
 <center>
 <%= button_to "Delete Volunteer", volunteer_path(@volunteer), method: :delete, data: { confirm: "Really?" } %>
 </center>
+<% end %>

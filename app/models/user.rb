@@ -7,6 +7,8 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
+  scope :admin, -> { where(admin: true) }
+  scope :general, -> { where(admin: false) }
   has_secure_password
 
 
@@ -19,6 +21,10 @@ class User < ApplicationRecord
         user.last_name = auth.info.last_name
         #user.admin = false   #this was de-admining admins.  I've set a default to false in the schema instead.
       end
+    end
+
+    def full_name
+      "#{self.last_name}, #{self.first_name}"
     end
 
 end
