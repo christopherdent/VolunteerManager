@@ -1,4 +1,5 @@
 <%= link_to "Logout", logout_path, method: :delete %>   |    <%= link_to "Home", users_path %>
 <br>
-I AM THE USERS SHOW PAGE.  SOMEDAY I WILL BE A PROFILE PAGE. <br>
-MAYBE THE USER WILL WANT TO <%= link_to 'ADD A VOLUNTEER', new_volunteer_path %>
+User Profile <br>
+
+<%= current_user.first_name %> <%= current_user.last_name %><br>

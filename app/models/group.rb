@@ -5,6 +5,8 @@ class Group < ApplicationRecord
   accepts_nested_attributes_for :volunteers
   validates :name, presence: true
   validates :kind, presence: true
+  scope :active, -> { where(status: true) }
+  scope :inactive, -> { where(status: false) }
 
   def volunteers_attributes=(volunteer_attributes)
       volunteer_attributes.values.each do |volunteer_attribute|
@@ -14,6 +16,7 @@ class Group < ApplicationRecord
   end
 
   def active?
+    #where(status: true)
     self.status == true
   end
 

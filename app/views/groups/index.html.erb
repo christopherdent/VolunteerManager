@@ -1,12 +1,11 @@
 <div class="jumbotron text-center">
   <h1>Active Groups</h1>
   </div>
-Filter<br>
+
 <div>
   <h3>Filter by group type: </h3>
   <%= form_tag("/groups", method: "get") do %>
-    <%= select_tag 'kind', options_for_select(Group.all.map{ |k| [k.kind] }), include_blank: true %>
-      <%= hidden_field_tag :user_id, :value => current_user.id %>
+    <%= select_tag 'kind', options_for_select(Group.all.map{ |k| [k.kind] }.uniq), include_blank: true %>
     <%= submit_tag "Filter" %>
   <% end %>
 </div>
@@ -16,16 +15,17 @@ Filter<br>
 <br> <br>  <br>
 <% @groups.sort_by(&:name).each do |group| %>
  <% if group.active? %>
-  <%= group.program_name %> <%= group.name %> <%= link_to '[View]', group %> <%= link_to '[Edit]', edit_group_path(group) %><br>
- <% end %>
+  <%= group.program_name %> <%= group.name %> <%if current_user.admin? %><%= link_to '[View]', group %> <%= link_to '[Edit]', edit_group_path(group) %><%end%><br>
+<% end %>
 <% end %>
 
-  <br>
-  <div class="jumbotron text-center">
-  <h4>Inactive Groups</h4><br>
-  </div>
-  <% Group.all.sort_by(&:name).each do |group| %>
-  <% if !group.active? %>
-   <%= group.program_name %> <%= group.name %> <%= link_to '[View]', group %> <%= link_to '[Edit]', edit_group_path(group) %><br>
-  <% end %>
+<br>
+<div class="jumbotron text-center">
+<h4>Inactive Groups</h4><br>
+</div>
+
+<% @groups.sort_by(&:name).each do |group| %>
+ <% if !group.active? %>
+  <%= group.program_name %> <%= group.name %> <%if current_user.admin? %><%= link_to '[View]', group %> <%= link_to '[Edit]', edit_group_path(group) %><%end%><br>
+<% end %>
 <% end %>

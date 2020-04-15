@@ -5,8 +5,8 @@ before_action :admin_only, except: [:index, :show]
   def index
    if params.has_key?('kind')
      @groups = Group.where(kind: request.params[:kind])
-   else
-     @groups = Group.all
+       else
+     @groups = Group.all.uniq
     end
 end
 
@@ -27,7 +27,7 @@ end
       redirect_to group_path(@group)
     else
       render action: :new
-    end 
+    end
   end
 
   def show
