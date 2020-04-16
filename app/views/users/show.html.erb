@@ -1,8 +1,11 @@
+
 <div class="jumbotron text-center">
+  <%= image_tag(@user.avatar, :size => "200x200", alt: "avatar") %>
   <h1>User Profile: <%= @user.first_name %> </h1>
   <% if current_user.admin? %>
   <%= link_to "EDIT", edit_user_path %>
   <% end %>
+
   </div>
 
 <ul>

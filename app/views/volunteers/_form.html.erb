@@ -28,6 +28,9 @@
 <%= f.label :active? %>
 <%= f.check_box :active_status  %>
 <br>
+<%= f.label :upload_cv %>
+<%= f.file_field :cv %>
+<br>
 <%= f.hidden_field :user_id, :value => current_user.id %>
 <br>
 <% if Group.all != [] %>
@@ -35,7 +38,7 @@
 <%= f.label "Add to Group?" %><br>
 <%= f.collection_select :group_ids, Group.all, :id, :name, include_blank: "None" %>
 <% end %>
-<br>
+<br><br><br>
 <%= f.submit %>
 <br>
 <% end %>

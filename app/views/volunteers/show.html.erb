@@ -12,7 +12,7 @@ Email:  <%= mail_to(@volunteer.email) %><br>
 Organization:  <%= @volunteer.organization %><br>
 Sector:  <%= @volunteer.sector %><br>
 Status:  <%= "Active" if @volunteer.active_status == true %><br>
-
+<%= link_to "View CV", @volunteer.cv if @volunteer.cv %>
 <br><br>
 <p>Groups:</p>
 <ul>

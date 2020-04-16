@@ -39,7 +39,7 @@ before_action :admin_only, except: [:index, :show]
   end
 
   def update
-    @volunteer =Volunteer.find(request.params[:id])  #been using request.params when strong params don't work.  
+    @volunteer =Volunteer.find(request.params[:id])  #been using request.params when strong params don't work.
      @volunteer.update(volunteer_params)
      if @volunteer.save
        redirect_to volunteer_path(@volunteer)
@@ -72,7 +72,7 @@ end
   private
 
   def volunteer_params
-    params.require(:volunteer).permit(:id, :first_name, :last_name, :email, :organization, :sector, :active_status, :user_id, :group_ids, group_ids:[], groups_attributes: [:name, :program_name, :chair_first, :chair_last, :status, :kind, :user_id, :id])
+    params.require(:volunteer).permit(:cv, :id, :first_name, :last_name, :email, :organization, :sector, :active_status, :user_id, :group_ids, group_ids:[], groups_attributes: [:name, :program_name, :chair_first, :chair_last, :status, :kind, :user_id, :id])
   end
 
 end

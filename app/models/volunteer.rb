@@ -11,6 +11,7 @@ class Volunteer < ApplicationRecord
   scope :inactive, -> { where(active_status: false) }
   accepts_nested_attributes_for :groups
   accepts_nested_attributes_for :group_volunteers
+  has_one_attached :cv
 
   def last_name=(s)
     write_attribute(:last_name, s.to_s.titleize) # The to_s is in case you get nil/non-string

@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
+  has_one_attached :avatar
   scope :admin, -> { where(admin: true) }
   scope :general, -> { where(admin: false) }
   has_secure_password
