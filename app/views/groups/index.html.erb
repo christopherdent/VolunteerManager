@@ -1,11 +1,11 @@
 <div class="jumbotron text-center">
   <h1>Active Groups</h1>
   </div>
-
-<%= link_to 'Add a Group', new_group_path %>
+<small><%= link_to 'Add a Group', new_group_path %></small>
 <br> <br>  <br>
 <% Group.active.sort_by(&:name).each do |group| %>
-  <%= group.program_name %> <%= group.name %> <%if current_user.admin? %><%= link_to '[View]', group %> <%= link_to '[Edit]', edit_group_path(group) %><%end%><br>
+<ul class = "list-group list-group-flush">
+<li class = "list-group-item"><%= link_to group.program_name, group %> <%= link_to group.name, group %></li>
 <% end %>
 
 
@@ -15,5 +15,6 @@
 </div>
 
 <% Group.inactive.sort_by(&:name).each do |group| %>
-  <%= group.program_name %> <%= group.name %> <%if current_user.admin? %><%= link_to '[View]', group %> <%= link_to '[Edit]', edit_group_path(group) %><%end%><br>
+<ul class = "list-group list-group-flush">
+<li class = "list-group-item"><%= link_to group.program_name, group %> <%= link_to group.name, group %></li>
 <% end %>

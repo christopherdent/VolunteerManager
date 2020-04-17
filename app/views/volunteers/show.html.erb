@@ -11,7 +11,7 @@ Name:  <%= @volunteer.first_name %> <%= @volunteer.last_name %><br>
 Email:  <%= mail_to(@volunteer.email) %><br>
 Organization:  <%= @volunteer.organization %><br>
 Sector:  <%= @volunteer.sector %><br>
-Status:  <%= "Active" if @volunteer.active_status == true %><br>
+Status:  <%= "Active" if @volunteer.active_status == true %> <%= "Inactive" if @volunteer.active_status == false %><br>
 <% if @volunteer.cv.attached? %>
 <br>
 <h4><%= link_to "View CV", @volunteer.cv %></h4>
