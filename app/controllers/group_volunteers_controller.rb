@@ -1,6 +1,7 @@
 class GroupVolunteersController < ApplicationController
 before_action :require_login
 before_action :admin_only, except: [:index, :show]
+before_action :set_group_volunteer, only: [:delete_statemet]
 
   def new
     @group_volunteer = GroupVolunteer.new
@@ -54,9 +55,10 @@ before_action :admin_only, except: [:index, :show]
   end
 
   def delete_statement
- byebug
-    @group_volunteer = GroupVolunteer.find(group_volunteer_params[:id])
-    @group_volunteer.statement = ""
+     @group_volunteer = GroupVolunteer.find(group_volunteer_params[:id])
+     @group_volunteer.statement = nil
+     @group_volunteer.save 
+     redirect_to group_volunteers_path
   end
 
 private

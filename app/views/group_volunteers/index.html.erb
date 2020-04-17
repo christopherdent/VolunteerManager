@@ -6,7 +6,7 @@
 <% if @statement != "" %>
 <h4><%= @volunteer.full_name %></h4>
 <%= @group.name %> <br>
-<small><%= link_to "Edit or Remove SOE", edit_group_volunteer_path(gv), volunteer_id: @volunteer.id %> </small><br>
+<small><%= link_to "Edit", edit_group_volunteer_path(gv), volunteer_id: @volunteer.id %> or <%= link_to "Delete", delete_statement_group_volunteer_path(gv) %> </small><br>
 
 <%= @statement %> <br>
 <% end %>

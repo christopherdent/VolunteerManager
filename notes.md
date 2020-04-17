@@ -80,9 +80,8 @@ Last steps:  OMNIAUTH.
 
 
 4/14 Final Sprint:
--create an admin only user edit page for admin/unadmin, password changes, etc. 
+-create an admin only user edit page for admin/unadmin, password changes, etc.
+-Fix SOE duplication; add SOE delete function.   
 
 Aspirational:
--CV attribute for volunteers
 -Search Box
--JS function to show only the groups the volunteer is on on the new statement of expertise page (this would change a lot of things)

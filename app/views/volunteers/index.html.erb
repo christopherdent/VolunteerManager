@@ -16,6 +16,6 @@
 <br><br>
 
 <% @volunteers.uniq.sort_by(&:last_name).each do |volunteer| %>
- <%= volunteer.last_name %>, <%= volunteer.first_name %> <%= link_to '[View]', volunteer %><%if current_user.admin? %> <%= link_to '[Edit]', edit_volunteer_path(volunteer) %> <%= link_to '[Delete]', volunteer, method: :delete, data: { confirm: 'Really?' } %> <% end %> <br>
+ <%= volunteer.last_name %>, <%= volunteer.first_name %> <%= link_to '[View]', volunteer %><%if current_user.admin? %> <%= link_to '[Edit]', edit_volunteer_path(volunteer) %> <%= link_to '[Delete]', volunteer_path(volunteer), method: :delete, data: { confirm: "Really?" }  %> <% end %> <br>
   <br>
 <% end %>

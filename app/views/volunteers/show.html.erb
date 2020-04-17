@@ -12,7 +12,10 @@ Email:  <%= mail_to(@volunteer.email) %><br>
 Organization:  <%= @volunteer.organization %><br>
 Sector:  <%= @volunteer.sector %><br>
 Status:  <%= "Active" if @volunteer.active_status == true %><br>
-<%= link_to "View CV", @volunteer.cv if @volunteer.cv %>
+<% if @volunteer.cv.attached? %>
+<br>
+<h4><%= link_to "View CV", @volunteer.cv %></h4>
+<% end %>
 <br><br>
 <p>Groups:</p>
 <ul>
@@ -26,11 +29,12 @@ Statements of Expertise:<br>
 <small><%= link_to "Add a Statement of Expertise", new_group_volunteer_path(volunteer_id: @volunteer.id) %></small><br><br>
 <% GroupVolunteer.all.each do |gv| %>
 <% if gv.volunteer_id == @volunteer.id %>
-<% @group = Group.find(gv.group_id) %>
-<% if gv.statement %>
-Group:  <%= @group.name %><br>
-Statement:  <%= gv.statement %><br>
-<% end %>
+  <% @group = Group.find(gv.group_id) %>
+  <% if gv.statement %>
+  Group:  <%= @group.name %><br>
+  Statement:  <%= gv.statement %><br>
+  <br>
+  <% end %>
 <% end %>
 <% end %>
 

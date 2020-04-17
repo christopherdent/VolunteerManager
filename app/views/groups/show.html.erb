@@ -14,7 +14,8 @@ Group Members:
 <ul>
 <% @group.volunteers.uniq.sort_by(&:last_name).each do |member| %>
 
-<li><%= link_to member.full_name, volunteer_path(member) %> <%= button_to "Remove From Group", remove_from_group_group_volunteer_path(@group, member), :method => :delete%> </li><br>
+<li><%= link_to member.full_name, volunteer_path(member) %>
+  <%= button_to "Remove From Group", remove_from_group_group_volunteer_path(@group, member), :method => :delete%> </li><br>
 
 <% end  %>
 </ul>

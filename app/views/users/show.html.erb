@@ -1,6 +1,8 @@
 
 <div class="jumbotron text-center">
+<%if @user.avatar.attached? %>
   <%= image_tag(@user.avatar, :size => "200x200", alt: "avatar") %>
+<% end %>
   <h1>User Profile: <%= @user.first_name %> </h1>
   <% if current_user.admin? %>
   <%= link_to "EDIT", edit_user_path %>
@@ -12,5 +14,5 @@
 <li>Name: <%= @user.full_name %></li>
 <li>Email: <%= @user.email %></li>
 <li>Username: <%= @user.username %></li>
-<li>System Admin? <%= @user.admin? %></li>
+<li>System Admin? <%= "Yes" if @user.admin? %> <%= "No" if !@user.admin %></li>
 </ul>
