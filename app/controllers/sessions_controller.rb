@@ -1,13 +1,9 @@
 class SessionsController < ApplicationController
-  #before_filter :authenticate_user!
   helper_method :current_user, :require_login, :logged_in?
 
   def welcome
-
-
     @user = User.find(session[:user_id]) if logged_in?
   end
-
 
   def create
     @user = User.find_by(:username => params[:user][:username])

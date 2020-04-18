@@ -1,13 +1,14 @@
 <div class="jumbotron text-center">
 
   <h1><%= @group.name %></h1>
+    <%= link_to "EDIT", edit_group_path(@group) %>
 </div>
 <p>Group Type: <%= @group.kind %></p>
 <p>Program:  <%= @group.program_name %></p>
 <p>Chairperson:  <%= @group.chair_first %> <%= @group.chair_last %> </p>
 <p>Status:  <%= "Active" if @group.status == true %><%= "Inactive" if @group.status == false %></p>
 
-<%= link_to 'Edit Group Details', edit_group_path(@group) %>
+
 <br><br>
 Group Members:
 <br><br>

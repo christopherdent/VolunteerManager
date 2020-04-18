@@ -1,13 +1,30 @@
-<% @group_volunteers_statements.each do |gv| %>
-<%   @volunteer = Volunteer.find(gv.volunteer_id) %>
-<%    @group = Group.find(gv.group_id) %>
-<%    @statement = gv.statement %>
-<br>
-<% if @statement != "" %>
-<h4><%= @volunteer.full_name %></h4>
-<%= @group.name %> <br>
-<small><%= link_to "Edit", edit_group_volunteer_path(gv), volunteer_id: @volunteer.id %> or <%= link_to "Delete", delete_statement_group_volunteer_path(gv) %> </small><br>
+<div>
+  <h3>Filter by group: <%= @group.name if @group %></h3>
+  <%= form_tag("/group_volunteers", method: "get") do %>
+    <%= select_tag "group", options_from_collection_for_select(Group.all, "id", "name"), include_blank: true %>
+    <%= submit_tag "Filter" %>
+  <% end %>
+</div>
 
-<%= @statement %> <br>
+<% @group_volunteers_statements.each do |gv| %>
+<%   volunteer = Volunteer.find(gv.volunteer_id) %>
+<%   group = Group.find(gv.group_id) %>
+<%   statement = gv.statement %>
+<br>
+<br>
+
+<% if statement != "" %>
+<div class="card">
+  <div class="card-header">
+    <h4><%= volunteer.first_name %> <%= volunteer.last_name %>, <%= volunteer.organization %>  </h4>
+
+    <small><%= link_to "Edit", edit_group_volunteer_path(gv), volunteer_id: volunteer.id, statement: statement %> or <%= link_to "Delete", delete_statement_group_volunteer_path(gv), data: { confirm: "Are you sure?" }  %> this statement of expertise. </small><br>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Statement of Expertise for <%= group.name %></h5>
+    <p class="card-text"><%= statement %></p>
+    <%= link_to "View Volunteer Profile", volunteer_path(volunteer), class: "btn btn-primary" %>   <%= link_to "View Group", group_path(group), class: "btn btn-primary" %>
+  </div>
+</div>
 <% end %>
 <% end %>

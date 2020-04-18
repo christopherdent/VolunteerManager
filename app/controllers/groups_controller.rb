@@ -1,25 +1,26 @@
 class GroupsController < ApplicationController
 before_action :require_login
 before_action :admin_only, except: [:index, :show]
+before_action :set_group, only: [:update]
 
   def index
-     @groups = Group.all.uniq
+     @groups = Group.all.uniq  #for listing all of the groups on the index page
   end
 
   def new
-    @group = Group.new :status => true
-    @volunteers = Volunteer.all
+    @group = Group.new :status => true  #default all new groups to active.
+    @volunteers = Volunteer.all #be able to add a group member (the Chair) when creating the group.
   end
 
   def create
     @group = Group.create(group_params)
-
-    if group_params[:volunteer_ids] != ""
+    if group_params[:volunteer_ids] != ""  #if the group is being created with a volunteer
       @volunteer = Volunteer.find(group_params[:volunteer_ids])
       @group.chair_first = @volunteer.first_name
       @group.chair_last = @volunteer.last_name #assigns the volunteer the chair role
     end
-    if @group.save
+
+    if @group.save  #if all that worked, go to the group show page
       redirect_to group_path(@group)
     else
       render action: :new
@@ -38,14 +39,15 @@ before_action :admin_only, except: [:index, :show]
   end
 
   def update
-    if group_params.key?(:volunteers_attributes)
-      @group = Group.find(params[:id])
+    if group_params.key?(:volunteers_attributes) #handles the nested form to add a brand new volunteer to the current group
+      #@group = Group.find(params[:id])
       @volunteer = Volunteer.find_or_create_by(group_params[:volunteer_ids])
       @group.update(group_params)
-      @group.volunteers <<  @volunteer
-    else
-      @group = Group.find(params[:id]) #why does group_params not work here?  error is Couldnt find group without an ID? Can this be cleaned up with before_action set_group?
+      @group.volunteers <<  @volunteer  #this block works with the nested route to add a brand new volunteer to the current group.  Ensures that volunteer is added to this group.
+    else #and thsis block is for a regular group-edit.
+    #  @group = Group.find(params[:id]) #why does group_params not work here?  error is Couldnt find group without an ID? Can this be cleaned up with before_action set_group?
       @volunteer = Volunteer.find(group_params[:volunteer_ids]) unless group_params[:volunteer_ids] == ""
+      #@group.update(group_params)  #this line won't work because it update parts that should not be updated, the logic below tells it how to handle each item.
         @group.name = group_params[:name]
         @group.program_name = group_params[:program_name]
         @group.status = group_params[:status]
@@ -72,16 +74,19 @@ before_action :admin_only, except: [:index, :show]
 
   def destroy
     @group = Group.find(params[:id])
-    @group.volunteers = []
-    @group.destroy
+    @group.volunteers = []  #remove all volunteers from the group
+    @group.destroy  #then destroy it
     redirect_to groups_path
   end
 
 private
 
+  def set_group
+    @group = Group.find(params[:id])
+  end
+
   def group_params
       params.require(:group).permit(:id, :name, :program_name, :chair_first, :chair_last, :status, :kind, :user_id, :volunteer_ids, volunteer_ids:[], volunteers_attributes: [:last_name, :first_name, :email, :organization, :sector, :active_status, :id])
-
   end
 
 end
