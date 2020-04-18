@@ -16,3 +16,11 @@
 <li>Username: <%= @user.username %></li>
 <li>System Admin? <%= "Yes" if @user.admin? %> <%= "No" if !@user.admin %></li>
 </ul>
+
+
+<% if current_user.admin? %>
+<center>
+<%= button_to "Delete User", user_path(@user), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure? This is permanent!" } %><br>
+
+</center>
+<% end %>
