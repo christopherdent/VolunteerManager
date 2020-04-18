@@ -60,3 +60,6 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
 gem "aws-sdk-s3", require: false
+group :assets do
+  gem 'jquery-rails'
+end

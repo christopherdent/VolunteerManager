@@ -44,6 +44,7 @@ Statements of Expertise:<br>
 
 <% if current_user.admin? %>
 <center>
-<%= button_to "Delete Volunteer", volunteer_path(@volunteer), method: :delete, data: { confirm: "Really?" } %>
+<%= button_to "Delete Volunteer", volunteer_path(@volunteer), class: "btn btn-danger", method: :delete, data: { confirm: "Really?" } %><br>
+
 </center>
 <% end %>
