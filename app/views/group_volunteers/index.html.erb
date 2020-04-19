@@ -1,6 +1,6 @@
 <br><br>
 <div class="container-fluid"><div class ="row">
-<div class="col-md-4"><br><h2 class="font-italic">Statements of Expertise</h2></div>
+<div class="col-md-4"><br><h1 class="font-italic">Statements of Expertise</h1></div>
   <div class="col-md-4 col-md-offset-5"><h4>Filter by group: <%= @group.name if @group %></h4>
 
     <%= form_tag("/group_volunteers", method: "get") do %>
@@ -17,7 +17,9 @@
   <%= submit_tag "Filter", class: "btn btn-info" %>
     <% end %>
 </div></div></div>
-
+<% if flash[:alert] %>
+<div class="alert alert-info"><%= flash[:alert] %></div>
+<% end %>
 <% @group_volunteers_statements.each do |gv| %>
 <%   volunteer = Volunteer.find(gv.volunteer_id) %>
 <%   group = Group.find(gv.group_id) %>

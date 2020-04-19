@@ -1,5 +1,5 @@
 <div class="jumbotron text-center">
-  <h1>User Profile: <%= @volunteer.first_name %> </h1>
+  <h1>Volunteer Profile: <%= @volunteer.first_name %> </h1>
   <% if current_user.admin? %>
   <%= link_to "EDIT", edit_volunteer_path %>
   <% end %>

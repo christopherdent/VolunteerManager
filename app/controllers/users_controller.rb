@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :admin_only, except: [:show, :new, :create, :index]
 
   def new
-    @user = User.new
+    @user = User.new 
   end
 
   def create

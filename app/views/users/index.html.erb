@@ -1,5 +1,8 @@
 <div class="jumbotron text-center">
   <h1>System Users</h1>
+  <% if current_user.admin? %>
+  <small><%= link_to "Add New User", new_user_path %></small>
+  <% end %>
   </div>
 
 Admins: <br>

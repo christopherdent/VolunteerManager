@@ -1,6 +1,7 @@
-<br><br>
+<br>
+<div class="jumbotron">
 <h1>Login to Volunteer Manager</h1>
-
+<br>
 <%= flash[:error] %> <%= link_to 'sign up', signup_path if flash[:error] %>
   <%= form_for :user do |f| %>
 
@@ -10,9 +11,10 @@
   <%= f.label :password %>
   <%= f.password_field :password %>
     <br>
-  <%= f.submit 'Login '%>
+  <%= f.submit 'Login', class:"btn btn-primary" %>
   <br>
 
   <% end %>
+  </div>
 <br><br><br>
   <p>Don't have an account?  <%= link_to 'Sign Up.', signup_path %></p>

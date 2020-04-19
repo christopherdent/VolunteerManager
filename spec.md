@@ -12,7 +12,7 @@ Specs:
  [x]Include signup (how e.g. Devise)
  [x]Include login (how e.g. Devise)
  [x]Include logout (how e.g. Devise)
- []Include third party signup/login (how e.g. Devise/OmniAuth)
+ [x]Include third party signup/login (how e.g. Devise/OmniAuth)
  [x]Include nested resource show or index (URL e.g. users/2/recipes) - yes but it's not a separate url, i kept it all on one show page (e.g. volunteers for a group show at the bottom of the group show page)
  [x]Include nested resource "new" form (URL e.g. recipes/1/ingredients/new) - same as above - add new volunteer to group is in the group show page
  [x]Include form display of validation errors (form URL e.g. /recipes/new)
