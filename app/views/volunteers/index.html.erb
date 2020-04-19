@@ -1,18 +1,20 @@
 
 <div class="jumbotron text-center">
 <h1>All Volunteers</h1>
+<small><%= link_to 'Add a Volunteer', new_volunteer_path %></small>
 </div>
-<br>
-<%= link_to 'Add a Volunteer', new_volunteer_path %>
-<br> <br>  <br>
 
-<div>
-  <h3>Filter by group: <%= @group.name if @group %></h3>
+<div class="text-left">
+
+  <h4>Filter by group: <%= @group.name if @group %></h4>
   <%= form_tag("/volunteers", method: "get") do %>
     <%= select_tag "group", options_from_collection_for_select(Group.all, "id", "name"), include_blank: true %>
-    <%= submit_tag "Filter" %>
+
+    <%= submit_tag "Filter", class: "btn btn-info" %>
   <% end %>
-</div>
+  </div>
+
+
 <br><br>
 <% @volunteers.uniq.sort_by(&:last_name).each do |volunteer| %>
 <ul class = "list-group list-group-flush">

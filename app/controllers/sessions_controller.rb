@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(:username => params[:user][:username])
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
-      redirect_to(controller: 'users', action: 'index')
+      redirect_to(controller: 'sessions', action: 'welcome')
     else
       flash[:error] = "Something went wrong. Try again or"
       redirect_to(controller: 'sessions', action: 'new')

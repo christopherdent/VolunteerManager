@@ -1,8 +1,9 @@
 <div class="jumbotron text-center">
   <h1>Active Groups</h1>
+  <small><%= link_to 'Add a Group', new_group_path %></small>
   </div>
-<small><%= link_to 'Add a Group', new_group_path %></small>
-<br> <br>  <br>
+
+<br>  
 <% Group.active.sort_by(&:name).each do |group| %>
 <ul class = "list-group list-group-flush">
 <li class = "list-group-item"><%= link_to group.program_name, group %> <%= link_to group.name, group %></li>
