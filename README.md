@@ -1,28 +1,4 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# Association Volunteer Manager (AVM)
+# README:  Association Volunteer Manager (AVM)
 AVM is a digital tool for keeping track of an association's technical volunteers and the various groups they belong to.  Volunteers can have many goups and groups can have many volunteers, which are linked by a Statement of Expertise unique to each group per volunteer.  The app allows  you to create, read/view, update, and delete volunteers, groups, and their statements, email any group with one click, and even store your volunteers' CVs.  It offers numerous ways to filter each of these categories in an effort to make it as easy as possible for the system user to obtain the data the need fast.  System users are meant to collaborate so objects are not necessarily  tied to individual users, but 'admin' status is required for most CRUD functionality.  Non admin users may also be created but are limited mostly to read only access.  
 
 ## Instructions for Use:  
@@ -31,9 +7,9 @@ Fork the [rxeactions repo](https://github.com/christopherdent/VolunteerManager.g
 ## Usage
 To run the app locally, type `rails s` into the terminal and open your browser to `localhost:3000`.  Create a user, login and go.  Note:  By default, the first User created will be an admin.  
 
-##Demo Video
+## Demo Video
 To be added
 
-##Built With
+## Built With
 
 Built with Ruby 2.5.1p57 and Rails 6.0.2.1 and styled with Bootstrap 4.  
