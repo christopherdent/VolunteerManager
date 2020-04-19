@@ -16,15 +16,18 @@ before_action :set_group_volunteer, only: [:delete_statement, :edit, :new] #this
 
 
   def index
-
-    if group_volunteer_params.has_key?("group")
+    if group_volunteer_params.has_key?("group")  #this block is for filtering the index page
       group_volunteers = GroupVolunteer.where(group_id: group_volunteer_params[:group])
+      @group = Group.find(group_volunteer_params[:group])  #this variable lets me show what the current filter is
+    elsif group_volunteer_params.has_key?("volunteer")
+      group_volunteers = GroupVolunteer.where(volunteer_id: group_volunteer_params[:volunteer])
+      @volunteer = Volunteer.find(group_volunteer_params[:volunteer])
     else
-      group_volunteers = GroupVolunteer.all
+      group_volunteers = GroupVolunteer.all   #if not filtering then it should show everything
     end
       @group_volunteers_statements = [] #creating an array of all statements of expertise
       group_volunteers.each do |gv|
-        if gv.statement != nil
+        if gv.statement != nil   #don't show me records that do not have a statement.  
           @group_volunteers_statements << gv  #populates the array I use in the view file
         end
       end
