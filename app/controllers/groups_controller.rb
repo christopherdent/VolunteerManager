@@ -31,6 +31,12 @@ before_action :set_group, only: [:update]
     @group = Group.find(params[:id])
     @group_volunteer = GroupVolunteer.new
     @volunteers = Volunteer.all.uniq.sort_by(&:last_name)
+    @emails = []
+    @group.volunteers.each do |v|
+      @emails << v.email
+      @emails.uniq
+    end
+
   end
 
   def edit

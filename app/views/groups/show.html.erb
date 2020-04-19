@@ -3,13 +3,30 @@
   <h1><%= @group.name %></h1>
     <%= link_to "EDIT", edit_group_path(@group) %>
 </div>
-<p>Group Type: <%= @group.kind %></p>
-<p>Program:  <%= @group.program_name %></p>
-<p>Chairperson:  <%= @group.chair_first %> <%= @group.chair_last %> </p>
-<p>Status:  <%= "Active" if @group.status == true %><%= "Inactive" if @group.status == false %></p>
 
-
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Chairperson:  <%= @group.chair_first %> <%= @group.chair_last %></h5>
+        <p class="card-text">Group Type: <%= @group.kind %></p>
+        <p class="card-text">Program:  <%= @group.program_name %></p>
+        <p class="card-text">Status:  <%= "Active" if @group.status == true %><%= "Inactive" if @group.status == false %></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title"><%= image_tag("/assets/email.png", :size => "100x100", alt: "Email Group")%></h5>
+        <p class="card-text"><%= mail_to @emails * ",", 'Email This Group' %></p>
+         
+      </div>
+    </div>
+  </div>
+</div>
 <br><br>
+
 Group Members:
 <br><br>
 <ul>
