@@ -4,7 +4,7 @@
   </div>
 
 <br>
-<% Group.active.sort_by(&:name).each do |group| %>
+<% @groups.each do |group| %>
 <ul class = "list-group list-group-flush">
 <li class = "list-group-item"> <%= link_to group.name, group %></li>
 <% end %>

@@ -8,7 +8,7 @@ Fork the [volunteer manager repo](https://github.com/christopherdent/VolunteerMa
 To run the app locally, type `rails s` into the terminal and open your browser to `localhost:3000`.  Create a user, login and go.  Note:  By default, the first User created will be an admin.  
 
 ## Demo Video
-To be added
+Available <a href = "https://www.youtube.com/watch?v=v6ifLuecsmA&t=8s">here. </a>
 
 ## Built With
 

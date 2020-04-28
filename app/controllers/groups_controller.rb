@@ -4,7 +4,7 @@ before_action :admin_only, except: [:index, :show]
 before_action :set_group, only: [:update]
 
   def index
-     @groups = Group.all.uniq  #for listing all of the groups on the index page
+     @groups = Group.active.sort_by(&:name)  #for listing all of the groups on the index page
   end
 
   def new

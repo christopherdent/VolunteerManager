@@ -3,7 +3,7 @@ before_action :require_login
 before_action :admin_only, except: [:index, :show]
 
   def index
-    if !params[:group].blank?  #why is volunteer_params not working?  Error is can't find volunteer without id?
+    if !params[:group].blank?
       @group = Group.find(request.params[:group])
       @volunteers = @group.volunteers
       @volunteer = Volunteer.new
@@ -39,7 +39,7 @@ before_action :admin_only, except: [:index, :show]
   end
 
   def update
-    @volunteer =Volunteer.find(request.params[:id])  #been using request.params when strong params don't work.
+    @volunteer =Volunteer.find(request.params[:id])  
      @volunteer.update(volunteer_params)
      if @volunteer.save
        redirect_to volunteer_path(@volunteer)
