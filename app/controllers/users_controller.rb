@@ -3,12 +3,13 @@ class UsersController < ApplicationController
   before_action :admin_only, except: [:show, :new, :create, :index]
 
   def new
-    @user = User.new 
+    @user = User.new
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
+      #@user == User.first ? @user.admin = true : @user.admin = false
       session[:user_id] = @user.id
       redirect_to(controller: 'users', action: 'index')
     else
