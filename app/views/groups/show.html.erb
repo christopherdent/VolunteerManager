@@ -21,7 +21,7 @@
     <div class="card text-center">
       <div class="card-body">
         <h5 class="card-title"><%= image_tag("/assets/email.png", :size => "100x100", alt: "Email Group")%></h5>
-        <p class="card-text"><%= mail_to @emails.uniq * ",", 'Email This Group', target: :_blank %></p>
+        <p class="card-text"><%= mail_to @emails.uniq * "; ", 'Email This Group', target: :_blank %></p>
 
       </div>
     </div>
@@ -45,7 +45,7 @@ Group Members:
   <table style="width:75%">
   <tr>
     <th><p>Quick Add Existing Volunteer to Group</p></th>
-    <th><p>Add New Volunteer to Group</p></th>
+    <th><p>Add New Volunteer to Group <i>Dev note - Strongly considering removing this form and limiting brand new volunteer creation to the new volunteer creation page. I would leave the quick add.</i></p></th>
 
   </tr>
   <tr><td>
