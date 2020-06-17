@@ -9,8 +9,8 @@ local:
 amazon:
   service: S3
   access_key_id: ENV['S3_KEY'],
-  secret_access_key: ENV['S3_SECRET']
-  bucket: "volunteermanagercjd"
+  secret_access_key: ENV['S3_SECRET'],
+  bucket: ENV['S3_BUCKET'],
   region: "us-east-2" # e.g. 'us-east-1'
 
 
