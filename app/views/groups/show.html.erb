@@ -20,7 +20,7 @@
   <div class="col-sm-6">
     <div class="card text-center">
       <div class="card-body">
-        <h5 class="card-title"><%= image_tag("assets/images/email.png", :size => "100x100", alt: "Email Group")%></h5>
+        <h5 class="card-title"><%= image_tag("app/assets/images/email.png", :size => "100x100", alt: "Email Group")%></h5>
         <p class="card-text"><%= mail_to @emails.uniq * "; ", 'Email This Group', target: :_blank %></p>
 
       </div>
