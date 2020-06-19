@@ -36,51 +36,27 @@ Group Members:
 
 <li><%= link_to member.full_name, volunteer_path(member) %>
   <%= button_to "Remove From Group", remove_from_group_group_volunteer_path(@group, member), class: "btn btn-primary btn-sm", method: :delete%> </li><br>
-
 <% end  %>
-</ul>
-<br>
-<div class="jumbotron text-center">
-<center>
-  <table style="width:75%">
-  <tr>
-    <th><p>Quick Add Existing Volunteer to Group</p></th>
-    <th><p>Add New Volunteer to Group</p></th>
 
-  </tr>
-  <tr><td>
+</ul>
+
+<br>
+
+<div class="jumbotron text-left">
+
+<p>Quick add an existing volunteer from the list or <%= link_to 'create a new volunteer', new_volunteer_path %>. </p>
 
 <%= form_for(@group, url: {action: "update_two"}, method: :patch) do |f| %>
 
-<%= f.collection_select(:volunteer_ids, @volunteers, :id, :full_name, :include_blank => true, :selected => "") %><br><br><br><br>
+<%= f.collection_select(:volunteer_ids, @volunteers, :id, :full_name, :include_blank => true, :selected => "") %><br><br>
+
 <%= f.submit "Add" %>
 <%end%>
-  </td>
 
-   <td>
+</div>
 
-<%= form_for @group do |f| %>
-<%= f.fields_for :volunteers, @group.volunteers.build do |volunteers_fields| %>
-<%= f.label "First Name" %>
-   <%= volunteers_fields.text_field :first_name %><br>
-<%= f.label "Last Name" %>
-   <%= volunteers_fields.text_field :last_name %><br>
-<%= f.label "Email" %>
-   <%= volunteers_fields.email_field :email %><br>
- <%= f.label :organization %>
-   <%= volunteers_fields.text_field :organization %><br>
- <%= f.label :sector %>
-   <%= volunteers_fields.select :sector, [[], ['Government'], ['Industry'], ['Academia']] %><br>
- <%= f.label :active? %>
-   <%= volunteers_fields.check_box :active_status, checked: true  %><br>
- <%= f.hidden_field :user_id, :value => current_user.id %>
-   <br>
-  <%= f.submit "Add"%>
-<% end %>
-<% end %>
-</td></tr></table></center></div>
-
-<br><br>
+<br>
+<br>
 <% if current_user.admin? %>
 <center>  <%= button_to "Delete Group", group_path(@group), class: "btn btn-danger", method: :delete, data: { confirm: "Really?" } %> </center>
 <% end %>
