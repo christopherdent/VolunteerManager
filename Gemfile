@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '2.6.1'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'bootstrap', '~> 4.4.1'
 
@@ -64,4 +64,3 @@ gem "aws-sdk-s3", require: false
 group :assets do
   gem 'jquery-rails'
 end
-ruby "2.5.1"
