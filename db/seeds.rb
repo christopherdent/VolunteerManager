@@ -26,3 +26,8 @@ Group.create(name: "Plague Working Group", program_name: "SPADA", chair_first: "
 Group.create(name: "Pesticide Sub-Group", program_name: "CASP", chair_first: "", chair_last: "", status: true, user_id: 1, kind: "WG Sub-Group")
 Group.create(name: "Food Authenticity", program_name: "Food Authenticity", chair_first: "", chair_last: "", status: true, user_id: 1, kind: "Program")
 Group.create(name: "CASP", program_name: "CASP", chair_first: "", chair_last: "", status: true, user_id: 1, kind: "Community")
+
+User.create(username: "cjd", first_name: "christoper", last_name: "det", email: "christopherde01@gmail.com", password: "123")
+User.create(username: "cjd1", first_name: "christopher", last_name: "dnt", email: "christopherden01@gmail.com", password: "123")
+User.create(username: "cjd2", first_name: "cristopher", last_name: "dnt", email: "christopherent01@gmail.com", password: "123")
+User.create(username: "cjd3", first_name: "chrisopher", last_name: "nt", email: "christophernt01@gmail.com", password: "123")
