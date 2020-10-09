@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: myapp_dev
+  database: volunteermanager
   host: localhost
   pool: 5
   username: christopher
@@ -10,8 +10,8 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: myapp_test
+  database: volunteermanager
   host: localhost
-  pool: 5
+  pool: 5myapp_dev
   username: christopher
   password: aoacint
