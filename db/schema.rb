@@ -85,3 +85,4 @@ ActiveRecord::Schema.define(version: 2020_04_15_225326) do
   add_foreign_key "group_volunteers", "groups"
   add_foreign_key "group_volunteers", "volunteers"
 end
+# sdfs
