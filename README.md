@@ -10,7 +10,7 @@ To run the app locally, type `rails s` into the terminal and open your browser t
 ## Demo Video
 Available <a href = "https://www.youtube.com/watch?v=v6ifLuecsmA&t=8s">here. </a>
 
-Or see it live at https://voluteermanager.heroku.com/ (email christopherdent01@gmail.com for credentials)
+Or see it live at https://volunteermanager.herokuapp.com (email christopherdent01@gmail.com for credentials)
 
 ## Built With
 
