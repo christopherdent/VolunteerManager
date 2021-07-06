@@ -21,7 +21,7 @@
 <%= f.text_field :username %>
 <br>
 <%= f.label :password %>
-<%= f.password_field :password, value: current_user.password %>
+<%= f.password_field :password %>
 <br>
 <% if current_user %>
 <% if current_user.admin %>
