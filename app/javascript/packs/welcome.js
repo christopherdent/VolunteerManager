@@ -1,5 +1,6 @@
 
 
-
-alert("Here for a demo?")
-console.log("do you see me")
+function guest(){
+  alert("Here for a demo? Use login 'guest' password 'guest', or signup!")
+}
+setTimeout(guest, 1500)
