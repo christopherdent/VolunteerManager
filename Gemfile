@@ -5,7 +5,7 @@ ruby "~> 2.5.1"
 # ruby "~> 2.7.0" 
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'bootstrap', '~> 4.4.1'
-gem 'nokogiri', '~> 1.11.4'
+gem 'nokogiri', '~> 1.12.5'
 gem 'popper_js', '~> 1.14.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
