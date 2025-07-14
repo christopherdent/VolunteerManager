@@ -1,51 +1,37 @@
-<% if !logged_in? %>
-<br><br><br><br>
-<center>
 
-  <%= image_tag("logo.png") %>
-<% end %>
-<br>
-<br>
-<div class="jumbotron text-center">
-<h1> Welcome to Association Volunteer Manager </h1>
-</div>
+  <% if !logged_in? %>
+    <%= image_tag("logo.png", class: "img-fluid mb-4", alt: "VolunteerManager logo") %>
 
-<% if flash[:alert] %>
-<div class="alert alert-info"><%= flash[:alert] %></div>
-<% end %>
+    <h1 class="mb-3 text-center">Welcome to Association Volunteer Manager</h1>
+    <p class="lead mb-4 text-center">Organize your volunteer teams effortlessly.</p>
 
-  <p>
-  <% if logged_in? %>
-    Hi, <%= current_user.first_name %>.  What would you like to do?
- <% end %>
-  </p>
-<% if !logged_in? %>
+    <% if flash[:alert] %>
+      <div class="alert alert-info w-100 text-center"><%= flash[:alert] %></div>
+    <% end %>
 
-<center>
-  <h4>  <%= link_to "Login", login_path %>  or  <%= link_to "Signup", signup_path %>  </h4>
+    <div class="d-flex gap-3 mb-3">
+      <%= link_to "Login", login_path, class: "btn btn-primary btn-lg" %>
+      <%= link_to "Signup", signup_path, class: "btn btn-outline-primary btn-lg" %>
+    </div>
 
-    <br><br>
-<small>Here for a quick demo?  Login with guest/guest.</small>
+    <small class="text-muted text-center">Here for a quick demo? Login with <strong>guest/guest</strong>.</small>
 
-<script>
-    // function guest(){
-    //   alert("Here for a demo? Use login 'guest' password 'guest', or signup!")
-    // }
-    // setTimeout(guest, 1500)
-</script>
+  <% else %>
 
+    <h1 class="mb-4 text-center">Hi, <%= current_user.first_name %>! What would you like to do?</h1>
 
-</center>
-  <%else%>
+    <% if flash[:alert] %>
+      <div class="alert alert-info w-100 text-center"><%= flash[:alert] %></div>
+    <% end %>
 
+    <ul class="list-group mb-4 text-start" style="max-width: 400px;">
+      <li class="list-group-item text-center"><%= link_to 'Add a Volunteer', new_volunteer_path %></li>
+      <li class="list-group-item text-center"><%= link_to 'View All Volunteers', volunteers_path %></li>
+      <li class="list-group-item text-center"><%= link_to 'Create a Group', new_group_path %></li>
+      <li class="list-group-item text-center"><%= link_to 'View All Groups', groups_path %></li>
+      <li class="list-group-item text-center"><%= link_to 'View Statements of Expertise', group_volunteers_path %></li>
+      <li class="list-group-item text-center"><%= link_to 'View/Edit System Users', users_path %></li>
+    </ul>
 
-  <ul>
-    <li><%= link_to 'Add a Volunteer', new_volunteer_path %></li>
-    <li><%= link_to 'View All Volunteers', volunteers_path %></li>
-    <li><%= link_to 'Create a Group', new_group_path %></li>
-    <li><%= link_to 'View All Groups', groups_path %></li>
-    <li><%= link_to 'View All Statements of Expertise', group_volunteers_path %></li>
-    <li><%= link_to 'View / Edit System Users', users_path %></li>
-  </ul>
+  <% end %>
 
-<%end%>

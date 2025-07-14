@@ -9,7 +9,7 @@
     <%= csp_meta_tag %>
     <link rel="stylesheet" href="assets/stylesheets/custom.scss">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_importmap_tags %>
  
   </head>
 
@@ -20,9 +20,10 @@
 
     </header>
 
-    <main role="main">
-      <%= content_for?(:content) ? yield(:content) : yield %>
-    </main>
+<main role="main" class="container d-flex flex-column align-items-center justify-content-center py-5">
+  <%= yield %>
+</main>
+
 
 <% if logged_in? %>
 <br>

@@ -1,17 +1,16 @@
-development:
+default: &default
   adapter: postgresql
   encoding: unicode
-  database: volunteermanager
-  host: localhost
   pool: 5
-  username: christopher
-  password: othello1
+  host:    localhost
+  port:     5433
+  username: volunteer_user
+  password: secure_password
+
+development:
+  <<: *default
+  database: volunteer_manager_development
 
 test:
-  adapter: postgresql
-  encoding: unicode
-  database: volunteermanager
-  host: localhost
-  pool: 5myapp_dev
-  username: christopher
-  password: othello1
+  <<: *default
+  database: volunteer_manager_test

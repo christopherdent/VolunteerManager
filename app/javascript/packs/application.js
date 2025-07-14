@@ -9,6 +9,15 @@ require("@rails/activestorage").start()
 require("channels")
 require("packs/welcome")
 
+// Turbo & Stimulus for Rails interactivity
+import "@hotwired/turbo-rails"
+import "controllers"
+
+// Bootstrap 5 JavaScript
+import "bootstrap"
+
+// Any custom JavaScript goes here
+console.log("VolunteerManager app loaded 🚀");
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
