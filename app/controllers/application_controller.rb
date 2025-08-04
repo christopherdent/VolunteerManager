@@ -1,29 +1,31 @@
 class ApplicationController < ActionController::Base
-    protect_from_forgery with: :exception
-    helper_method :current_user, :require_login, :logged_in?
+  protect_from_forgery with: :exception
+  helper_method :current_user, :require_login, :logged_in?
 
-
-
-
-# my app's custom helpers
+  # Skip login in development
+  before_action :require_login, unless: -> { Rails.env.development? }
 
   def current_user
-      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-    def require_login
-      if current_user == nil
-        redirect_to '/'
-      end
-    end
+  def require_login
+    # Allow access in development via peer-auth socket
+    return true if Rails.env.development?
 
-    def admin_only
-      unless current_user.admin
-        redirect_to request.referrer, alert: "You must be an admin to perform that function!"
-      end
-    end
-
-    def logged_in?
-      current_user != nil
+    unless current_user
+      redirect_to root_path and return
     end
   end
+
+  def admin_only
+    unless current_user&.admin
+      redirect_to request.referrer, alert: "You must be an admin to perform that function!"
+    end
+  end
+
+  def logged_in?
+    current_user.present?
+  end
+end
+

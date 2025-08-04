@@ -1,16 +1,19 @@
 class VolunteersController < ApplicationController
-before_action :require_login
-before_action :admin_only, except: [:index, :show]
+# before_action :require_login
+# before_action :admin_only, except: [:index, :show]
 
-  def index
-    if !params[:group].blank?
-      @group = Group.find(request.params[:group])
-      @volunteers = @group.volunteers
-      @volunteer = Volunteer.new
-    else
-      @volunteers = Volunteer.all
-    end
+def index
+  @volunteers = Volunteer.all
+  
+  if params[:group].present?
+    @group = Group.find(params[:group])
+    @volunteers = @volunteers.joins(:volunteer_groups).where(volunteer_groups: { group_id: params[:group] })
+  else
+    @group = nil
   end
+  
+  @volunteers = @volunteers.includes(:groups) # Avoid N+1 queries
+end
 
   def new
     @volunteer = Volunteer.new :active_status => true

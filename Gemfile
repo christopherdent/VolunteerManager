@@ -17,6 +17,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'jsbundling-rails'
 
 group :development, :test do
   gem 'byebug'

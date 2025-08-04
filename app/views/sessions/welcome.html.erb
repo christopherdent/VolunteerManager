@@ -1,37 +1,40 @@
+<div class="container d-flex flex-column align-items-center justify-content-center" style="min-height: 90vh;">
 
   <% if !logged_in? %>
-    <%= image_tag("logo.png", class: "img-fluid mb-4", alt: "VolunteerManager logo") %>
+    <div class="text-center">
+      <%= image_tag("logo.png", class: "img-fluid mb-4", alt: "VolunteerManager logo", style: "max-width: 128px;") %>
 
-    <h1 class="mb-3 text-center">Welcome to Association Volunteer Manager</h1>
-    <p class="lead mb-4 text-center">Organize your volunteer teams effortlessly.</p>
+      <h1 class="mb-2" style="font-weight: 800; color: var(--accent, #7f9cf5); letter-spacing: -1px;">Association Volunteer Manager</h1>
+      <p class="lead mb-4" style="color: #aaa;">Organize your volunteer teams effortlessly.</p>
 
-    <% if flash[:alert] %>
-      <div class="alert alert-info w-100 text-center"><%= flash[:alert] %></div>
-    <% end %>
+      <% if flash[:alert] %>
+        <div class="alert alert-info w-100 mx-auto mb-3" style="max-width: 400px;"><%= flash[:alert] %></div>
+      <% end %>
 
-    <div class="d-flex gap-3 mb-3">
-      <%= link_to "Login", login_path, class: "btn btn-primary btn-lg" %>
-      <%= link_to "Signup", signup_path, class: "btn btn-outline-primary btn-lg" %>
+      <div class="d-flex flex-wrap justify-content-center gap-3 mb-3">
+        <%= link_to "Login", login_path, class: "btn btn-primary btn-lg px-4" %>
+        <%= link_to "Signup", signup_path, class: "btn btn-outline-primary btn-lg px-4" %>
+      </div>
+
+      <small class="text-muted d-block">Quick demo? <span style="color: #7f9cf5"><strong>guest / guest</strong></span></small>
     </div>
-
-    <small class="text-muted text-center">Here for a quick demo? Login with <strong>guest/guest</strong>.</small>
-
   <% else %>
+    <div class="text-center" style="width: 100%; max-width: 480px;">
+      <h1 class="mb-3" style="font-weight: 700; color: var(--accent, #7f9cf5);">Hi, <%= current_user.first_name %>!</h1>
+      <p class="mb-4" style="color: #aaa;">What would you like to do?</p>
 
-    <h1 class="mb-4 text-center">Hi, <%= current_user.first_name %>! What would you like to do?</h1>
+      <% if flash[:alert] %>
+        <div class="alert alert-info w-100 mx-auto mb-3"><%= flash[:alert] %></div>
+      <% end %>
 
-    <% if flash[:alert] %>
-      <div class="alert alert-info w-100 text-center"><%= flash[:alert] %></div>
-    <% end %>
-
-    <ul class="list-group mb-4 text-start" style="max-width: 400px;">
-      <li class="list-group-item text-center"><%= link_to 'Add a Volunteer', new_volunteer_path %></li>
-      <li class="list-group-item text-center"><%= link_to 'View All Volunteers', volunteers_path %></li>
-      <li class="list-group-item text-center"><%= link_to 'Create a Group', new_group_path %></li>
-      <li class="list-group-item text-center"><%= link_to 'View All Groups', groups_path %></li>
-      <li class="list-group-item text-center"><%= link_to 'View Statements of Expertise', group_volunteers_path %></li>
-      <li class="list-group-item text-center"><%= link_to 'View/Edit System Users', users_path %></li>
-    </ul>
-
+      <div class="list-group mb-4 shadow-sm">
+        <%= link_to 'Add a Volunteer', new_volunteer_path, class: "list-group-item list-group-item-action text-center fw-semibold" %>
+        <%= link_to 'View All Volunteers', volunteers_path, class: "list-group-item list-group-item-action text-center" %>
+        <%= link_to 'Create a Group', new_group_path, class: "list-group-item list-group-item-action text-center" %>
+        <%= link_to 'View All Groups', groups_path, class: "list-group-item list-group-item-action text-center" %>
+        <%= link_to 'View Statements of Expertise', group_volunteers_path, class: "list-group-item list-group-item-action text-center" %>
+        <%= link_to 'View/Edit System Users', users_path, class: "list-group-item list-group-item-action text-center" %>
+      </div>
+    </div>
   <% end %>
-
+</div>

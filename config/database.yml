@@ -2,10 +2,9 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  host:    localhost
-  port:     5433
-  username: volunteer_user
-  password: secure_password
+  username: chris
+  # explicitly use the Postgres socket—no TCP, no password
+  host: "/var/run/postgresql"
 
 development:
   <<: *default

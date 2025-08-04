@@ -1,24 +1,47 @@
+<div class="container py-4">
+  <h1 class="text-center mb-4" style="color: var(--accent); font-weight: 700; font-size: 2.3rem;">
+    All Volunteers
+  </h1>
 
-<div class="jumbotron text-center">
-<h1>All Volunteers</h1>
-<small><%= link_to 'Add a Volunteer', new_volunteer_path %></small>
-</div>
-
-<div class="text-left">
-
-  <h4>Filter by group: <%= @group.name if @group %></h4>
-  <%= form_tag("/volunteers", method: "get") do %>
-    <%= select_tag "group", options_from_collection_for_select(Group.all, "id", "name"), include_blank: true %>
-
-    <%= submit_tag "Filter", class: "btn btn-info" %>
-  <% end %>
+  <!-- Filter Bar (optional, can remove if not needed) -->
+  <div class="skippy-filter-bar mb-4">
+    <%= form_tag(volunteers_path, method: "get", class: "row align-items-end g-2") do %>
+      <div class="col-md-8 col-12">
+        <%= select_tag "group", options_from_collection_for_select(Group.all, "id", "name", params[:group]),
+          { include_blank: "All Groups", class: "form-select", style: "background: #232837; color: var(--text-main); border: 1px solid var(--border);" } %>
+      </div>
+      <div class="col-md-4 col-12 mt-2 mt-md-0 d-flex gap-2">
+        <%= submit_tag "Apply Filter", class: "skippy-btn" %>
+        <% if params[:group].present? %>
+          <%= link_to "Clear", volunteers_path, class: "skippy-btn" %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
+  <!-- Volunteers Grid -->
+  <div class="skippy-volunteer-grid">
+    <% @volunteers.uniq.sort_by(&:last_name).each do |volunteer| %>
+      <div class="card skippy-dark volunteer-card p-4">
+        <!-- Avatar -->
+        <div class="skippy-avatar mb-3 mx-auto">
+          <%= volunteer.first_name&.first&.upcase %><%= volunteer.last_name&.first&.upcase %>
+        </div>
+        <!-- Clickable Name Only -->
+        <div style="font-weight: 700; font-size: 1.12rem; text-align: center; color: var(--accent);">
+          <%= link_to volunteer.full_name, volunteer, style: "color: var(--accent); text-decoration: none;" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-<br><br>
-<% @volunteers.uniq.sort_by(&:last_name).each do |volunteer| %>
-<ul class = "list-group list-group-flush">
-<li class="list-group-item"><%= link_to volunteer.full_name, volunteer%></li>
-</ul>
-
-<% end %>
+  <!-- Empty State -->
+  <% if @volunteers.empty? %>F
+    <div class="card skippy-dark p-5 text-center my-4">
+      <i class="fas fa-users fa-3x mb-2" style="color: var(--accent); opacity: 0.5;"></i>
+      <h3 style="margin-bottom: 1rem;">No volunteers found</h3>
+      <p>Get started by adding your first volunteer to the system.</p>
+      <%= link_to "Add First Volunteer", new_volunteer_path, class: "skippy-btn mt-2" %>
+    </div>
+  <% end %>
+</div>
