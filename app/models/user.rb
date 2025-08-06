@@ -3,7 +3,8 @@ class User < ApplicationRecord
   has_many :volunteers
   has_many :groups, through: :volunteers
   validates :username, presence: true, uniqueness: true
-  validates :password, length: { in: 2..100 }
+  validates :password, presence: true, length: { in: 2..100 }, on: :create
+  validates :password, length: { in: 2..100 }, allow_blank: true, on: :update
   validates :email, presence: true, uniqueness: true 
   validates :first_name, presence: true
   validates :last_name, presence: true
