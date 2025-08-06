@@ -12,7 +12,7 @@
           <div class="card text-center shadow-sm">
             <div class="card-body">
               <div class="avatar bg-primary text-white mx-auto mb-3" style="width:56px;height:56px;line-height:56px;border-radius:50%;font-size:1.7rem;">
-                <%= u.initials %>
+                <%= u.first_name[0] %> <%= u.last_name[0] %>
               </div>
               <%= link_to u.full_name, user_path(u), class: "h5 d-block" %>
             </div>
