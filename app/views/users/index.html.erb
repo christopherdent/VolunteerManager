@@ -1,16 +1,42 @@
-<div class="jumbotron text-center">
-  <h1>System Users</h1>
-  <% if current_user.admin? %>
-  <small><%= link_to "Add New User", new_user_path %></small>
-  <% end %>
+<div class="container py-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="display-4 text-primary">System Users</h1>
+    <%= link_to "Add New User", new_user_path, class: "btn btn-outline-primary" %>
   </div>
 
-Admins: <br>
-<% User.admin.each do |u| %>
-<%= link_to u.full_name, user_path(u) %><br>
-<% end %>
-<br><br>
-Other Users:<br>
-<% User.general.each do |u| %>
-<%= link_to u.full_name, user_path(u) %><br>
-<% end %>
+  <% if User.admin.any? %>
+    <h3 class="text-info mb-3">Admins</h3>
+    <div class="row mb-5">
+      <% User.admin.each do |u| %>
+        <div class="col-md-3 mb-4">
+          <div class="card text-center shadow-sm">
+            <div class="card-body">
+              <div class="avatar bg-primary text-white mx-auto mb-3" style="width:56px;height:56px;line-height:56px;border-radius:50%;font-size:1.7rem;">
+                <%= u.initials %>
+              </div>
+              <%= link_to u.full_name, user_path(u), class: "h5 d-block" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if User.general.any? %>
+    <h3 class="text-secondary mb-3">Other Users</h3>
+    <div class="row">
+      <% User.general.each do |u| %>
+        <div class="col-md-3 mb-4">
+          <div class="card text-center shadow-sm">
+            <div class="card-body">
+              <div class="avatar bg-secondary text-white mx-auto mb-3" style="width:56px;height:56px;line-height:56px;border-radius:50%;font-size:1.7rem;">
+                <%= "#{u.first_name[0]}#{u.last_name[0]}".upcase %>
+              </div>
+              <%= link_to u.full_name, user_path(u), class: "h5 d-block" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -1,33 +1,153 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# USERS
+User.create!(
+  username: "cdent",
+  first_name: "Christopher",
+  last_name: "Dent",
+  email: "christopher.dent@example.com",
+  password: "password123",
+  admin: true
+)
+User.create!(
+  username: "alane",
+  first_name: "Alice",
+  last_name: "Lane",
+  email: "alice.lane@acmecorp.com",
+  password: "password123",
+  admin: false
+)
+User.create!(
+  username: "jpark",
+  first_name: "James",
+  last_name: "Park",
+  email: "james.park@acmecorp.com",
+  password: "password123",
+  admin: false
+)
+User.create!(
+  username: "mroberts",
+  first_name: "Maria",
+  last_name: "Roberts",
+  email: "maria.roberts@globaltech.com",
+  password: "password123",
+  admin: false
+)
+User.create!(
+  username: "sliu",
+  first_name: "Sophia",
+  last_name: "Liu",
+  email: "sophia.liu@innovatech.com",
+  password: "password123",
+  admin: false
+)
 
-Volunteer.create(first_name: "Calvin", last_name: "Coolidge", email: "huey@lewis.com", organization: "New Lab", sector: "Industry", active_status: true, user_id: 1)
-Volunteer.create(first_name: "George", last_name: "Washington", email: "george@gwu.edu", organization: "George Washington University", sector: "Academia", active_status: true, user_id: 1)
-Volunteer.create(first_name: "Abraham", last_name: "Lincoln", email: "honestabe@askjeeves.com", organization: "White House", sector: "Government", active_status: true, user_id: 1)
-Volunteer.create(first_name: "Woodrow", last_name: "Wilson", email: "woodrow@dhs.gov", organization: "Homeland Security", sector: "Government", active_status: true, user_id: 1)
-Volunteer.create(first_name: "Barack", last_name: "Obama", email: "obama@obama.com", organization: "Obama University", sector: "Academia", active_status: true, user_id: 1)
-Volunteer.create(first_name: "Incredible", last_name: "Hulk", email: "hulk@smash.com", organization: "Avengers", sector: "Industry", active_status: true, user_id: 1)
-Volunteer.create(first_name: "Iron", last_name: "Man", email: "tony@avengers.com", organization: "Avengers", sector: "Industry", active_status: true, user_id: 1)
-Volunteer.create(first_name: "Black", last_name: "Widow", email: "bw@avengers.org", organization: "Avengers", sector: "Industry", active_status: true, user_id: 1)
-Volunteer.create(first_name: "Spider", last_name: "Man", email: "spidey@nyc.com", organization: "Consultant", sector: "Industry", active_status: true, user_id: 1)
-Volunteer.create(first_name: "Elvis", last_name: "Presley", email: "elvis@leftthebuilding.com", organization: "Rock", sector: "Industry", active_status: true, user_id: 1)
-Volunteer.create(first_name: "Thor", last_name: "Odinson", email: "thor@smash.com", organization: "Avengers", sector: "Industry", active_status: true, user_id: 1)
+# VOLUNTEERS
+Volunteer.create!(
+  first_name: "Elizabeth",
+  last_name: "Johnson",
+  email: "elizabeth.johnson@email.com",
+  organization: "Red Cross",
+  sector: "Nonprofit",
+  active_status: true,
+  user_id: 2
+)
+Volunteer.create!(
+  first_name: "Michael",
+  last_name: "Anderson",
+  email: "michael.anderson@email.com",
+  organization: "Acme Corp",
+  sector: "Industry",
+  active_status: true,
+  user_id: 3
+)
+Volunteer.create!(
+  first_name: "Priya",
+  last_name: "Sharma",
+  email: "priya.sharma@email.com",
+  organization: "Global Health Initiative",
+  sector: "Nonprofit",
+  active_status: true,
+  user_id: 4
+)
+Volunteer.create!(
+  first_name: "Carlos",
+  last_name: "Martinez",
+  email: "carlos.martinez@email.com",
+  organization: "City Council",
+  sector: "Government",
+  active_status: true,
+  user_id: 5
+)
+Volunteer.create!(
+  first_name: "Grace",
+  last_name: "Kim",
+  email: "grace.kim@email.com",
+  organization: "Innovatech",
+  sector: "Industry",
+  active_status: true,
+  user_id: 2
+)
 
-Group.create(name: "Shrimp Working Group", program_name: "SPSFAM", chair_first: "", chair_last: "", status: true, user_id: 1, kind: "Working Group")
-Group.create(name: "Anthrax Working Group", program_name: "SPADA", chair_first: "", chair_last: "", status: true, user_id: 1, kind: "Working Group")
-Group.create(name: "Micro Working Group", program_name: "CASP", chair_first: "", chair_last: "", status: true, user_id: 1, kind: "Working Group")
-Group.create(name: "Vaping Working Group", program_name: "CASP", chair_first: "", chair_last: "", status: true, user_id: 1, kind: "Working Group")
-Group.create(name: "Plague Working Group", program_name: "SPADA", chair_first: "", chair_last: "", status: true, user_id: 1, kind: "Working Group")
-Group.create(name: "Pesticide Sub-Group", program_name: "CASP", chair_first: "", chair_last: "", status: true, user_id: 1, kind: "WG Sub-Group")
-Group.create(name: "Food Authenticity", program_name: "Food Authenticity", chair_first: "", chair_last: "", status: true, user_id: 1, kind: "Program")
-Group.create(name: "CASP", program_name: "CASP", chair_first: "", chair_last: "", status: true, user_id: 1, kind: "Community")
+# GROUPS
+Group.create!(
+  name: "Community Outreach",
+  program_name: "Volunteer Engagement",
+  chair_first: "Alice",
+  chair_last: "Lane",
+  status: true,
+  user_id: 2,
+  kind: "Program"
+)
+Group.create!(
+  name: "Healthcare Initiatives",
+  program_name: "Global Health Initiative",
+  chair_first: "Maria",
+  chair_last: "Roberts",
+  status: true,
+  user_id: 4,
+  kind: "Working Group"
+)
+Group.create!(
+  name: "Tech For Good",
+  program_name: "Innovation",
+  chair_first: "Sophia",
+  chair_last: "Liu",
+  status: true,
+  user_id: 5,
+  kind: "Working Group"
+)
+Group.create!(
+  name: "Civic Projects",
+  program_name: "City Council",
+  chair_first: "James",
+  chair_last: "Park",
+  status: false,
+  user_id: 3,
+  kind: "Community"
+)
 
-User.create(username: "cjd", first_name: "christoper", last_name: "det", email: "christopherde01@gmail.com", password: "123")
-User.create(username: "cjd1", first_name: "christopher", last_name: "dnt", email: "christopherden01@gmail.com", password: "123")
-User.create(username: "cjd2", first_name: "cristopher", last_name: "dnt", email: "christopherent01@gmail.com", password: "123")
-User.create(username: "cjd3", first_name: "chrisopher", last_name: "nt", email: "christophernt01@gmail.com", password: "123")
+# GROUP VOLUNTEERS (Statements of Expertise)
+GroupVolunteer.create!(
+  group_id: 1,
+  volunteer_id: 1,
+  statement: "Specialized in organizing large-scale fundraising events and community awareness campaigns."
+)
+GroupVolunteer.create!(
+  group_id: 2,
+  volunteer_id: 3,
+  statement: "Expertise in global health research, policy analysis, and program management."
+)
+GroupVolunteer.create!(
+  group_id: 3,
+  volunteer_id: 5,
+  statement: "Experienced with technology outreach programs for underrepresented communities."
+)
+GroupVolunteer.create!(
+  group_id: 4,
+  volunteer_id: 4,
+  statement: "Focused on civic engagement, urban planning, and local government advocacy."
+)
+GroupVolunteer.create!(
+  group_id: 1,
+  volunteer_id: 2,
+  statement: "Professional background in nonprofit operations and volunteer management."
+)
