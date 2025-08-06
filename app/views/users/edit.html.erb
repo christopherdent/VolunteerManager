@@ -1,38 +1,54 @@
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div class="form-errors">
-    <h4 class = "error"><%= pluralize(@user.errors.count, "error") %></h4>
-        <% @user.errors.full_messages.each do |msg| %>
-        <ul class = "error"><li><%= msg %></li></ul>
-        <% end %>
-        </div>
-        <%end%>
+<div class="container d-flex flex-column align-items-center justify-content-center" style="min-height: 92vh;">
+  <div class="card p-4 shadow-lg" style="max-width: 500px; width: 100%; border-radius: 24px; background: rgba(40,42,60,0.98); color: #fff;">
+    <div class="card-body">
+      <h1 class="mb-4 text-center" style="color:#7f9cf5;">Edit Profile</h1>
 
-<%= f.label :first_name %>
-<%= f.text_field :first_name %>
-<br>
-<%= f.label :last_name %>
-<%= f.text_field :last_name %>
-<br>
-<%= f.label :email %>
-<%= f.email_field :email %>
-<br>
-<%= f.label :username %>
-<%= f.text_field :username %>
-<br>
-<%= f.label :password %>
-<%= f.password_field :password %>
-<br>
-<% if current_user %>
-<% if current_user.admin %>
-<%= f.label :admin?  %>
-<%= f.check_box :admin %>
-<% end %>
-<br>
-<%= f.label :avatar  %>
-<%= f.file_field :avatar %>
-<% end %>
-<br><br>
-<%= f.submit class:"btn btn-primary" %>
-<br>
-<% end %>
+      <% if @user.errors.any? %>
+        <div class="alert alert-danger">
+          <h5><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h5>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form_for @user, html: { multipart: true } do |f| %>
+        <div class="mb-3">
+          <%= f.label :first_name, nil, class: "form-label text-white" %>
+          <%= f.text_field :first_name, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :last_name, nil, class: "form-label text-white" %>
+          <%= f.text_field :last_name, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :email, nil, class: "form-label text-white" %>
+          <%= f.email_field :email, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :username, nil, class: "form-label text-white" %>
+          <%= f.text_field :username, class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :password, nil, class: "form-label text-white" %>
+          <%= f.password_field :password, class: "form-control", autocomplete: "new-password" %>
+        </div>
+        <% if current_user&.admin? %>
+          <div class="mb-3 form-check">
+            <%= f.check_box :admin, class: "form-check-input" %>
+            <%= f.label :admin, "Admin?", class: "form-check-label text-white" %>
+          </div>
+          <div class="mb-3">
+            <%= f.label :avatar, nil, class: "form-label text-white" %>
+            <%= f.file_field :avatar, class: "form-control" %>
+          </div>
+        <% end %>
+        <div class="d-grid gap-2 mt-4">
+          <%= f.submit "Update User", class: "btn btn-primary btn-lg w-100" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

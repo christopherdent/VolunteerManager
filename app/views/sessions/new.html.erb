@@ -1,34 +1,48 @@
-<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-  <div class="card p-4 shadow-lg" style="min-width: 350px; background: #20232a; color: #fff;">
-    <div class="card-body">
-      <h1 class="mb-4 text-center" style="color:#6379e6;">Login to Volunteer Manager</h1>
-      <% if flash[:error] %>
-        <div class="alert alert-danger text-center">
-          <%= flash[:error] %>
-          <br>
-          <%= link_to 'Sign Up', signup_path, class: "alert-link" %>
-        </div>
-      <% end %>
+<div class="container d-flex flex-column align-items-center justify-content-center" style="min-height: 92vh;">
+  <div class="text-center p-4"
+       style="width: 540px; max-width: 95vw; border-radius: 26px; box-shadow: 0 8px 40px rgba(127,156,245,0.14); background: rgba(40,42,60,0.97);">
+    
+    <%= image_tag("logo.png", 
+      class: "img-fluid mb-4",
+      alt: "VolunteerManager logo",
+      style: "width: 370px; height: 335px; object-fit: contain; transition: transform 0.3s; margin-left:auto; margin-right:auto;",
+      onmouseover: "this.style.transform='scale(1.03)'",
+      onmouseout: "this.style.transform='scale(1)'") %>
 
-      <%= form_for :user do |f| %>
+    <p class="mb-4" style="color: #b5b5b5; font-size: 1.18rem;">
+      Organize your volunteer teams effortlessly.
+    </p>
+    
+    <div class="text-start mx-auto" style="max-width: 400px;">
+      <%= form_for :user, url: login_path do |f| %>
         <div class="mb-3">
-          <%= f.label :username, nil, class: "form-label" %>
+          <%= f.label :username, nil, class: "form-label text-white" %>
           <%= f.text_field :username, class: "form-control", autofocus: true %>
         </div>
         <div class="mb-3">
-          <%= f.label :password, nil, class: "form-label" %>
+          <%= f.label :password, nil, class: "form-label text-white" %>
           <%= f.password_field :password, class: "form-control" %>
         </div>
-        <div class="d-grid gap-2">
-          <%= f.submit 'Login', class: "btn btn-primary btn-block" %>
+        <div class="d-grid gap-2 mb-3">
+          <button type="submit" class="btn btn-primary btn-lg w-100" style="border-radius: 40px; font-weight: 600; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+            <i class="fas fa-sign-in-alt me-2"></i>
+            Login
+          </button>
         </div>
       <% end %>
-
-      <div class="text-center mt-3">
-        <p class="small text-light">Don't have an account?
-          <%= link_to 'Sign Up', signup_path, class: "text-info" %>
-        </p>
+      <div class="d-grid gap-2 mb-4">
+        <%= link_to signup_path, class: "btn btn-outline-primary btn-lg w-100", style: "border-radius: 40px; font-weight: 600; border: 2px solid #667eea; color: #667eea; background: rgba(255,255,255,0.08);" do %>
+          <i class="fas fa-user-plus me-2"></i>
+          Sign Up
+        <% end %>
       </div>
+    </div>
+
+    <div style="background: rgba(127, 156, 245, 0.08); border: 1px solid rgba(127, 156, 245, 0.18); border-radius: 14px; padding: 0.9rem 1.1rem; margin-top: 1.7rem;">
+      <small class="d-block" style="color: #aaa;">
+        <i class="fas fa-rocket me-1" style="color: #7f9cf5;"></i>
+        Quick demo? <span style="color: #7f9cf5; font-weight: 600; font-family: monospace;">guest / guest</span>
+      </small>
     </div>
   </div>
 </div>

@@ -27,13 +27,19 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by_id(params[:id])
-     @user.update(user_params)
-     if @user.save
-       redirect_to user_path(@user)
-     else
-       render action: :edit
-     end
+
+    # Only update password if provided
+    if params[:user][:password].blank?
+      params[:user].delete(:password)
+    end
+
+    if @user.update(user_params)
+      redirect_to user_path(@user)
+    else
+      render action: :edit
+    end
   end
+
 
   def show
     @user = User.find_by_id(params[:id])
