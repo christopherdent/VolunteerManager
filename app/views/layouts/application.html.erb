@@ -78,14 +78,9 @@
     </main>
 
     <!-- Footer -->
-    <footer style="background: var(--glass-bg); backdrop-filter: blur(20px); color: rgba(255, 255, 255, 0.8); text-align: center; padding: 2rem 0; margin-top: 4rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-      <div class="container">
-        <p>&copy; 2024 <strong>Christopher Dent</strong> • Volunteer Manager</p>
-        <% if logged_in? %>
-          <p><small>Logged in as <%= link_to current_user.username, user_path(current_user.id), style: "color: rgba(255,255,255,0.9);" %></small></p>
-        <% end %>
-      </div>
-    </footer>
+  <footer class="text-center py-3" style="color: #888; font-size: 1rem;">
+    Made with <span style="color: #e25555;">&#10084;&#65039;</span> in St. Augustine by <strong>Chris Dent</strong>
+  </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   </body>
