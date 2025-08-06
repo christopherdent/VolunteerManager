@@ -1,37 +1,83 @@
+<div class="container d-flex flex-column align-items-center justify-content-center" style="min-height: 90vh;">
 
   <% if !logged_in? %>
-    <%= image_tag("logo.png", class: "img-fluid mb-4", alt: "VolunteerManager logo") %>
+    <div class="text-center p-4" style="max-width: 480px; border-radius: 20px; box-shadow: 0 6px 32px rgba(127,156,245,0.12); background: rgba(40,42,60,0.98);">
+      <%= image_tag("logo.png", 
+        class: "img-fluid mb-3",
+        alt: "VolunteerManager logo",
+        style: "width: 280px; max-width: 90vw; height: auto; transition: transform 0.3s, filter 0.3s; filter: drop-shadow(0 4px 24px rgba(127,156,245,0.12));",
+        onmouseover: "this.style.transform='scale(1.07)'",
+        onmouseout: "this.style.transform='scale(1)'") %>
 
-    <h1 class="mb-3 text-center">Welcome to Association Volunteer Manager</h1>
-    <p class="lead mb-4 text-center">Organize your volunteer teams effortlessly.</p>
+      <h1 class="mb-2 fw-bold" style="color: #7f9cf5; letter-spacing: -1px; font-size: 2.6rem;">
+        Volunteer Manager
+      </h1>
+      <h2 class="mb-4 lead" style="color: #b5b5b5; font-size: 1.3rem;">
+        Organize your volunteer teams effortlessly.
+      </h2>
 
-    <% if flash[:alert] %>
-      <div class="alert alert-info w-100 text-center"><%= flash[:alert] %></div>
-    <% end %>
+      <% if flash[:alert] %>
+        <div class="alert alert-info w-100 mx-auto mb-3" 
+             style="max-width: 400px; border-radius: 12px; background: #2d2f47;">
+          <i class="fas fa-info-circle me-2"></i>
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
 
-    <div class="d-flex gap-3 mb-3">
-      <%= link_to "Login", login_path, class: "btn btn-primary btn-lg" %>
-      <%= link_to "Signup", signup_path, class: "btn btn-outline-primary btn-lg" %>
+      <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+        <%= link_to login_path, class: "btn btn-primary btn-lg px-5 py-3", style: "border-radius: 50px; font-weight: 600; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.18); transition: box-shadow 0.2s;" do %>
+          <i class="fas fa-sign-in-alt me-2"></i>
+          Login
+        <% end %>
+        <%= link_to signup_path, class: "btn btn-outline-primary btn-lg px-5 py-3", style: "border-radius: 50px; font-weight: 600; border: 2px solid #667eea; color: #667eea; background: rgba(255,255,255,0.08); transition: border-color 0.2s;" do %>
+          <i class="fas fa-user-plus me-2"></i>
+          Sign Up
+        <% end %>
+      </div>
+
+      <div style="background: rgba(127, 156, 245, 0.06); border: 1px solid rgba(127, 156, 245, 0.15); border-radius: 12px; padding: 1rem 1.5rem;">
+        <small class="d-block" style="color: #aaa;">
+          <i class="fas fa-rocket me-1" style="color: #7f9cf5;"></i>
+          Quick demo? <span style="color: #7f9cf5; font-weight: 600; font-family: monospace;">guest / guest</span>
+        </small>
+      </div>
     </div>
-
-    <small class="text-muted text-center">Here for a quick demo? Login with <strong>guest/guest</strong>.</small>
-
   <% else %>
+    <div class="text-center p-4" style="width: 100%; max-width: 520px; border-radius: 20px; box-shadow: 0 6px 32px rgba(127,156,245,0.10); background: rgba(40,42,60,0.98);">
+      <div class="mb-4">
+        <% if current_user.avatar.attached? %>
+          <%= image_tag current_user.avatar.variant(resize: "80x80^").processed, class: "rounded-circle shadow mb-3", alt: current_user.full_name %>
+        <% else %>
+          <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 2rem; margin: 0 auto 1rem;">
+            <%= current_user.first_name&.first&.upcase %>
+          </div>
+        <% end %>
+        <h1 class="mb-2" style="font-weight: 700; color: #7f9cf5; font-size: 2.1rem;">
+          Welcome back, <%= current_user.first_name %>!
+        </h1>
+        <p class="mb-4" style="color: #b5b5b5;">What would you like to do today?</p>
+<div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+  <%= link_to 'Manage Groups', groups_path, class: "btn btn-outline-success btn-lg px-4", style: "border-radius: 30px; font-weight: 600;" %> <br>
+  <%= link_to 'Manage Volunteers', volunteers_path, class: "btn btn-outline-primary btn-lg px-4", style: "border-radius: 30px; font-weight: 600;" %><br>
+  <%= link_to 'Manage System Users', users_path, class: "btn btn-outline-info btn-lg px-4", style: "border-radius: 30px; font-weight: 600;" %><br>
+  <%# Add more as needed, e.g. %>
+  <%#= link_to 'Manage Events', events_path, class: "btn btn-outline-secondary btn-lg px-4", style: "border-radius: 30px; font-weight: 600;" %>
+</div>
 
-    <h1 class="mb-4 text-center">Hi, <%= current_user.first_name %>! What would you like to do?</h1>
-
-    <% if flash[:alert] %>
-      <div class="alert alert-info w-100 text-center"><%= flash[:alert] %></div>
-    <% end %>
-
-    <ul class="list-group mb-4 text-start" style="max-width: 400px;">
-      <li class="list-group-item text-center"><%= link_to 'Add a Volunteer', new_volunteer_path %></li>
-      <li class="list-group-item text-center"><%= link_to 'View All Volunteers', volunteers_path %></li>
-      <li class="list-group-item text-center"><%= link_to 'Create a Group', new_group_path %></li>
-      <li class="list-group-item text-center"><%= link_to 'View All Groups', groups_path %></li>
-      <li class="list-group-item text-center"><%= link_to 'View Statements of Expertise', group_volunteers_path %></li>
-      <li class="list-group-item text-center"><%= link_to 'View/Edit System Users', users_path %></li>
-    </ul>
-
+      </div>
+      <% if flash[:alert] %>
+        <div class="alert alert-info w-100 mx-auto mb-4" style="border-radius: 12px; background: #2d2f47;">
+          <i class="fas fa-info-circle me-2"></i>
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+      <div style="background: rgba(127, 156, 245, 0.06); border: 1px solid rgba(127, 156, 245, 0.15); border-radius: 12px; padding: 1rem;">
+        <small style="color: #aaa;">
+          <i class="fas fa-clock me-1" style="color: #7f9cf5;"></i>
+          Last login: <%= current_user.updated_at.strftime("%B %d, %Y at %l:%M %p") rescue "Welcome!" %>
+        </small>
+      </div>
+    </div>
   <% end %>
+</div>
 

@@ -1,50 +1,91 @@
-<div class="jumbotron text-center">
-  <h1>Volunteer Profile: <%= @volunteer.first_name %> </h1>
-  <% if current_user.admin? %>
-  <%= link_to "EDIT", edit_volunteer_path %>
-  <% end %>
+<div class="container py-5 d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+  <div class="card skippy-dark mx-auto" style="width: 75vw; max-width: 1000px; min-width: 350px; border-radius: 20px; box-shadow: 0 4px 24px #0002;">
+
+    <div class="card-body px-4 py-5 d-flex flex-column align-items-center" style="max-width: 1920px; width: 100%;">
+      <!-- Avatar -->
+      <div class="skippy-avatar mb-4" style="width: 76px; height: 76px; font-size: 2.2rem;">
+        <%= @volunteer.first_name&.first&.upcase %><%= @volunteer.last_name&.first&.upcase %>
+      </div>
+      <h2 class="mb-4" style="font-weight: 800; color: var(--accent); font-size: 2rem;">
+        <%= @volunteer.full_name %>
+      </h2>
+      <%= link_to "EDIT", edit_volunteer_path(@volunteer), class: "skippy-btn btn-sm mb-3" %>
+
+      <!-- Details -->
+      <div class="w-100 mb-3" style="font-size: 1.02rem;">
+        <div class="mb-2">
+          <span class="text-muted">Email:</span>
+          <%= mail_to(@volunteer.email) %>
+        </div>
+        <div class="mb-2">
+          <span class="text-muted">Organization:</span>
+          <span style="color: <%= @volunteer.active_status ? '#60d394' : '#fd5c63' %>;"><%= @volunteer.organization.presence || "<span style='color:#777'>N/A</span>".html_safe %></span>
+        </div>
+        <div class="mb-2">
+          <span class="text-muted">Sector:</span>
+          <span style="color: <%= @volunteer.active_status ? '#60d394' : '#fd5c63' %>;""><%= @volunteer.sector.presence || "<span style='color:#777'>N/A</span>".html_safe %></span>
+        </div>
+        <div class="mb-3">
+          <span class="text-muted">Status:</span>
+          <span style="color: <%= @volunteer.active_status ? '#60d394' : '#fd5c63' %>;">
+            <%= @volunteer.active_status ? 'Active' : 'Inactive' %>
+          </span>
+        </div>
+
+        <div class="d-flex gap-2 align-items-center mb-2">
+          <% if @volunteer.cv.attached? %>
+            <%= link_to "View CV", @volunteer.cv, class: "skippy-btn btn-xs" %>
+          <% end %>
+          <!-- Upload CV (disabled for now) -->
+          <button class="skippy-btn btn-xs btn-outline-secondary" disabled style="opacity:0.7; cursor:not-allowed;">
+            Upload CV (coming soon)
+          </button>
+        </div>
+      </div>
+
+      <hr class="w-100 my-4" style="border-color: #333;">
+
+      <!-- Groups -->
+      <div class="w-100 mb-4">
+        <div style="font-weight: 600; color: var(--accent); margin-bottom: .25rem;">Groups</div>
+        <% if @volunteer.groups.any? %>
+          <ul class="ps-3 mb-0">
+            <% @volunteer.groups.uniq.each do |group| %>
+              <li><%= link_to group.name, group_path(group), style: "color: var(--accent);" %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <div class="text-muted fst-italic ps-1">No groups assigned</div>
+        <% end %>
+      </div>
+
+      <hr class="w-100 my-4" style="border-color: #333;">
+
+      <!-- Statements -->
+      <div class="w-100 mb-4">
+        <div style="font-weight: 600; color: var(--accent); margin-bottom: 1rem;">Statements of Expertise</div>
+        <div>
+          <small><%= link_to "Add a Statement of Expertise", new_group_volunteer_path(volunteer_id: @volunteer.id), class: "skippy-btn btn-xs" %></small>
+        </div>
+        <% statements = GroupVolunteer.where(volunteer_id: @volunteer.id).select { |gv| gv.statement.present? } %>
+        <% if statements.any? %>
+          <% statements.each do |gv| %>
+            <% group = Group.find_by(id: gv.group_id) %>
+            <% if group %>
+              <div class="mt-2 px-2 py-2 rounded" style="background: #25293a;">
+                <div class="text-accent mb-1" style="font-weight: 600;"><%= group.name %></div>
+                <div class="text-light" style="font-size: 0.97rem;"><%= gv.statement %></div>
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <div class="text-muted fst-italic ps-1 mt-4">No statements yet</div>
+        <% end %>
+      </div>
+
+      <div class="w-100 d-flex justify-content-center">
+        <%= button_to "Delete Volunteer", volunteer_path(@volunteer), class: "btn btn-danger px-4", method: :delete, data: { confirm: "Really delete this volunteer?" } %>
+      </div>
+    </div>
   </div>
-
-
-
-Name:  <%= @volunteer.first_name %> <%= @volunteer.last_name %><br>
-Email:  <%= mail_to(@volunteer.email) %><br>
-Organization:  <%= @volunteer.organization %><br>
-Sector:  <%= @volunteer.sector %><br>
-Status:  <%= "Active" if @volunteer.active_status == true %> <%= "Inactive" if @volunteer.active_status == false %><br>
-<% if @volunteer.cv.attached? %>
-<br>
-<h4><%= link_to "View CV", @volunteer.cv %></h4>
-<% end %>
-<br><br>
-<p>Groups:</p>
-<ul>
-<% @volunteer.groups.uniq.each do |group| %>
-<li><%= link_to group.name, group_path(group) %></li>
-<% end %>
-</ul>
-
-<br>
-Statements of Expertise:<br>
-<small><%= link_to "Add a Statement of Expertise", new_group_volunteer_path(volunteer_id: @volunteer.id) %></small><br><br>
-<% GroupVolunteer.all.each do |gv| %>
-<% if gv.volunteer_id == @volunteer.id %>
-  <% @group = Group.find(gv.group_id) %>
-  <% if gv.statement %>
-  Group:  <%= @group.name %><br>
-  Statement:  <%= gv.statement %><br>
-  <br>
-  <% end %>
-<% end %>
-<% end %>
-
-
-<br><br><br>
-
-
-<% if current_user.admin? %>
-<center>
-<%= button_to "Delete Volunteer", volunteer_path(@volunteer), class: "btn btn-danger", method: :delete, data: { confirm: "Really?" } %><br>
-
-</center>
-<% end %>
+</div>

@@ -1,26 +1,32 @@
+<div class="container d-flex flex-column align-items-center justify-content-center" style="min-height: 85vh;">
+  <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%; border-radius: 24px; background: rgba(40,42,60,0.98); color: #fff;">
+    <div class="card-body text-center">
 
-<div class="jumbotron text-center">
-<%if @user.avatar.attached? %>
-  <%= image_tag(@user.avatar, :size => "200x200", alt: "avatar") %>
-<% end %>
-  <h1>User Profile: <%= @user.first_name %> </h1>
-  <% if current_user.admin? %>
-  <%= link_to "EDIT", edit_user_path %>
-  <% end %>
+      <% if @user.avatar.attached? %>
+        <%= image_tag(@user.avatar, size: "120x120", alt: "avatar", class: "rounded-circle mb-3 border border-3 border-primary shadow") %>
+      <% else %>
+        <div class="rounded-circle mb-3 mx-auto d-flex align-items-center justify-content-center" style="width: 120px; height: 120px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; font-size: 3rem; font-weight: 700;">
+          <%= @user.first_name.first.upcase %>
+        </div>
+      <% end %>
 
+      <h1 class="fw-bold mb-1" style="color: #7f9cf5; font-size: 2rem;">
+        <i class="fas fa-user-circle me-2"></i>
+        <%= @user.full_name %>
+      </h1>
+      <div class="mb-3" style="color: #aaa;">@<%= @user.username %></div>
+
+      <ul class="list-group list-group-flush mb-4 text-start" style="background: transparent;">
+        <li class="list-group-item bg-transparent text-white ps-0"><strong>Email:</strong> <%= @user.email %></li>
+        <li class="list-group-item bg-transparent text-white ps-0"><strong>System Admin?</strong> <%= @user.admin? ? "Yes" : "No" %></li>
+      </ul>
+
+      <div class="d-flex justify-content-center gap-3 mb-3">
+        <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-outline-info px-4" %>
+        <% if current_user.admin? %>
+          <%= button_to "Delete User", user_path(@user), method: :delete, data: { confirm: "Are you sure? This is permanent!" }, class: "btn btn-danger px-4" %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-<ul>
-<li>Name: <%= @user.full_name %></li>
-<li>Email: <%= @user.email %></li>
-<li>Username: <%= @user.username %></li>
-<li>System Admin? <%= "Yes" if @user.admin? %> <%= "No" if !@user.admin %></li>
-</ul>
-
-
-<% if current_user.admin? %>
-<center>
-<%= button_to "Delete User", user_path(@user), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure? This is permanent!" } %><br>
-
-</center>
-<% end %>
+</div>

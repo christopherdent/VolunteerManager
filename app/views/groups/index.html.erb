@@ -1,21 +1,45 @@
-<div class="jumbotron text-center">
-  <h1>Active Groups</h1>
-  <small><%= link_to 'Add a Group', new_group_path %></small>
+<div class="container py-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="display-4" style="color:#6379e6;">Active Groups</h1>
+    <%= link_to "Add a Group", new_group_path, class: "btn btn-outline-primary" %>
   </div>
 
-<br>
-<% @groups.each do |group| %>
-<ul class = "list-group list-group-flush">
-<li class = "list-group-item"> <%= link_to group.name, group %></li>
-<% end %>
-
-
-<br>
-<div class="jumbotron text-center">
-<h3>Inactive Groups</h3><br>
+  <div class="row">
+    <% @groups.each do |group| %>
+      <div class="col-md-3 mb-4">
+        <div class="card text-center shadow-sm">
+          <div class="card-body">
+            <div class="avatar bg-secondary text-white mx-auto mb-3" 
+                 style="width:56px;height:56px;line-height:56px;border-radius:50%;font-size:1.7rem;">
+              <%= group.name[0,2].upcase %>
+            </div>
+            <%= link_to group.name, group, class: "h5 d-block", style: "color:#6379e6;" %>
+            <div class="small" style="color:#7e889c;"><%= group.program_name %></div>
+            <span class="badge bg-info text-dark mt-2"><%= group.kind.titleize %></span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-<% Group.inactive.sort_by(&:name).each do |group| %>
-<ul class = "list-group list-group-flush">
-<li class = "list-group-item"><%= link_to group.program_name, group %> <%= link_to group.name, group %></li>
-<% end %>
+<div class="container py-3">
+  <h3 class="text-secondary mb-4" style="color:#7e889c;">Inactive Groups</h3>
+  <div class="row">
+    <% Group.inactive.sort_by(&:name).each do |group| %>
+      <div class="col-md-3 mb-4">
+        <div class="card text-center shadow-sm" style="background: #232733;">
+          <div class="card-body">
+            <div class="avatar bg-dark text-muted mx-auto mb-3" 
+                 style="width:56px;height:56px;line-height:56px;border-radius:50%;font-size:1.7rem;opacity:0.5;">
+              <%= group.name[0,2].upcase %>
+            </div>
+            <%= link_to group.name, group, class: "h5 d-block", style: "color:#7e889c;" %>
+            <div class="small" style="color:#576072;"><%= group.program_name %></div>
+            <span class="badge bg-secondary text-light mt-2" style="opacity:0.6;"><%= group.kind.titleize %></span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

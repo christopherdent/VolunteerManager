@@ -1,40 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Volunteer Manager" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Volunteer Manager" %>">
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    
+    <!-- Bootstrap 5 and Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <link rel="stylesheet" href="assets/stylesheets/custom.scss">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_importmap_tags %>
- 
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    
+    <!-- Custom CSS -->
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --card-bg: rgba(255, 255, 255, 0.95);
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --text-dark: #2d3748;
+        --text-light: #718096;
+      }
+
+      body {
+        background: var(--primary-gradient);
+        min-height: 100vh;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        color: var(--text-dark);
+      }
+
+      /* Add animated background */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"><animate attributeName="r" values="1;2;1" dur="3s" repeatCount="indefinite"/></circle></svg>');
+        z-index: -1;
+        animation: float 20s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+      }
+    </style>
   </head>
 
   <body>
-
-    <header>
-    <%= render 'layouts/navigation' %>
-
-    </header>
-
-<main role="main" class="container d-flex flex-column align-items-center justify-content-center py-5">
-  <%= yield %>
-</main>
-
-
-<% if logged_in? %>
-<br>
-Logged In as <%= link_to current_user.username, user_path(current_user.id) %>
-<% end %>
-
-<br><br><br>
-<div class="footer-copyright text-right py-3">
-
-        <small>&copy; 2020 <strong>Christopher Dent</strong></small>
+    <!-- Modern Navigation -->
+    <nav class="navbar navbar-expand-lg" style="background: var(--glass-bg); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.2);">
+      <div class="container">
+        <a class="navbar-brand" href="/" style="color: white; font-weight: 700; font-size: 1.5rem;">
+          <i class="fas fa-users me-2"></i>
+          Volunteer Manager
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <%= render 'layouts/navigation' %>
+        </div>
       </div>
+    </nav>
 
+    <!-- Main Content -->
+    <main role="main">
+      <%= yield %>
+    </main>
+
+    <!-- Footer -->
+  <footer class="text-center py-3" style="color: #888; font-size: 1rem;">
+    Made with <span style="color: #e25555;">&#10084;&#65039;</span> in St. Augustine by <strong>Chris Dent</strong>
+  </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

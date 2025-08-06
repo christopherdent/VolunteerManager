@@ -1,36 +1,23 @@
+<ul class="navbar-nav ms-auto align-items-center">
+  <li class="nav-item">
+    <%= link_to root_path, class: "nav-link", style: "color: rgba(255, 255, 255, 0.9);" do %>
+      <i class="fas fa-home me-1"></i>Dashboard
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to volunteers_path, class: "nav-link", style: "color: rgba(255, 255, 255, 0.9);" do %>
+      <i class="fas fa-users me-1"></i>Volunteers
+    <% end %>
+  </li>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between fixed-top">
-  <a class="navbar-brand" href="/">A.V.M.</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-<% if logged_in? %>
-<center>
-  <div class="collapse navbar-collapse" id="navbarColor02">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-
-      <li class="nav-item active">
-        <a class="nav-link" href="/volunteers">All Volunteers</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/groups">All Groups</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/group_volunteers">All Statements of Expertise</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/users">System Users</a>
-      </li>
-
-    </ul>
-    </center>
-
-    <span class="navbar-text">
-  <a class="nav-link" href="/logout">Logout</a>
-</span>
- </nav>
-<% end %>
-<br><br>
+  <% if logged_in? %>
+    <li class="nav-item">
+      <%= link_to user_path(current_user.id), class: "nav-link", style: "color: rgba(255, 255, 255, 0.9);" do %>
+        <i class="fas fa-user me-1"></i>Profile
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Logout', logout_path, method: :delete, class: "btn btn-danger btn-sm ms-3", style: "color: #fff;" %>
+    </li>
+  <% end %>
+</ul>
