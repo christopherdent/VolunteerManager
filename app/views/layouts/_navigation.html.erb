@@ -9,11 +9,7 @@
       <i class="fas fa-users me-1"></i>Volunteers
     <% end %>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#" style="color: rgba(255, 255, 255, 0.9);">
-      <i class="fas fa-calendar me-1"></i>Events
-    </a>
-  </li>
+
   <% if logged_in? %>
     <li class="nav-item">
       <%= link_to user_path(current_user.id), class: "nav-link", style: "color: rgba(255, 255, 255, 0.9);" do %>
