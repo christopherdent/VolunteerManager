@@ -7,15 +7,16 @@
   <div class="row">
     <% @groups.each do |group| %>
       <div class="col-md-3 mb-4">
-        <div class="card text-center shadow-sm">
+        <div class="card text-center shadow-sm" style="background: #232733;">
           <div class="card-body">
-            <div class="avatar bg-secondary text-white mx-auto mb-3" 
-                 style="width:56px;height:56px;line-height:56px;border-radius:50%;font-size:1.7rem;">
+            <div class="avatar mx-auto mb-3"
+                style="width:56px;height:56px;line-height:56px;border-radius:50%;font-size:1.7rem;
+                        background: #42465a; color: #fff; font-weight: 600; opacity:0.85;">
               <%= group.name[0,2].upcase %>
             </div>
-            <%= link_to group.name, group, class: "h5 d-block", style: "color:#6379e6;" %>
-            <div class="small" style="color:#7e889c;"><%= group.program_name %></div>
-            <span class="badge bg-info text-dark mt-2"><%= group.kind.titleize %></span>
+            <%= link_to group.name, group, class: "h5 d-block", style: "color:#7e889c;" %>
+            <div class="small" style="color:#576072;"><%= group.program_name %></div>
+            <span class="badge bg-secondary text-light mt-2" style="opacity:0.6;"><%= group.kind.titleize %></span>
           </div>
         </div>
       </div>
