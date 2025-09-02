@@ -27,17 +27,23 @@ before_action :set_group, only: [:update]
     end
   end
 
-  def show
-    @group = Group.find(params[:id])
-    @group_volunteer = GroupVolunteer.new
-    @volunteers = Volunteer.all.uniq.sort_by(&:last_name)
-    @emails = []
-    @group.volunteers.each do |v|
-      @emails << v.email
-      @emails.uniq
-    end
+def show
+  @group = Group.find(params[:id])
+  @group_volunteer = GroupVolunteer.new
 
-  end
+  # preload join records for the members list + emails
+  gvs = @group.group_volunteers.includes(:volunteer)
+
+  @members  = gvs.map(&:volunteer).compact.uniq.sort_by(&:last_name)
+  @gv_index = gvs.index_by(&:volunteer_id)
+
+  # emails for the mail_to
+  @emails = @members.map(&:email).compact.uniq
+
+  # <-- this was missing:
+  @volunteers = Volunteer.order(:last_name)  # or .select(:id, :first_name, :last_name).order(:last_name)
+end
+
 
   def edit
     @group = Group.find(params[:id])

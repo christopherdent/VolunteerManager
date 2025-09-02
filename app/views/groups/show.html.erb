@@ -1,62 +1,81 @@
 <div class="jumbotron text-center">
-
   <h1><%= @group.name %></h1>
-    <% if current_user.admin? %>
+  <% if current_user.admin? %>
     <%= link_to "EDIT", edit_group_path(@group) %>
-    <% end %>
+  <% end %>
 </div>
 
 <div class="row">
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Chairperson:  <%= @group.chair_first %> <%= @group.chair_last %></h5>
+        <h5 class="card-title">
+          Chairperson: <%= @group.chair_first %> <%= @group.chair_last %>
+        </h5>
         <p class="card-text">Group Type: <%= @group.kind %></p>
-        <p class="card-text">Program:  <%= @group.program_name %></p>
-        <p class="card-text">Status:  <%= "Active" if @group.status == true %><%= "Inactive" if @group.status == false %></p>
+        <p class="card-text">Program: <%= @group.program_name %></p>
+        <p class="card-text">Status: <%= @group.status? ? "Active" : "Inactive" %></p>
       </div>
     </div>
   </div>
+
   <div class="col-sm-6">
     <div class="card text-center">
       <div class="card-body">
-        <h5 class="card-title"><%= image_tag("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRqrrpUgz-rg4VmmTkD7dwiOUP3e-HB82yw5wIHVov3DYdWDi3k&usqp=CAU", :size => "100x100", alt: "Email Group")%></h5>
-        <p class="card-text"><%= mail_to @emails.uniq * "; ", 'Email This Group', target: :_blank %></p>
-
+        <h5 class="card-title">
+          <%= image_tag("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRqrrpUgz-rg4VmmTkD7dwiOUP3e-HB82yw5wIHVov3DYdWDi3k&usqp=CAU", size: "100x100", alt: "Email Group") %>
+        </h5>
+        <p class="card-text">
+          <%= mail_to @emails.uniq.join("; "), "Email This Group", target: :_blank %>
+        </p>
       </div>
     </div>
   </div>
 </div>
+
 <br><br>
 
-Group Members:
+<span class='main-content'>Group Members:</span>
 <br><br>
+
 <ul>
-<% @group.volunteers.uniq.sort_by(&:last_name).each do |member| %>
-
-<li><%= link_to member.full_name, volunteer_path(member) %>
-  <%= button_to "Remove From Group", remove_from_group_group_volunteer_path(@group, member), class: "btn btn-primary btn-sm", method: :delete%> </li><br>
-<% end  %>
-
+  <% @group.group_volunteers.includes(:volunteer).sort_by { |gv| gv.volunteer.last_name }.each do |gv| %>
+    <li>
+      <%= link_to gv.volunteer.full_name, volunteer_path(gv.volunteer) %>
+      <%= button_to "Remove From Group",
+                    group_group_volunteer_path(@group, gv),   # DELETE /groups/:group_id/group_volunteers/:id
+                    method: :delete,
+                    class: "btn btn-primary btn-sm",
+                    data: { turbo_confirm: "Remove #{gv.volunteer.full_name} from this group?" } %>
+    </li>
+    <br>
+  <% end %>
 </ul>
 
 <br>
 
 <div class="jumbotron text-left">
+  <p>
+    Quick add an existing volunteer from the list or
+    <%= link_to "create a new volunteer", new_volunteer_path %>.
+  </p>
 
-<p>Quick add an existing volunteer from the list or <%= link_to 'create a new volunteer', new_volunteer_path %>. </p>
-
-<%= form_for(@group, url: {action: "update_two"}, method: :patch) do |f| %>
-
-<%= f.collection_select(:volunteer_ids, @volunteers, :id, :full_name, :include_blank => true, :selected => "") %><br><br>
-
-<%= f.submit "Add" %>
-<%end%>
+<%= form_for @group, url: update_two_group_path(@group), method: :patch do |f| %>
+  <%= f.collection_select(:volunteer_ids, @volunteers, :id, :full_name,
+                          include_blank: true, selected: "") %><br><br>
+  <%= f.submit "Add" %>
+<% end %>
 
 </div>
 
-<br>
-<br>
+<br><br>
+
 <% if current_user.admin? %>
-<center>  <%= button_to "Delete Group", group_path(@group), class: "btn btn-danger", method: :delete, data: { confirm: "Really?" } %> </center>
+  <center>
+    <%= button_to "Delete Group",
+                  group_path(@group),
+                  class: "btn btn-danger",
+                  method: :delete,
+                  data: { confirm: "Really?" } %>
+  </center>
 <% end %>

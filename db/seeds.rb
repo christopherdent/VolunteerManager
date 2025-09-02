@@ -3,8 +3,16 @@ User.create!(
   username: "cdent",
   first_name: "Christopher",
   last_name: "Dent",
-  email: "christopher.dent@example.com",
+  email: "christopher.dent@example.gov",
   password: "password123",
+  admin: true
+)
+User.create!(
+  username: "guest",
+  first_name: "guest",
+  last_name: "user",
+  email: "christopher.dent@example.com",
+  password: "guest",
   admin: true
 )
 User.create!(

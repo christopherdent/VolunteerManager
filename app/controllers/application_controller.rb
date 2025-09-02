@@ -19,8 +19,9 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_only
-    unless current_user&.admin
-      redirect_to request.referrer, alert: "You must be an admin to perform that function!"
+    unless current_user&.admin?
+      flash[:alert] = "You do not have permission to perform that action."
+      redirect_to root_path
     end
   end
 
