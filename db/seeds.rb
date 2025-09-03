@@ -1,3 +1,9 @@
+User.destroy_all
+Volunteer.destroy_all
+Group.destroy_all
+GroupVolunteer.destroy_all
+
+
 # USERS
 User.create!(
   username: "cdent",
