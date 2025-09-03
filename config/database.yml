@@ -2,14 +2,23 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: chris
-  # explicitly use the Postgres socket—no TCP, no password
-  host: "/var/run/postgresql"
+  username: <%= ENV.fetch("DB_USER", "volunteer_user") %>
+  password: <%= ENV.fetch("DB_PASSWORD", "secure_password") %>
+  host: <%= ENV.fetch("DB_HOST", "localhost") %>
+  port: <%= ENV.fetch("DB_PORT", 5433) %>
 
 development:
   <<: *default
-  database: volunteer_manager_development
+  database: <%= ENV.fetch("DB_NAME_DEV", "volunteer_manager_development") %>
 
 test:
   <<: *default
-  database: volunteer_manager_test
+  database: <%= ENV.fetch("DB_NAME_TEST", "volunteer_manager_test") %>
+
+production:
+  <<: *default
+  database: <%= ENV.fetch("DB_NAME_PROD", "volunteer_manager_production") %>
+  username: <%= ENV.fetch("DB_USER_PROD", "volunteer_user") %>
+  password: <%= ENV.fetch("DB_PASSWORD_PROD", "secure_password") %>
+  host: <%= ENV.fetch("DB_HOST_PROD", "localhost") %>
+  port: <%= ENV.fetch("DB_PORT_PROD", 5433) %>
