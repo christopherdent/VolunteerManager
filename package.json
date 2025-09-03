@@ -3,11 +3,11 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "build": "esbuild app/javascript/**/*.js --bundle --sourcemap --outdir=app/assets/builds",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
     "build:watch": "esbuild app/javascript/**/*.js --bundle --sourcemap --outdir=app/assets/builds --watch"
   },
   "devDependencies": {
-    "esbuild": "^0.17.19"
+    "esbuild": "^0.25.9"
   },
   "dependencies": {
     "@rails/actioncable": "^8.0.200",
