@@ -1,3 +1,10 @@
+GroupVolunteer.destroy_all
+Group.destroy_all
+Volunteer.destroy_all
+User.destroy_all
+
+
+
 # USERS
 User.create!(
   username: "cdent",
@@ -31,22 +38,7 @@ User.create!(
   password: "password123",
   admin: false
 )
-User.create!(
-  username: "mroberts",
-  first_name: "Maria",
-  last_name: "Roberts",
-  email: "maria.roberts@globaltech.com",
-  password: "password123",
-  admin: false
-)
-User.create!(
-  username: "sliu",
-  first_name: "Sophia",
-  last_name: "Liu",
-  email: "sophia.liu@innovatech.com",
-  password: "password123",
-  admin: false
-)
+
 
 # VOLUNTEERS
 Volunteer.create!(
@@ -159,3 +151,4 @@ GroupVolunteer.create!(
   volunteer_id: 2,
   statement: "Professional background in nonprofit operations and volunteer management."
 )
+

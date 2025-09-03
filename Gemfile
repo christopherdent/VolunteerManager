@@ -17,7 +17,6 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'jsbundling-rails'
 gem 'image_processing', '~> 1.2'
 
 group :development, :test do
@@ -36,6 +35,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'faker', '~> 3.3'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
