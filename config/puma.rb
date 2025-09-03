@@ -18,7 +18,7 @@ workers ENV.fetch("WEB_CONCURRENCY") { 0 }
 preload_app! if ENV.fetch("WEB_CONCURRENCY", "0").to_i > 0
 
 # ⬇️ IMPORTANT: single listener that binds to the Koyeb-assigned $PORT
-bind "tcp://0.0.0.0:#{ENV.fetch('PORT', 3000)}"
+# bind "tcp://0.0.0.0:#{ENV.fetch('PORT', 3000)}"
 
 # Reconnect DB when using workers (safe no-op when workers = 0)
 on_worker_boot do
