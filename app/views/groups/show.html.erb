@@ -54,12 +54,12 @@
 
 <br>
 
-<div class="jumbotron text-left">
+<div class="jumbotron text-left main-content">
   <p>
     Quick add an existing volunteer from the list or
     <%= link_to "create a new volunteer", new_volunteer_path %>.
   </p>
-
+``
 <%= form_for @group, url: update_two_group_path(@group), method: :patch do |f| %>
   <%= f.collection_select(:volunteer_ids, @volunteers, :id, :full_name,
                           include_blank: true, selected: "") %><br><br>
