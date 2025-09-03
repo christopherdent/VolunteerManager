@@ -7,7 +7,7 @@
     "build:watch": "esbuild app/javascript/**/*.js --bundle --sourcemap --outdir=app/assets/builds --watch"
   },
   "devDependencies": {
-    "esbuild": "^0.25.9"
+    "esbuild": "^0.25.0"
   },
   "dependencies": {
     "@rails/actioncable": "^8.0.200",
