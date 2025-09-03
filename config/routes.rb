@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :volunteers
   resources :users
-
+  get "/health", to: proc { [200, {}, ["OK"]] }
   get    "/login"                   => "sessions#new"
   post   "/login"                   => "sessions#create"
   get    "/signup"                  => "users#new"

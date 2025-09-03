@@ -115,5 +115,8 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 config.active_storage.service = :local
 
+# Trust the reverse proxy (all IPs is fine for Koyeb)
+config.action_dispatch.trusted_proxies = [IPAddr.new("0.0.0.0/0"), IPAddr.new("::/0")]
 
 end
+
