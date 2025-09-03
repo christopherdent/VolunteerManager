@@ -31,22 +31,7 @@ User.create!(
   password: "password123",
   admin: false
 )
-User.create!(
-  username: "mroberts",
-  first_name: "Maria",
-  last_name: "Roberts",
-  email: "maria.roberts@globaltech.com",
-  password: "password123",
-  admin: false
-)
-User.create!(
-  username: "sliu",
-  first_name: "Sophia",
-  last_name: "Liu",
-  email: "sophia.liu@innovatech.com",
-  password: "password123",
-  admin: false
-)
+
 
 # VOLUNTEERS
 Volunteer.create!(
@@ -160,51 +145,3 @@ GroupVolunteer.create!(
   statement: "Professional background in nonprofit operations and volunteer management."
 )
 
-require 'faker'
-
-# === USERS ===
-10.times do
-  User.create!(
-    username: Faker::Internet.unique.username,
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    email: Faker::Internet.unique.email,
-    password: "password123",
-    admin: [true, false].sample
-  )
-end
-
-# === VOLUNTEERS ===
-20.times do
-  Volunteer.create!(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    email: Faker::Internet.unique.email,
-    organization: Faker::Company.name,
-    sector: %w[Nonprofit Industry Government Education Healthcare].sample,
-    active_status: [true, false].sample,
-    user_id: User.pluck(:id).sample
-  )
-end
-
-# === GROUPS ===
-10.times do
-  Group.create!(
-    name: Faker::Company.industry,
-    program_name: Faker::Company.catch_phrase,
-    chair_first: Faker::Name.first_name,
-    chair_last: Faker::Name.last_name,
-    status: [true, false].sample,
-    user_id: User.pluck(:id).sample,
-    kind: %w[Program Working\ Group Community].sample
-  )
-end
-
-# === GROUP VOLUNTEERS (Statements of Expertise) ===
-30.times do
-  GroupVolunteer.create!(
-    group_id: Group.pluck(:id).sample,
-    volunteer_id: Volunteer.pluck(:id).sample,
-    statement: Faker::Lorem.sentence(word_count: 12)
-  )
-end
