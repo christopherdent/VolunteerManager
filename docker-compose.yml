@@ -13,5 +13,18 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
 
+  web:
+    build: .
+    container_name: volunteermanager_web
+    command: bash -c "bundle exec rails db:prepare && bundle exec puma -C config/puma.rb"
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://volunteer_user:secure_password@db:5432/volunteer_manager_development
+
 volumes:
   db_data:
