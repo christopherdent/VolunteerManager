@@ -48,7 +48,6 @@ Rails.application.configure do
     config.force_ssl = false
 
     # Allow all hosts (or explicitly your Koyeb app’s hostname if you prefer)
-  config.hosts << "flaky-ingrid-christopherdent-981ddae2.koyeb.app"
   config.hosts << ".koyeb.app" # Allow all koyeb subdomains
 
   # Use the lowest log level to ensure availability of diagnostic information
@@ -114,7 +113,6 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
-config.active_storage.service = :local
 
 # Trust the reverse proxy (all IPs is fine for Koyeb)
 config.action_dispatch.trusted_proxies = [IPAddr.new("0.0.0.0/0"), IPAddr.new("::/0")]
