@@ -48,7 +48,13 @@ Rails.application.configure do
     config.force_ssl = false
 
     # Allow all hosts (or explicitly your Koyeb app’s hostname if you prefer)
-  config.hosts << ".koyeb.app" # Allow all koyeb subdomains
+    # Allow both Koyeb and Render
+    config.hosts << ".koyeb.app"
+    config.hosts << ".onrender.com"
+
+    # Or just allow everything (less secure, fine for hobby projects)
+    # config.hosts.clear
+
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
