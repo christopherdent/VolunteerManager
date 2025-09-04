@@ -15,3 +15,12 @@ Or see it live at https://volunteermanager.herokuapp.com (email christopherdent0
 ## Built With
 
 Built with Ruby 2.5.1p57 and Rails 6.0.2.1 and styled with Bootstrap 4.  
+
+
+docker build -t volunteermanager:prod .
+docker run -p 3000:3000 \
+  -e RAILS_ENV=production \
+  -e RACK_ENV=production \
+  -e SECRET_KEY_BASE=$(rails secret) \
+  -e DATABASE_URL=postgres://volunteer_user:secure_password@host.docker.internal:5433/volunteer_manager_development \
+  volunteermanager:prod
