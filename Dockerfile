@@ -31,7 +31,7 @@ ENV RAILS_ENV=production \
     BUNDLE_WITHOUT="development:test"
 
 # Precompile assets (if you’re using sprockets/pipeline)
-RUN bundle exec rake assets:precompile
+# RUN bundle exec rake assets:precompile
 
 # Expose Puma port
 EXPOSE 3000
