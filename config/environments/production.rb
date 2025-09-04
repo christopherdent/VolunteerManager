@@ -48,7 +48,8 @@ Rails.application.configure do
     config.force_ssl = false
 
     # Allow all hosts (or explicitly your Koyeb app’s hostname if you prefer)
-    config.hosts.clear
+  config.hosts << "flaky-ingrid-christopherdent-981ddae2.koyeb.app"
+  config.hosts << ".koyeb.app" # Allow all koyeb subdomains
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
