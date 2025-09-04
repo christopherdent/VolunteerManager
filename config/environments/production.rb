@@ -44,8 +44,12 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # Let Koyeb terminate SSL; Rails should trust plain HTTP from proxy
-    config.force_ssl = false
+# Enable force_ssl, but trust the proxy (Render sets X-Forwarded-Proto)
+config.force_ssl = true
+
+# Make sure Rails knows to trust the proxy headers
+config.middleware.use Rack::SSL if Rails.env.production?
+
 
     # Allow all hosts (or explicitly your Koyeb app’s hostname if you prefer)
     # Allow both Koyeb and Render
