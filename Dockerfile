@@ -9,7 +9,6 @@ RUN apt-get update -qq && apt-get install -y \
   postgresql-client \
   && rm -rf /var/lib/apt/lists/*
 
-
 WORKDIR /app
 
 RUN gem install bundler
@@ -23,7 +22,8 @@ ENV RAILS_ENV=production \
     RACK_ENV=production \
     BUNDLE_WITHOUT="development:test"
 
-# NOTE: removed asset precompile here
+# Ensure tmp/pids exists so Puma can write PID file
+RUN mkdir -p tmp/pids
 
 EXPOSE 3000
 

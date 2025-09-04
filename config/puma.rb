@@ -9,7 +9,8 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 workers ENV.fetch("WEB_CONCURRENCY") { 0 }
 preload_app! if ENV.fetch("WEB_CONCURRENCY", "0").to_i > 0
 
-port ENV.fetch("PORT") { 8000 }
+port ENV.fetch("PORT") { 3000 }
+
 on_worker_boot do
   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
 end
