@@ -1,32 +1,40 @@
-# Use a lightweight Ruby image
+# syntax=docker/dockerfile:1
+
+# Base Ruby image
 FROM ruby:3.2
 
-# Install dependencies
+# Install OS packages
 RUN apt-get update -qq && apt-get install -y \
   build-essential \
   libpq-dev \
   nodejs \
   npm \
-  postgresql-client
+  postgresql-client \
+  && rm -rf /var/lib/apt/lists/*
 
-# Set working directory
+# Set working dir
 WORKDIR /app
 
 # Install bundler
 RUN gem install bundler
 
-# Copy Gemfile and install gems
+# Cache gems
 COPY Gemfile Gemfile.lock ./
-RUN bundle install
+RUN bundle install --without development test
 
-# Copy rest of the app
+# Copy app code
 COPY . .
 
-# Precompile assets (optional: uncomment if using sprockets/pipeline)
-# RUN bundle exec rake assets:precompile
+# Set env vars for production
+ENV RAILS_ENV=production \
+    RACK_ENV=production \
+    BUNDLE_WITHOUT="development:test"
 
-# Expose port Puma will run on
+# Precompile assets (if you’re using sprockets/pipeline)
+RUN bundle exec rake assets:precompile
+
+# Expose Puma port
 EXPOSE 3000
 
-# Default command to start the app
+# Start server
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
