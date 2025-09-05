@@ -6,16 +6,8 @@ gem 'sassc-rails'
 gem 'rails', '~> 7.0.8'
 gem 'pg', '>= 1.5'
 gem 'puma', '~> 6.0'
-gem 'importmap-rails'
-gem 'turbo-rails'
-gem 'stimulus-rails'
-gem 'bootstrap', '~> 5.3'
-gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'dotenv-rails'
-gem 'omniauth'
-gem 'omniauth-google-oauth2'
-gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'image_processing', '~> 1.2'
 

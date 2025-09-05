@@ -22,9 +22,6 @@ Rails.application.configure do
   # Serve static files (needed on Render/Koyeb since no Nginx in front)
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present? || true
 
-  # Compress CSS using a preprocessor.
-  # config.assets.css_compressor = :sass
-
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
@@ -56,7 +53,10 @@ config.hosts << "127.0.0.1"
 config.hosts << /.*\.ngrok-free\.app/    # if you ever tunnel
 
   # Default URL options (used in mailers and redirects)
-  Rails.application.routes.default_url_options[:host] = "volunteermanager.onrender.com"
+  # Replace the hard-coded host line with:
+Rails.application.routes.default_url_options[:host] =
+  ENV.fetch("APP_HOST", "localhost")
+
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
