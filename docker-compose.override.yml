@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        RAILS_ENV: production
+        BUNDLE_WITHOUT: "development test"
+    environment:
+      RAILS_ENV: production
+      RACK_ENV: production
+      # 👉 set these before running; examples below
+      DATABASE_URL: ${DATABASE_URL}
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+    # Run migrations then boot Puma in prod
+    command: bash -lc "bundle exec rails db:migrate && bundle exec puma -C config/puma.rb"
+    # Optional: avoid clobbering your working dir in prod-style runs
+    volumes: []
+    # Optional: use a different host port so it won't collide with your dev stack
+    ports:
+      - "3001:3000"
+
+  db:
+    # keep the same db service; optional to expose a different host port in prod test
+    ports:
+      - "6433:5432"

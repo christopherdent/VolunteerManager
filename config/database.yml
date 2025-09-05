@@ -1,11 +1,16 @@
+# config/database.yml
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: 5
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
+
+  # If DATABASE_URL is set (Docker/CI/prod), use it and ignore the fields below.
+  # Otherwise, fall back to individual fields (handy for running on host).
+  url: <%= ENV["DATABASE_URL"] %>
   username: <%= ENV.fetch("DB_USER", "volunteer_user") %>
   password: <%= ENV.fetch("DB_PASSWORD", "secure_password") %>
-  host: <%= ENV.fetch("DB_HOST", "localhost") %>
-  port: <%= ENV.fetch("DB_PORT", 5433) %>
+  host:     <%= ENV.fetch("DB_HOST", "localhost") %>
+  port:     <%= ENV.fetch("DB_PORT", 5433) %>
 
 development:
   <<: *default
@@ -17,8 +22,10 @@ test:
 
 production:
   <<: *default
+  # Prefer a single DATABASE_URL in prod deployments.
+  # If not provided, we fall back to the *_PROD vars below.
   database: <%= ENV.fetch("DB_NAME_PROD", "volunteer_manager_production") %>
-  username: <%= ENV.fetch("DB_USER_PROD", "volunteer_user") %>
-  password: <%= ENV.fetch("DB_PASSWORD_PROD", "secure_password") %>
-  host: <%= ENV.fetch("DB_HOST_PROD", "localhost") %>
-  port: <%= ENV.fetch("DB_PORT_PROD", 5433) %>
+  username: <%= ENV.fetch("DB_USER_PROD", ENV.fetch("DB_USER", "volunteer_user")) %>
+  password: <%= ENV.fetch("DB_PASSWORD_PROD", ENV.fetch("DB_PASSWORD", "secure_password")) %>
+  host:     <%= ENV.fetch("DB_HOST_PROD", ENV.fetch("DB_HOST", "localhost")) %>
+  port:     <%= ENV.fetch("DB_PORT_PROD", ENV.fetch("DB_PORT", 5433)) %>
