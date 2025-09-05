@@ -2,18 +2,15 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("DB_POOL", 5) %>
+  url: <%= ENV["DATABASE_URL"] %>
 
 development:
   <<: *default
-  database: volunteer_manager_development
-  host: localhost
-  port: 5432
-  username: volunteer_user
-  password: secure_password
 
-# ✅ add this:
+test:
+  <<: *default
+
 production:
   <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
-  # If you ever use Supabase *pooled* URL (PgBouncer, often port 6543), also set:
+  # ⚠️ If you ever switch to the pooled (PgBouncer, port 6543) URL:
   # prepared_statements: false
