@@ -1,0 +1,12 @@
+.git
+.bundle
+log/*
+tmp/*
+node_modules
+.app-*
+.env*
+coverage
+vendor/bundle
+storage
+db/*.sqlite3
+app/assets/builds/*.map
