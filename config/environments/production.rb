@@ -49,8 +49,8 @@ Rails.application.configure do
   config.hosts << ".onrender.com"
   config.hosts << ".koyeb.app"
   config.hosts << "localhost"
-config.hosts << "127.0.0.1"
-config.hosts << /.*\.ngrok-free\.app/    # if you ever tunnel
+  config.hosts << "127.0.0.1"
+  config.hosts << /.*\.ngrok-free\.app/    # if you ever tunnel
 
   # Default URL options (used in mailers and redirects)
   # Replace the hard-coded host line with:
