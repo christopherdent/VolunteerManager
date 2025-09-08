@@ -9,9 +9,12 @@ Rails.application.routes.draw do
     patch :update_two, on: :member
   end
 
-  resources :group_volunteers, only: [:new, :create]
+  resources :group_volunteers, only: [:new, :create, :index]
+
   resources :volunteers
   resources :users
+
+  get "/talent", to: "group_volunteers#index", as: :talent
 
   get    "/login",  to: "sessions#new"
   post   "/login",  to: "sessions#create"

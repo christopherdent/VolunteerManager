@@ -2,10 +2,14 @@ class SessionsController < ApplicationController
   helper_method :current_user, :require_login, :logged_in?
   skip_before_action :require_login, only: [:welcome, :new, :create]
 
-  def welcome
-     
-    @user = User.find(session[:user_id]) if logged_in?
+def welcome
+  if logged_in?
+    render :welcome  
+  else
+    redirect_to login_path
   end
+end
+
 
 def create
   username = params.dig(:user, :username).to_s.strip

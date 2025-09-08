@@ -49,12 +49,12 @@
         </h1>
         <p class="mb-4" style="color: #b5b5b5;">What would you like to do today?</p>
 <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
-  <%= link_to 'Manage Groups', groups_path, class: "btn btn-outline-success btn-lg px-4", style: "border-radius: 30px; font-weight: 600;" %> <br>
-  <%= link_to 'Manage Volunteers', volunteers_path, class: "btn btn-outline-primary btn-lg px-4", style: "border-radius: 30px; font-weight: 600;" %><br>
-  <%= link_to 'Manage System Users', users_path, class: "btn btn-outline-info btn-lg px-4", style: "border-radius: 30px; font-weight: 600;" %><br>
-  <%# Add more as needed, e.g. %>
-  <%#= link_to 'Manage Events', events_path, class: "btn btn-outline-secondary btn-lg px-4", style: "border-radius: 30px; font-weight: 600;" %>
+  <%= link_to 'Manage Groups', groups_path, class: "btn btn-outline-success btn-lg px-4", style: "border-radius: 30px; font-weight: 600;" %>
+  <%= link_to 'Manage Volunteers', volunteers_path, class: "btn btn-outline-primary btn-lg px-4", style: "border-radius: 30px; font-weight: 600;" %>
+  <%= link_to 'Manage System Users', users_path, class: "btn btn-outline-info btn-lg px-4", style: "border-radius: 30px; font-weight: 600;" %>
+  <%= link_to 'Talent Base', group_volunteers_path, class: "btn btn-outline-warning btn-lg px-4", style: "border-radius: 30px; font-weight: 600;" %>
 </div>
+
 
       </div>
       <% if flash[:alert] %>
