@@ -1,24 +1,18 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: 5
-  username: <%= ENV.fetch("DB_USER", "volunteer_user") %>
-  password: <%= ENV.fetch("DB_PASSWORD", "secure_password") %>
-  host: <%= ENV.fetch("DB_HOST", "localhost") %>
-  port: <%= ENV.fetch("DB_PORT", 5433) %>
+  pool: <%= ENV.fetch("DB_POOL", 5) %>
 
 development:
   <<: *default
-  database: <%= ENV.fetch("DB_NAME_DEV", "volunteer_manager_development") %>
+  url: postgres://volunteer_user:secure_password@localhost:5432/volunteer_manager_development
 
 test:
   <<: *default
-  database: <%= ENV.fetch("DB_NAME_TEST", "volunteer_manager_test") %>
+  url: postgres://volunteer_user:secure_password@localhost:5432/volunteer_manager_test
 
 production:
   <<: *default
-  database: <%= ENV.fetch("DB_NAME_PROD", "volunteer_manager_production") %>
-  username: <%= ENV.fetch("DB_USER_PROD", "volunteer_user") %>
-  password: <%= ENV.fetch("DB_PASSWORD_PROD", "secure_password") %>
-  host: <%= ENV.fetch("DB_HOST_PROD", "localhost") %>
-  port: <%= ENV.fetch("DB_PORT_PROD", 5433) %>
+  url: <%= ENV["DATABASE_URL"] %>
+  # If you ever use Supabase pooled (6543):
+  # prepared_statements: false

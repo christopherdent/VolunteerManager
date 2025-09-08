@@ -1,26 +1,25 @@
 Rails.application.routes.draw do
   root "sessions#welcome"
 
-  resources :groups do
-    # keep DELETE scoped to a group
-    resources :group_volunteers, only: [:destroy]
+  get "/health",  to: "health#ok"
+  get "/dbcheck", to: "health#db"
 
-    # custom member action for your add-from-select form
+  resources :groups do
+    resources :group_volunteers, only: [:destroy]
     patch :update_two, on: :member
   end
 
-  # flat routes so Volunteers#show can open the form without a group context
-  resources :group_volunteers, only: [:new, :create]
+  resources :group_volunteers, only: [:new, :create, :index]
 
   resources :volunteers
   resources :users
-  get "/health", to: proc { [200, {}, ["OK"]] }
-  get    "/login"                   => "sessions#new"
-  post   "/login"                   => "sessions#create"
-  get    "/signup"                  => "users#new"
-  post   "/signup"                  => "users#create"
-  get    "/logout"                  => "sessions#destroy"
-  delete "/logout"                  => "sessions#destroy"
 
-  get "/auth/:provider/callback"    => "sessions#omniauth"
+  get "/talent", to: "group_volunteers#index", as: :talent
+
+  get    "/login",  to: "sessions#new"
+  post   "/login",  to: "sessions#create"
+  get    "/signup", to: "users#new"
+  post   "/signup", to: "users#create"
+  get    "/logout", to: "sessions#destroy"
+  delete "/logout", to: "sessions#destroy"
 end

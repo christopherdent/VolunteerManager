@@ -31,8 +31,10 @@
   <div class="card-header">
     <h4><%= volunteer.first_name %> <%= volunteer.last_name %>, <%= volunteer.organization %>  </h4>
 <h5 class="card-title">Statement of Expertise for: <%= group.name %></h5>
-    <small><%= link_to "Edit", edit_group_volunteer_path(gv), volunteer_id: volunteer.id, statement: statement %> or <%= link_to "Delete", group_volunteer_path(gv), method: :delete, data: { confirm: "Are you sure?" } %>
-> this statement of expertise. </small><br>
+    
+
+
+    <br>
   </div>
   <div class="card-body">
     <p class="card-text"><%= statement %></p>

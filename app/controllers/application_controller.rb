@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
 
   # Skip login in development
   before_action :require_login, unless: -> { Rails.env.development? }
+  skip_before_action :require_login, if: -> { request.path == "/health" }
+
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]

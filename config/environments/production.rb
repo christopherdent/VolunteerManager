@@ -22,9 +22,6 @@ Rails.application.configure do
   # Serve static files (needed on Render/Koyeb since no Nginx in front)
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present? || true
 
-  # Compress CSS using a preprocessor.
-  # config.assets.css_compressor = :sass
-
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
@@ -43,7 +40,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = false
 
   # Trust proxy headers from Render/Koyeb
   config.action_dispatch.trusted_proxies = [IPAddr.new("0.0.0.0/0")]
@@ -51,9 +48,15 @@ Rails.application.configure do
   # Allow Render & Koyeb hostnames
   config.hosts << ".onrender.com"
   config.hosts << ".koyeb.app"
+  config.hosts << "localhost"
+  config.hosts << "127.0.0.1"
+  config.hosts << /.*\.ngrok-free\.app/    # if you ever tunnel
 
   # Default URL options (used in mailers and redirects)
-  Rails.application.routes.default_url_options[:host] = "volunteermanager.onrender.com"
+  # Replace the hard-coded host line with:
+Rails.application.routes.default_url_options[:host] =
+  ENV.fetch("APP_HOST", "localhost")
+
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.

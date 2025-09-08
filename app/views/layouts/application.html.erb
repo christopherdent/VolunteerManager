@@ -9,12 +9,16 @@
     <!-- Bootstrap 5 and Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
     
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_importmap_tags %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+
+    <!-- Sprockets assets (builds) -->
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     
     <!-- Custom CSS -->
     <style>
@@ -81,7 +85,7 @@
 
     <!-- Footer -->
   <footer class="text-center py-3" style="color: #888; font-size: 1rem;">
-    Made with <span style="color: #e25555;">&#10084;&#65039;</span> in St. Augustine by <strong>Chris Dent</strong>
+    Made with <span style="color: #e25555;">&#10084;&#65039;</span> in St. Augustine by <strong><a href = "http://www.christopher-dent.com">Chris Dent</a></strong>
   </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
