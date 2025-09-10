@@ -1,44 +1,59 @@
-<br><br>
-<h1>Edit the Volunteer</h1>
+<div class="card shadow-sm rounded p-4 bg-light">
+  <h2 class="mb-4">Edit Volunteer</h2>
 
+  <% if @volunteer.errors.any? %>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(@volunteer.errors.count, "error") %> prevented this volunteer from being updated:</h4>
+      <ul>
+        <% @volunteer.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<% if @volunteer.errors.any? %>
-  <div class="form-errors">
-  <h4 class = "error"><%= pluralize(@volunteer.errors.count, "error") %> stopped you from updating this volunteer:</h4>
-      <% @volunteer.errors.full_messages.each do |msg| %>
-      <ul class = "error"><li><%= msg %></li></ul>
-      <% end %>
-      </div>
-      <%end%>
+  <%= form_for @volunteer, method: :patch, html: { class: "needs-validation" } do |f| %>
 
+    <div class="mb-3">
+      <%= f.label :first_name, class: "form-label" %>
+      <%= f.text_field :first_name, class: "form-control" %>
+    </div>
 
-<%= form_for @volunteer, method: :patch do |f| %>
+    <div class="mb-3">
+      <%= f.label :last_name, class: "form-label" %>
+      <%= f.text_field :last_name, class: "form-control" %>
+    </div>
 
-<%= f.label :first_name %>
-<%= f.text_field :first_name %>
-<br>
-<%= f.label :last_name %>
-<%= f.text_field :last_name %>
-<br>
-<%= f.label :email %>
-<%= f.email_field :email %>
-<br>
-<%= f.label :organization %>
-<%= f.text_field :organization %>
-<br>
-<%= f.label :sector %>
-<%= f.select :sector, [[], ['Government'], ['Industry'], ['Academia']] %>
-<br>
-<%= f.label :upload_cv %>
-<%= f.file_field :cv %>
-<br>
-<%= f.label :active? %>
-<%= f.check_box :active_status  %>
-<br>
-<%= f.hidden_field :user_id, :value => current_user.id %>
-<br>
+    <div class="mb-3">
+      <%= f.label :email, class: "form-label" %>
+      <%= f.email_field :email, class: "form-control" %>
+    </div>
 
-<br>
-<%= f.submit %>
-<br>
-<% end %>
+    <div class="mb-3">
+      <%= f.label :organization, class: "form-label" %>
+      <%= f.text_field :organization, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :sector, class: "form-label" %>
+      <%= f.select :sector, [['Government'], ['Industry'], ['Academia']], { include_blank: true }, class: "form-select" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :cv, "Upload CV", class: "form-label" %>
+      <%= f.file_field :cv, class: "form-control" %>
+    </div>
+
+    <div class="form-check mb-3">
+      <%= f.check_box :active_status, class: "form-check-input", id: "volunteer_active_status" %>
+      <%= f.label :active_status, "Active?", class: "form-check-label" %>
+    </div>
+
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
+    <div class="mt-4">
+      <%= f.submit "Update Volunteer", class: "btn btn-primary w-100" %>
+    </div>
+
+  <% end %>
+</div>
