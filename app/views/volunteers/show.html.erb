@@ -36,11 +36,19 @@
           <% if @volunteer.cv.attached? %>
             <%= link_to "View CV", @volunteer.cv, class: "skippy-btn btn-xs" %>
           <% end %>
-          <!-- Upload CV (disabled for now) -->
-          <button class="skippy-btn btn-xs btn-outline-secondary" style="opacity:0.7; cursor:not-allowed;">
-            Upload CV
-          </button>
-        </div>
+          <!-- Upload CV   -->
+          <%= form_for @volunteer, url: volunteer_path(@volunteer), html: { multipart: true, method: :patch, class: "d-inline" } do |f| %>
+            <!-- Hidden file input -->
+            <%= f.file_field :cv, class: "d-none", id: "cv_upload_#{@volunteer.id}", onchange: "this.form.submit();" %>
+
+            <label for="cv_upload_<%= @volunteer.id %>"
+              class="skippy-btn btn-xs btn-outline-secondary px-3 ml-3"
+              style="cursor:pointer;">
+          Upload CV
+        </label>
+
+          <% end %>
+
       </div>
 
       <hr class="w-100 my-4" style="border-color: #333;">
@@ -67,6 +75,7 @@
         <div>
           <small><%= link_to "Add a Statement of Expertise", new_group_volunteer_path(volunteer_id: @volunteer.id), class: "skippy-btn btn-xs" %></small>
         </div>
+        <br>
         <% statements = GroupVolunteer.where(volunteer_id: @volunteer.id).select { |gv| gv.statement.present? } %>
         <% if statements.any? %>
           <% statements.each do |gv| %>
