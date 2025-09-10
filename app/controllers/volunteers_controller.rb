@@ -5,12 +5,12 @@ class VolunteersController < ApplicationController
 def index
   @volunteers = Volunteer.all
   
-  if params[:group].present?
-    @group = Group.find(params[:group])
-    @volunteers = @volunteers.joins(:volunteer_groups).where(volunteer_groups: { group_id: params[:group] })
-  else
-    @group = nil
-  end
+    if params[:group].present?
+      @group = Group.find(params[:group])
+      @volunteers = @volunteers.joins(:groups).where(groups: { id: params[:group] })
+    else
+      @group = nil
+    end
   
   @volunteers = @volunteers.includes(:groups) # Avoid N+1 queries
 end
