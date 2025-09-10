@@ -41,11 +41,11 @@
             <!-- Hidden file input -->
             <%= f.file_field :cv, class: "d-none", id: "cv_upload_#{@volunteer.id}", onchange: "this.form.submit();" %>
 
-            <label for="cv_upload_<%= @volunteer.id %>"
-              class="skippy-btn btn-xs btn-outline-secondary px-3 ml-3"
-              style="cursor:pointer;">
-          Upload CV
-        </label>
+<label for="cv_upload_<%= @volunteer.id %>"
+       class="skippy-btn btn-xs btn-outline-secondary text-center px-3"
+       style="cursor:pointer; min-width: 90px;">
+  Upload CV
+</label>
 
           <% end %>
 
