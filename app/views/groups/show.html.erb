@@ -42,11 +42,13 @@
   <% @group.group_volunteers.includes(:volunteer).sort_by { |gv| gv.volunteer.last_name }.each do |gv| %>
     <li>
       <%= link_to gv.volunteer.full_name, volunteer_path(gv.volunteer) %>
-      <%= button_to "Remove From Group",
-                    group_group_volunteer_path(@group, gv),   # DELETE /groups/:group_id/group_volunteers/:id
-                    method: :delete,
-                    class: "btn btn-primary btn-sm",
-                    data: { turbo_confirm: "Remove #{gv.volunteer.full_name} from this group?" } %>
+<%= button_to "Remove From Group",
+              group_remove_from_group_volunteer_path(@group, gv.volunteer),
+              method: :delete,
+              class: "btn btn-primary btn-sm",
+              data: { turbo_confirm: "Remove #{gv.volunteer.full_name} from this group?" } %>
+
+
     </li>
     <br>
   <% end %>

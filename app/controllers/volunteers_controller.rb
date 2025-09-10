@@ -58,18 +58,19 @@ end
       redirect_to volunteers_path
     end
 
-    def remove_from_group
-      @group = Group.find(params[:group_id])
-      volunteer = Volunteer.find(params[:id])
-      @group.volunteers.delete volunteer
+  def remove_from_group
+    @group = Group.find(params[:group_id])
+    volunteer = Volunteer.find(params[:id])
+    @group.volunteers.delete volunteer
 
-      if volunteer.last_name == @group.chair_last  #this conditional clears the group's chair attribute if the volunteer you are removing is the chair.
-        @group.chair_first = nil
-        @group.chair_last = nil
-      end
-      @group.save
+    if volunteer.last_name == @group.chair_last
+      @group.chair_first = nil
+      @group.chair_last = nil
+    end
+    @group.save
+
     redirect_to @group
-end
+  end
 
 
   private
