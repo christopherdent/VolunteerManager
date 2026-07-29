@@ -48,6 +48,8 @@ Rails.application.configure do
   # Allow Render & Koyeb hostnames
   config.hosts << ".onrender.com"
   config.hosts << ".koyeb.app"
+  config.hosts << "christopher-dent.com"
+  config.hosts << "www.christopher-dent.com"
   config.hosts << "localhost"
   config.hosts << "127.0.0.1"
   config.hosts << /.*\.ngrok-free\.app/    # if you ever tunnel
