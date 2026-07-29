@@ -56,7 +56,8 @@ Rails.application.configure do
 
   # Default URL options (used in mailers and redirects)
   # Replace the hard-coded host line with:
-Rails.application.routes.default_url_options[:host] =
+  config.relative_url_root = ENV.fetch("RAILS_RELATIVE_URL_ROOT", "")
+  Rails.application.routes.default_url_options[:host] =
   ENV.fetch("APP_HOST", "localhost")
 
 
