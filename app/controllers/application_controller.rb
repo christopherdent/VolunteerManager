@@ -2,10 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :require_login, :logged_in?
 
+  before_action :set_asset_url_root
+
   # Skip login in development
   before_action :require_login, unless: -> { Rails.env.development? }
-  skip_before_action :require_login, if: -> { request.path == "/health" }
-
+  skip_before_action :require_login, if: -> { request.path_info == "/health" }
 
   def current_user
     return nil unless session[:user_id]
@@ -31,5 +32,12 @@ class ApplicationController < ActionController::Base
   def logged_in?
     current_user.present?
   end
-end
 
+  private
+
+  def set_asset_url_root
+    # Controller config is request-local. Keep assets aligned with route URLs,
+    # including root-path access on the direct Koyeb host and localhost.
+    config.relative_url_root = url_options[:script_name]
+  end
+end

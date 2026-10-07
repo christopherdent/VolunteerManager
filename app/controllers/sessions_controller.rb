@@ -40,7 +40,7 @@ end
   def destroy
     if current_user
       session.delete :user_id
-      redirect_to '/'
+      redirect_to root_path
     end
   end
 
