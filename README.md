@@ -2,7 +2,7 @@
 AVM is a digital tool for keeping track of an association's technical volunteers and the various groups they belong to.  Volunteers can have many goups and groups can have many volunteers, which are linked by a Statement of Expertise unique to each group per volunteer.  The app allows  you to create, read/view, update, and delete volunteers, groups, and their statements, email any group with one click, and even store your volunteers' CVs.  It offers numerous ways to filter each of these categories in an effort to make it as easy as possible for the system user to obtain the data the need fast.  System users are meant to collaborate so objects are not necessarily  tied to individual users, but 'admin' status is required for most CRUD functionality.  Non admin users may also be created but are limited mostly to read only access.  
 
 ## Instructions for Use:  
-Clone the [volunteer manager repo](https://github.com/christopherdent/VolunteerManager.git) and open a terminal in the VolunteerManager folder. Local development uses Ruby 3.2.2, Bundler 2.7.1, Node 22, and Docker for Postgres.
+Clone the [volunteer manager repo](https://github.com/christopherdent/VolunteerManager.git) and open a terminal in the VolunteerManager folder. Local development uses Ruby 3.2.2, Bundler 2.7.1, Node 22 or 24, and Docker for Postgres. Koyeb's Ruby buildpack currently supplies Node 24; the asset build supports both majors.
 
 ```sh
 rvm use 3.2.2

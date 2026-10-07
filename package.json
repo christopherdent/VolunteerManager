@@ -9,5 +9,5 @@
   "devDependencies": {
     "esbuild": "^0.25.0"
   },
-   "engines": { "node": "22.x" }
+   "engines": { "node": "22.x || 24.x" }
 }
